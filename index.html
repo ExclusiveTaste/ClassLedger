@@ -793,6 +793,163 @@
       right: 0;
     }
 
+    .page-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .management-toolbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: #FCFDFC;
+    }
+
+    .search-field {
+      display: flex;
+      width: min(420px, 100%);
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .search-label {
+      color: var(--color-text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .search-control {
+      position: relative;
+    }
+
+    .search-control svg {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      width: 18px;
+      height: 18px;
+      color: var(--color-text-secondary);
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .search-control .form-control {
+      padding-left: 40px;
+    }
+
+    .list-count {
+      margin: 0 0 11px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .table-action-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .table-action {
+      display: inline-flex;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 9px;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--color-primary);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .table-action:hover {
+      background: var(--color-primary-soft);
+    }
+
+    .table-action--danger {
+      color: var(--color-danger);
+    }
+
+    .table-action--danger:hover {
+      background: var(--color-danger-soft);
+    }
+
+    .table-action:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .cell-primary {
+      color: var(--color-text);
+      font-weight: 620;
+    }
+
+    .cell-secondary {
+      color: var(--color-text-secondary);
+    }
+
+    .cell-note {
+      display: block;
+      max-width: 260px;
+      overflow: hidden;
+      color: var(--color-text-secondary);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .number-cell {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .form-submit-error {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 11px 13px;
+      border: 1px solid #F1C7C5;
+      border-radius: var(--radius-control);
+      background: var(--color-danger-soft);
+      color: #8F2B27;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .danger-zone {
+      display: flex;
+      grid-column: 1 / -1;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 4px;
+      padding: 16px;
+      border: 1px solid #F1D0CE;
+      border-radius: var(--radius-control);
+      background: #FFF9F8;
+    }
+
+    .danger-zone__copy h3 {
+      margin: 0;
+      color: #8F2B27;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .danger-zone__copy p {
+      margin: 5px 0 0;
+      color: #93615E;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
     /* ================================================================
        9. 空数据与系统提示
        ================================================================ */
@@ -837,6 +994,10 @@
       line-height: 1.7;
     }
 
+    .empty-state .button {
+      margin-top: 20px;
+    }
+
     .system-alert {
       display: flex;
       align-items: flex-start;
@@ -855,6 +1016,31 @@
       height: 20px;
       flex: 0 0 auto;
       margin-top: 1px;
+    }
+
+    .toast-region {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: calc(var(--layer-modal) - 10);
+      max-width: min(380px, calc(100vw - 32px));
+      padding: 13px 16px;
+      border: 1px solid #D0E4D7;
+      border-radius: var(--radius-control);
+      background: #F4FAF6;
+      color: var(--color-primary-active);
+      box-shadow: 0 12px 32px rgba(14, 45, 29, 0.12);
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity var(--transition-normal), transform var(--transition-normal);
+    }
+
+    .toast-region.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .storage-key {
@@ -1048,6 +1234,27 @@
         flex-direction: column;
       }
 
+      .page-actions,
+      .page-actions .button {
+        width: 100%;
+      }
+
+      .management-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .search-field {
+        width: 100%;
+      }
+
+      .list-count {
+        margin: 0;
+      }
+
       .content-card__header,
       .status-legend {
         padding-right: 20px;
@@ -1056,6 +1263,15 @@
 
       .status-legend {
         flex-wrap: wrap;
+      }
+
+      .danger-zone {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .danger-zone .button {
+        width: 100%;
       }
 
       .empty-state {
@@ -1078,6 +1294,13 @@
 
       .modal-footer .button {
         width: 100%;
+      }
+
+      .toast-region {
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+        max-width: none;
       }
     }
 
@@ -1147,6 +1370,20 @@
       <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
       <path d="M12 11v5M12 8h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="m15.5 15.5 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="m14.8 5.2 4 4L9 19H5v-4l9.8-9.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="m13 7 4 4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M9 3h6l1 4H8l1-4ZM6.5 7l.8 14h9.4l.8-14M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
     <symbol id="icon-close" viewBox="0 0 24 24">
       <path d="m7 7 10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </symbol>
@@ -1203,7 +1440,7 @@
                 <span class="summary-card__unit">人</span>
               </div>
             </div>
-            <p class="summary-card__note">待学生功能接入</p>
+            <p class="summary-card__note">待总表统计接入</p>
           </article>
 
           <article class="summary-card">
@@ -1256,14 +1493,14 @@
             <h2 id="overview-content-title" class="content-card__title">学生课时概览</h2>
             <p class="content-card__description">后续阶段将在此接入筛选、日期列和学生课时数据。</p>
           </div>
-          <span class="status-tag status-tag--success">基础框架已就绪</span>
+          <span class="status-tag status-tag--success">阶段二管理功能已就绪</span>
         </div>
         <div class="empty-state">
           <span class="empty-state__icon" aria-hidden="true">
             <svg><use href="#icon-empty"></use></svg>
           </span>
-          <h2 class="empty-state__title">暂无学生数据</h2>
-          <p class="empty-state__description">当前阶段只建立页面和数据底座，学生与课时业务将在后续阶段接入。</p>
+          <h2 class="empty-state__title">课时总表待后续接入</h2>
+          <p class="empty-state__description">上课时间与学生管理已可使用；课时统计、扣课和记录汇总将在后续阶段接入。</p>
         </div>
       </section>
     </section>
@@ -1275,22 +1512,32 @@
           <h1 id="class-times-title" class="page-title" tabindex="-1">上课时间管理</h1>
           <p class="page-description">集中维护每周上课时间，为学生分组和后续批量扣课提供基础。</p>
         </div>
+        <div class="page-actions">
+          <button id="add-class-time-button" class="button button--primary" type="button">
+            <svg aria-hidden="true"><use href="#icon-plus"></use></svg>
+            新增上课时间
+          </button>
+        </div>
       </div>
 
       <section class="content-card" aria-labelledby="class-times-content-title">
         <div class="content-card__header">
           <div>
             <h2 id="class-times-content-title" class="content-card__title">上课时间列表</h2>
-            <p class="content-card__description">列表与增删改查功能将在后续阶段接入。</p>
+            <p class="content-card__description">按星期和开始时间排列，名称由系统自动生成。</p>
           </div>
         </div>
-        <div class="empty-state">
-          <span class="empty-state__icon" aria-hidden="true">
-            <svg><use href="#icon-clock"></use></svg>
-          </span>
-          <h2 class="empty-state__title">暂无上课时间</h2>
-          <p class="empty-state__description">上课时间数据结构已经预留，当前阶段暂不提供新增、编辑或删除操作。</p>
+        <div class="management-toolbar">
+          <div class="search-field">
+            <label class="search-label" for="class-time-search">搜索上课时间</label>
+            <div class="search-control">
+              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              <input id="class-time-search" class="form-control" type="search" placeholder="搜索名称、星期、时间或备注" autocomplete="off" aria-controls="class-times-list-host">
+            </div>
+          </div>
+          <p id="class-times-count" class="list-count" aria-live="polite">共 0 条</p>
         </div>
+        <div id="class-times-list-host"></div>
       </section>
     </section>
 
@@ -1301,14 +1548,30 @@
           <h1 id="students-title" class="page-title" tabindex="-1">学生管理</h1>
           <p class="page-description">管理学生基础资料、上课时间与学习状态。</p>
         </div>
+        <div class="page-actions">
+          <button id="add-student-button" class="button button--primary" type="button">
+            <svg aria-hidden="true"><use href="#icon-plus"></use></svg>
+            添加学生
+          </button>
+        </div>
       </div>
 
       <section class="content-card" aria-labelledby="students-content-title">
         <div class="content-card__header">
           <div>
             <h2 id="students-content-title" class="content-card__title">学生列表</h2>
-            <p class="content-card__description">学生数据与操作将在后续阶段接入。</p>
+            <p class="content-card__description">学生可关联上课时间，并随时调整在读、冻课或流失状态。</p>
           </div>
+        </div>
+        <div class="management-toolbar">
+          <div class="search-field">
+            <label class="search-label" for="student-search">搜索学生</label>
+            <div class="search-control">
+              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              <input id="student-search" class="form-control" type="search" placeholder="输入学生姓名" autocomplete="off" aria-controls="students-list-host">
+            </div>
+          </div>
+          <p id="students-count" class="list-count" aria-live="polite">共 0 名</p>
         </div>
         <div class="status-legend" aria-label="支持的学生状态">
           <span class="status-legend__label">支持的学生状态</span>
@@ -1316,13 +1579,7 @@
           <span class="status-tag status-tag--frozen">冻课</span>
           <span class="status-tag status-tag--lost">流失</span>
         </div>
-        <div class="empty-state">
-          <span class="empty-state__icon" aria-hidden="true">
-            <svg><use href="#icon-students"></use></svg>
-          </span>
-          <h2 class="empty-state__title">暂无学生</h2>
-          <p class="empty-state__description">学生数据集合已建立，新增、编辑、删除和详情功能将在后续阶段实现。</p>
-        </div>
+        <div id="students-list-host"></div>
       </section>
     </section>
 
@@ -1422,6 +1679,7 @@
     </section>
   </div>
 
+  <div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true" hidden></div>
   <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <script>
@@ -1444,6 +1702,35 @@
       "competitionRecords",
       "refundRecords"
     ]);
+
+    const STUDENT_RECORD_KEYS = Object.freeze([
+      "lessonRecords",
+      "renewalRecords",
+      "referralRecords",
+      "competitionRecords",
+      "refundRecords"
+    ]);
+
+    const WEEKDAYS = Object.freeze([
+      { value: 1, label: "周一" },
+      { value: 2, label: "周二" },
+      { value: 3, label: "周三" },
+      { value: 4, label: "周四" },
+      { value: 5, label: "周五" },
+      { value: 6, label: "周六" },
+      { value: 7, label: "周日" }
+    ]);
+
+    const STUDENT_STATUSES = Object.freeze({
+      active: { label: "在读", className: "status-tag--active" },
+      frozen: { label: "冻课", className: "status-tag--frozen" },
+      lost: { label: "流失", className: "status-tag--lost" }
+    });
+
+    const UI_STATE = {
+      classTimeSearch: "",
+      studentSearch: ""
+    };
 
     /* ================================================================
        2. localStorage 数据层
@@ -1607,6 +1894,15 @@
         body.appendChild(paragraph);
       }
 
+      function resolveReturnFocus(value) {
+        const candidate = typeof value === "function"
+          ? value()
+          : typeof value === "string"
+            ? document.querySelector(value)
+            : value;
+        return candidate instanceof HTMLElement ? candidate : null;
+      }
+
       function open(options = {}) {
         if (closeTimer) {
           window.clearTimeout(closeTimer);
@@ -1614,7 +1910,8 @@
         }
 
         activeOptions = options;
-        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        lastFocusedElement = resolveReturnFocus(options.returnFocus)
+          || (document.activeElement instanceof HTMLElement ? document.activeElement : null);
         title.textContent = options.title || "提示";
         setContent(options.content || "");
 
@@ -1632,7 +1929,12 @@
         document.body.classList.add("modal-open");
         window.requestAnimationFrame(() => {
           layer.classList.add("is-visible");
-          const focusTarget = getFocusableElements()[0] || dialog;
+          const requestedFocus = typeof options.initialFocus === "string"
+            ? dialog.querySelector(options.initialFocus)
+            : options.initialFocus;
+          const focusTarget = requestedFocus instanceof HTMLElement && requestedFocus.getClientRects().length > 0
+            ? requestedFocus
+            : getFocusableElements()[0] || dialog;
           focusTarget.focus();
         });
       }
@@ -1644,14 +1946,19 @@
 
         layer.classList.remove("is-visible");
         document.body.classList.remove("modal-open");
+        const closingOptions = activeOptions;
+        const closingFocus = lastFocusedElement;
 
         const finishClose = () => {
           layer.hidden = true;
           body.replaceChildren();
           activeOptions = {};
 
-          if (lastFocusedElement && document.contains(lastFocusedElement)) {
-            lastFocusedElement.focus();
+          const focusTarget = closingFocus && document.contains(closingFocus)
+            ? closingFocus
+            : resolveReturnFocus(closingOptions.fallbackFocus);
+          if (focusTarget && document.contains(focusTarget)) {
+            focusTarget.focus();
           }
 
           lastFocusedElement = null;
@@ -1795,33 +2102,978 @@
     });
 
     /* ================================================================
-       5. 页面初始化与基础交互
+       5. 通用界面与数据工具
        ================================================================ */
+    const toastRegion = document.getElementById("toast-region");
+    let toastTimer = null;
+
+    function isDataRecord(value) {
+      return value !== null && typeof value === "object" && !Array.isArray(value);
+    }
+
+    function normalizeSearchText(value) {
+      return String(value ?? "").trim().toLocaleLowerCase("zh-CN");
+    }
+
+    function showSystemError(message) {
+      const alert = document.getElementById("storage-alert");
+      document.getElementById("storage-alert-message").textContent = message;
+      alert.hidden = false;
+    }
+
+    function clearSystemError() {
+      const alert = document.getElementById("storage-alert");
+      alert.hidden = true;
+      document.getElementById("storage-alert-message").textContent = "";
+    }
+
+    function showToast(message) {
+      if (toastTimer) {
+        window.clearTimeout(toastTimer);
+      }
+
+      toastRegion.textContent = message;
+      toastRegion.hidden = false;
+      window.requestAnimationFrame(() => toastRegion.classList.add("is-visible"));
+      toastTimer = window.setTimeout(() => {
+        toastRegion.classList.remove("is-visible");
+        window.setTimeout(() => {
+          if (!toastRegion.classList.contains("is-visible")) {
+            toastRegion.hidden = true;
+          }
+        }, 220);
+        toastTimer = null;
+      }, 3000);
+    }
+
+    function createSvgIcon(symbolId) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      svg.setAttribute("aria-hidden", "true");
+      use.setAttribute("href", `#${symbolId}`);
+      svg.appendChild(use);
+      return svg;
+    }
+
+    function createEmptyState({ icon, title, description, actionLabel, action, actionStyle = "primary" }) {
+      const wrapper = document.createElement("div");
+      const iconWrapper = document.createElement("span");
+      const heading = document.createElement("h2");
+      const paragraph = document.createElement("p");
+
+      wrapper.className = "empty-state";
+      iconWrapper.className = "empty-state__icon";
+      iconWrapper.setAttribute("aria-hidden", "true");
+      iconWrapper.appendChild(createSvgIcon(icon));
+      heading.className = "empty-state__title";
+      heading.textContent = title;
+      paragraph.className = "empty-state__description";
+      paragraph.textContent = description;
+      wrapper.append(iconWrapper, heading, paragraph);
+
+      if (actionLabel && action) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `button button--${actionStyle}`;
+        button.dataset.action = action;
+        button.textContent = actionLabel;
+        wrapper.appendChild(button);
+      }
+
+      return wrapper;
+    }
+
+    function createTextCell(text, className = "") {
+      const cell = document.createElement("td");
+      if (className) {
+        cell.className = className;
+      }
+      cell.textContent = text;
+      return cell;
+    }
+
+    function createActionButton(label, action, id, isDanger = false) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = isDanger ? "table-action table-action--danger" : "table-action";
+      button.dataset.action = action;
+      button.dataset.id = id;
+      button.textContent = label;
+      return button;
+    }
+
+    function createUniqueId(prefix, collection) {
+      const existingIds = new Set(
+        collection
+          .filter(isDataRecord)
+          .map((item) => item.id)
+          .filter((id) => typeof id === "string")
+      );
+
+      for (let attempt = 0; attempt < 20; attempt += 1) {
+        const randomPart = globalThis.crypto && typeof globalThis.crypto.randomUUID === "function"
+          ? globalThis.crypto.randomUUID().replaceAll("-", "")
+          : `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 11)}${attempt}`;
+        const id = `${prefix}_${randomPart}`;
+        if (!existingIds.has(id)) {
+          return id;
+        }
+      }
+
+      throw new Error("无法生成唯一编号，请重试。");
+    }
+
+    function getWeekdayLabel(value) {
+      const weekday = WEEKDAYS.find((item) => item.value === Number(value));
+      return weekday ? weekday.label : "";
+    }
+
+    function formatClassTimeName(classTime) {
+      const weekdayName = getWeekdayLabel(classTime.weekday) || String(classTime.weekdayName || "").trim();
+      const startTime = String(classTime.startTime || "").trim();
+      const endTime = String(classTime.endTime || "").trim();
+
+      if (weekdayName && startTime && endTime) {
+        return `${weekdayName} ${startTime}-${endTime}`;
+      }
+
+      return String(classTime.displayName || "未命名上课时间").trim() || "未命名上课时间";
+    }
+
+    function sortClassTimes(classTimes) {
+      return classTimes.slice().sort((left, right) => {
+        const weekdayDifference = (Number(left.weekday) || 99) - (Number(right.weekday) || 99);
+        if (weekdayDifference !== 0) {
+          return weekdayDifference;
+        }
+
+        const startDifference = String(left.startTime || "").localeCompare(String(right.startTime || ""));
+        if (startDifference !== 0) {
+          return startDifference;
+        }
+
+        return String(left.endTime || "").localeCompare(String(right.endTime || ""));
+      });
+    }
+
+    function formatHours(value) {
+      if (value === "" || value === null || typeof value === "undefined") {
+        return "—";
+      }
+
+      const number = Number(value);
+      return Number.isFinite(number) ? number.toLocaleString("zh-CN", { maximumFractionDigits: 6 }) : "—";
+    }
+
+    function setFieldError(form, fieldName, message) {
+      const field = form.elements.namedItem(fieldName);
+      const error = form.querySelector(`[data-error-for="${fieldName}"]`);
+
+      if (field instanceof HTMLElement) {
+        if (message) {
+          field.setAttribute("aria-invalid", "true");
+        } else {
+          field.removeAttribute("aria-invalid");
+        }
+      }
+
+      if (error) {
+        error.textContent = message || "";
+        error.hidden = !message;
+      }
+    }
+
+    function applyFormErrors(form, errors, focusFirst = false) {
+      const fieldNames = Array.from(form.elements)
+        .map((field) => field.name)
+        .filter(Boolean);
+      let firstInvalidField = null;
+
+      fieldNames.forEach((fieldName) => {
+        const message = errors[fieldName] || "";
+        setFieldError(form, fieldName, message);
+        if (!firstInvalidField && message) {
+          const field = form.elements.namedItem(fieldName);
+          if (field instanceof HTMLElement) {
+            firstInvalidField = field;
+          }
+        }
+      });
+
+      if (focusFirst && firstInvalidField) {
+        firstInvalidField.focus();
+      }
+
+      return !firstInvalidField;
+    }
+
+    function bindFieldValidation(form, validator) {
+      const validateTarget = (target) => {
+        if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement)) {
+          return;
+        }
+
+        if (!target.name) {
+          return;
+        }
+
+        const errors = validator(form);
+        setFieldError(form, target.name, errors[target.name] || "");
+
+        if (target.name === "startTime" && form.elements.namedItem("endTime")) {
+          setFieldError(form, "endTime", errors.endTime || "");
+        }
+      };
+
+      form.addEventListener("focusout", (event) => validateTarget(event.target));
+      form.addEventListener("change", (event) => validateTarget(event.target));
+    }
+
+    function bindFormSubmitToModal(form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.getElementById("modal-confirm-button").click();
+      });
+
+      form.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const isMultiline = target instanceof HTMLTextAreaElement;
+        const isButton = target instanceof HTMLButtonElement;
+
+        if (
+          event.key !== "Enter"
+          || event.isComposing
+          || event.shiftKey
+          || event.ctrlKey
+          || event.altKey
+          || event.metaKey
+          || isMultiline
+          || isButton
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+        document.getElementById("modal-confirm-button").click();
+      });
+    }
+
+    function setFormSubmitError(form, message) {
+      const error = form.querySelector("[data-submit-error]");
+      if (!error) {
+        return;
+      }
+      error.textContent = message || "";
+      error.hidden = !message;
+    }
+
     function updateStorageStatus(result) {
       const statusTag = document.getElementById("storage-status");
       const statusDetail = document.getElementById("storage-status-detail");
-      const alert = document.getElementById("storage-alert");
-      const alertMessage = document.getElementById("storage-alert-message");
 
       if (result.ok) {
         statusTag.textContent = result.source === "created" ? "已初始化" : "已连接";
         statusTag.className = "status-tag status-tag--success";
         statusDetail.textContent = result.source === "created"
           ? "已创建 V4.0 空数据结构，并保存到当前浏览器。"
-          : "已安全读取当前浏览器中的本地数据。";
-        alert.hidden = true;
+          : result.source === "saved"
+            ? "最新修改已保存到当前浏览器。"
+            : "已安全读取当前浏览器中的本地数据。";
+        clearSystemError();
         return;
       }
 
-      statusTag.textContent = "读取异常";
+      const isReadError = result.source === "error";
+      statusTag.textContent = isReadError ? "读取异常" : "保存失败";
       statusTag.className = "status-tag status-tag--danger";
-      statusDetail.textContent = "原有本地数据未被覆盖，本次会话已停止自动写入。";
-      alertMessage.textContent = result.error && result.error.message
-        ? `本地数据读取失败：${result.error.message}`
-        : "本地数据读取失败，原有数据未被覆盖。";
-      alert.hidden = false;
+      statusDetail.textContent = isReadError
+        ? "原有本地数据未被覆盖，本次会话已停止自动写入。"
+        : "本次修改未写入，页面仍保留保存前的数据。";
+      showSystemError(result.error && result.error.message
+        ? `本地数据${isReadError ? "读取" : "保存"}失败：${result.error.message}`
+        : "本地数据操作失败，原有数据未被覆盖。");
     }
 
+    function commitData(nextData, successMessage) {
+      const result = ClassLedgerStore.saveData(nextData);
+      updateStorageStatus(result);
+
+      if (!result.ok) {
+        return result;
+      }
+
+      renderClassTimes();
+      renderStudents();
+      showToast(successMessage);
+      return result;
+    }
+
+    function createConfirmationContent(message, detail = "") {
+      const wrapper = document.createElement("div");
+      const messageParagraph = document.createElement("p");
+      const submitError = document.createElement("p");
+      messageParagraph.textContent = message;
+      wrapper.appendChild(messageParagraph);
+
+      if (detail) {
+        const detailParagraph = document.createElement("p");
+        detailParagraph.textContent = detail;
+        wrapper.appendChild(detailParagraph);
+      }
+
+      submitError.className = "form-submit-error";
+      submitError.dataset.submitError = "";
+      submitError.setAttribute("role", "alert");
+      submitError.hidden = true;
+      wrapper.appendChild(submitError);
+
+      return wrapper;
+    }
+
+    /* ================================================================
+       6. 上课时间管理
+       ================================================================ */
+    function renderClassTimes() {
+      const data = ClassLedgerStore.getSnapshot();
+      const allClassTimes = sortClassTimes(data.classTimes.filter(isDataRecord));
+      const query = normalizeSearchText(UI_STATE.classTimeSearch);
+      const filteredClassTimes = query
+        ? allClassTimes.filter((classTime) => normalizeSearchText([
+          formatClassTimeName(classTime),
+          getWeekdayLabel(classTime.weekday),
+          classTime.weekdayName,
+          classTime.startTime,
+          classTime.endTime,
+          classTime.note
+        ].join(" ")).includes(query))
+        : allClassTimes;
+      const host = document.getElementById("class-times-list-host");
+      const count = document.getElementById("class-times-count");
+
+      count.textContent = query
+        ? `显示 ${filteredClassTimes.length} / 共 ${allClassTimes.length} 条`
+        : `共 ${allClassTimes.length} 条`;
+      host.replaceChildren();
+
+      if (allClassTimes.length === 0) {
+        host.appendChild(createEmptyState({
+          icon: "icon-clock",
+          title: "暂无上课时间",
+          description: "点击“新增上课时间”创建第一条固定上课安排。",
+          actionLabel: "新增上课时间",
+          action: "add-class-time"
+        }));
+        return;
+      }
+
+      if (filteredClassTimes.length === 0) {
+        host.appendChild(createEmptyState({
+          icon: "icon-search",
+          title: "没有找到匹配的上课时间",
+          description: `没有找到与“${UI_STATE.classTimeSearch.trim()}”匹配的内容，请尝试其他关键词。`,
+          actionLabel: "清除搜索",
+          action: "clear-class-time-search",
+          actionStyle: "secondary"
+        }));
+        return;
+      }
+
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+      const headings = ["星期", "开始时间", "结束时间", "上课时间名称", "学生人数", "备注", "操作"];
+
+      shell.className = "table-shell";
+      table.className = "data-table";
+      caption.className = "sr-only";
+      caption.textContent = "上课时间列表";
+      headings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      filteredClassTimes.forEach((classTime) => {
+        const row = document.createElement("tr");
+        const classTimeId = typeof classTime.id === "string" ? classTime.id : "";
+        const studentCount = data.students.filter((student) => isDataRecord(student) && student.classTimeId === classTimeId).length;
+        const noteCell = document.createElement("td");
+        const note = document.createElement("span");
+        const actionCell = document.createElement("td");
+        const actionGroup = document.createElement("div");
+
+        row.append(
+          createTextCell(getWeekdayLabel(classTime.weekday) || String(classTime.weekdayName || "—"), "cell-secondary"),
+          createTextCell(String(classTime.startTime || "—"), "number-cell"),
+          createTextCell(String(classTime.endTime || "—"), "number-cell"),
+          createTextCell(formatClassTimeName(classTime), "cell-primary"),
+          createTextCell(`${studentCount} 人`, "number-cell")
+        );
+
+        note.className = "cell-note";
+        note.textContent = String(classTime.note || "—");
+        note.title = String(classTime.note || "");
+        noteCell.appendChild(note);
+        row.appendChild(noteCell);
+
+        actionGroup.className = "table-action-group";
+        if (classTimeId) {
+          actionGroup.append(
+            createActionButton("编辑", "edit-class-time", classTimeId),
+            createActionButton("删除", "delete-class-time", classTimeId, true)
+          );
+        } else {
+          const invalid = document.createElement("span");
+          invalid.className = "cell-secondary";
+          invalid.textContent = "数据缺少编号";
+          actionGroup.appendChild(invalid);
+        }
+        actionCell.appendChild(actionGroup);
+        row.appendChild(actionCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      host.appendChild(shell);
+    }
+
+    function getClassTimeFormValues(form) {
+      return {
+        weekday: Number(form.elements.namedItem("weekday").value),
+        startTime: form.elements.namedItem("startTime").value.trim(),
+        endTime: form.elements.namedItem("endTime").value.trim(),
+        note: form.elements.namedItem("note").value.trim()
+      };
+    }
+
+    function validateClassTimeForm(form) {
+      const values = getClassTimeFormValues(form);
+      const errors = {};
+      const timePattern = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+
+      if (!Number.isInteger(values.weekday) || values.weekday < 1 || values.weekday > 7) {
+        errors.weekday = "请选择星期。";
+      }
+      if (!timePattern.test(values.startTime)) {
+        errors.startTime = "请选择有效的开始时间。";
+      }
+      if (!timePattern.test(values.endTime)) {
+        errors.endTime = "请选择有效的结束时间。";
+      } else if (timePattern.test(values.startTime) && values.endTime <= values.startTime) {
+        errors.endTime = "结束时间必须晚于开始时间。";
+      }
+
+      return errors;
+    }
+
+    function createClassTimeForm(existingClassTime = null) {
+      const form = document.createElement("form");
+      form.id = "class-time-form";
+      form.className = "form-grid";
+      form.noValidate = true;
+      form.innerHTML = `
+        <div class="form-field form-field--full">
+          <label class="form-label" for="class-time-weekday">星期<span class="form-required" aria-hidden="true">*</span></label>
+          <select id="class-time-weekday" name="weekday" class="form-control" required aria-describedby="class-time-weekday-error">
+            <option value="">请选择星期</option>
+          </select>
+          <p id="class-time-weekday-error" class="form-error" data-error-for="weekday" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="class-time-start">开始时间<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="class-time-start" name="startTime" class="form-control" type="time" required aria-describedby="class-time-start-error">
+          <p id="class-time-start-error" class="form-error" data-error-for="startTime" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="class-time-end">结束时间<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="class-time-end" name="endTime" class="form-control" type="time" required aria-describedby="class-time-end-error">
+          <p id="class-time-end-error" class="form-error" data-error-for="endTime" role="alert" hidden></p>
+        </div>
+        <div class="form-field form-field--full">
+          <label class="form-label" for="class-time-note">备注</label>
+          <textarea id="class-time-note" name="note" class="form-control" placeholder="可填写课程或班级说明"></textarea>
+        </div>
+        <p class="form-submit-error" data-submit-error role="alert" hidden></p>
+      `;
+
+      const weekdaySelect = form.elements.namedItem("weekday");
+      WEEKDAYS.forEach((weekday) => {
+        const option = document.createElement("option");
+        option.value = String(weekday.value);
+        option.textContent = weekday.label;
+        weekdaySelect.appendChild(option);
+      });
+
+      if (existingClassTime) {
+        weekdaySelect.value = String(Number(existingClassTime.weekday) || "");
+        form.elements.namedItem("startTime").value = String(existingClassTime.startTime || "");
+        form.elements.namedItem("endTime").value = String(existingClassTime.endTime || "");
+        form.elements.namedItem("note").value = String(existingClassTime.note || "");
+      }
+
+      bindFieldValidation(form, validateClassTimeForm);
+      bindFormSubmitToModal(form);
+      return form;
+    }
+
+    function saveClassTimeForm(form, existingId = "") {
+      const errors = validateClassTimeForm(form);
+      if (!applyFormErrors(form, errors, true)) {
+        return false;
+      }
+
+      const values = getClassTimeFormValues(form);
+      const data = ClassLedgerStore.getSnapshot();
+      const weekdayName = getWeekdayLabel(values.weekday);
+      const fields = {
+        weekday: values.weekday,
+        weekdayName,
+        startTime: values.startTime,
+        endTime: values.endTime,
+        displayName: `${weekdayName} ${values.startTime}-${values.endTime}`,
+        note: values.note
+      };
+      let successMessage = "上课时间已添加。";
+
+      if (existingId) {
+        const index = data.classTimes.findIndex((classTime) => isDataRecord(classTime) && classTime.id === existingId);
+        if (index < 0) {
+          setFormSubmitError(form, "未找到这条上课时间，请关闭弹窗后刷新重试。");
+          return false;
+        }
+        data.classTimes[index] = Object.assign({}, data.classTimes[index], fields);
+        successMessage = "上课时间已更新。";
+      } else {
+        data.classTimes.push(Object.assign({ id: createUniqueId("time", data.classTimes) }, fields));
+      }
+
+      const result = commitData(data, successMessage);
+      if (!result.ok) {
+        setFormSubmitError(form, result.error && result.error.message ? result.error.message : "保存失败，请重试。");
+        return false;
+      }
+
+      return true;
+    }
+
+    function openClassTimeForm(classTimeId = "", returnFocus = null) {
+      const data = ClassLedgerStore.getSnapshot();
+      const existingClassTime = classTimeId
+        ? data.classTimes.find((classTime) => isDataRecord(classTime) && classTime.id === classTimeId)
+        : null;
+
+      if (classTimeId && !existingClassTime) {
+        showSystemError("未找到这条上课时间，请刷新页面后重试。");
+        return;
+      }
+
+      const form = createClassTimeForm(existingClassTime);
+      ClassLedgerModal.open({
+        title: existingClassTime ? "编辑上课时间" : "新增上课时间",
+        content: form,
+        confirmText: "保存",
+        initialFocus: "#class-time-weekday",
+        returnFocus,
+        fallbackFocus: "#add-class-time-button",
+        onConfirm: () => saveClassTimeForm(form, classTimeId)
+      });
+    }
+
+    function openDeleteClassTime(classTimeId, returnFocus = null) {
+      const data = ClassLedgerStore.getSnapshot();
+      const classTime = data.classTimes.find((item) => isDataRecord(item) && item.id === classTimeId);
+      if (!classTime) {
+        showSystemError("未找到这条上课时间，请刷新页面后重试。");
+        return;
+      }
+
+      const studentCount = data.students.filter((student) => isDataRecord(student) && student.classTimeId === classTimeId).length;
+      const message = studentCount > 0
+        ? `该上课时间下还有 ${studentCount} 名学生。删除后，这些学生将变为未分配上课时间，是否继续？`
+        : `确定删除“${formatClassTimeName(classTime)}”吗？`;
+
+      const content = createConfirmationContent(message, "删除上课时间不会删除学生和历史记录。");
+      ClassLedgerModal.open({
+        title: "删除上课时间",
+        content,
+        confirmText: "删除",
+        variant: "danger",
+        returnFocus,
+        fallbackFocus: "#add-class-time-button",
+        onConfirm: () => {
+          const latestData = ClassLedgerStore.getSnapshot();
+          latestData.classTimes = latestData.classTimes.filter((item) => !isDataRecord(item) || item.id !== classTimeId);
+          latestData.students = latestData.students.map((student) => {
+            if (isDataRecord(student) && student.classTimeId === classTimeId) {
+              return Object.assign({}, student, { classTimeId: "" });
+            }
+            return student;
+          });
+          const result = commitData(latestData, "上课时间已删除，关联学生已变为未分配。");
+          if (!result.ok) {
+            setFormSubmitError(content, result.error && result.error.message ? result.error.message : "删除失败，请重试。");
+          }
+          return result.ok;
+        }
+      });
+    }
+
+    /* ================================================================
+       7. 学生管理
+       ================================================================ */
+    function createStudentStatusTag(status) {
+      const meta = STUDENT_STATUSES[status] || { label: "未知状态", className: "status-tag--neutral" };
+      const tag = document.createElement("span");
+      tag.className = `status-tag ${meta.className}`;
+      tag.textContent = meta.label;
+      return tag;
+    }
+
+    function renderStudents() {
+      const data = ClassLedgerStore.getSnapshot();
+      const allStudents = data.students.filter(isDataRecord);
+      const classTimeMap = new Map(
+        data.classTimes
+          .filter(isDataRecord)
+          .filter((classTime) => typeof classTime.id === "string")
+          .map((classTime) => [classTime.id, formatClassTimeName(classTime)])
+      );
+      const query = normalizeSearchText(UI_STATE.studentSearch);
+      const filteredStudents = query
+        ? allStudents.filter((student) => normalizeSearchText(student.name).includes(query))
+        : allStudents;
+      const host = document.getElementById("students-list-host");
+      const count = document.getElementById("students-count");
+
+      count.textContent = query
+        ? `显示 ${filteredStudents.length} / 共 ${allStudents.length} 名`
+        : `共 ${allStudents.length} 名`;
+      host.replaceChildren();
+
+      if (allStudents.length === 0) {
+        host.appendChild(createEmptyState({
+          icon: "icon-students",
+          title: "暂无学生",
+          description: "点击“添加学生”开始记录学生的基础信息。",
+          actionLabel: "添加学生",
+          action: "add-student"
+        }));
+        return;
+      }
+
+      if (filteredStudents.length === 0) {
+        host.appendChild(createEmptyState({
+          icon: "icon-search",
+          title: "没有找到匹配的学生",
+          description: `没有找到姓名中包含“${UI_STATE.studentSearch.trim()}”的学生，请尝试其他关键词。`,
+          actionLabel: "清除搜索",
+          action: "clear-student-search",
+          actionStyle: "secondary"
+        }));
+        return;
+      }
+
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+      const headings = ["姓名", "初始课时", "上课时间", "状态", "备注", "操作"];
+
+      shell.className = "table-shell";
+      table.className = "data-table";
+      caption.className = "sr-only";
+      caption.textContent = "学生列表";
+      headings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      filteredStudents.forEach((student) => {
+        const row = document.createElement("tr");
+        const studentId = typeof student.id === "string" ? student.id : "";
+        const statusCell = document.createElement("td");
+        const noteCell = document.createElement("td");
+        const note = document.createElement("span");
+        const actionCell = document.createElement("td");
+        const actionGroup = document.createElement("div");
+
+        row.append(
+          createTextCell(String(student.name || "未命名学生"), "cell-primary"),
+          createTextCell(formatHours(student.initialHours), "number-cell"),
+          createTextCell(classTimeMap.get(student.classTimeId) || "未分配上课时间", "cell-secondary")
+        );
+        statusCell.appendChild(createStudentStatusTag(student.status));
+        row.appendChild(statusCell);
+
+        note.className = "cell-note";
+        note.textContent = String(student.note || "—");
+        note.title = String(student.note || "");
+        noteCell.appendChild(note);
+        row.appendChild(noteCell);
+
+        actionGroup.className = "table-action-group";
+        if (studentId) {
+          actionGroup.appendChild(createActionButton("编辑", "edit-student", studentId));
+        } else {
+          const invalid = document.createElement("span");
+          invalid.className = "cell-secondary";
+          invalid.textContent = "数据缺少编号";
+          actionGroup.appendChild(invalid);
+        }
+        actionCell.appendChild(actionGroup);
+        row.appendChild(actionCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      host.appendChild(shell);
+    }
+
+    function getStudentFormValues(form) {
+      const initialHoursText = form.elements.namedItem("initialHours").value.trim();
+      return {
+        name: form.elements.namedItem("name").value.trim(),
+        initialHoursText,
+        initialHours: initialHoursText === "" ? NaN : Number(initialHoursText),
+        classTimeId: form.elements.namedItem("classTimeId").value,
+        status: form.elements.namedItem("status").value,
+        note: form.elements.namedItem("note").value.trim()
+      };
+    }
+
+    function validateStudentForm(form) {
+      const values = getStudentFormValues(form);
+      const errors = {};
+      const data = ClassLedgerStore.getSnapshot();
+      const validClassTimeIds = new Set(
+        data.classTimes
+          .filter(isDataRecord)
+          .map((classTime) => classTime.id)
+          .filter((id) => typeof id === "string")
+      );
+
+      if (!values.name) {
+        errors.name = "请输入学生姓名。";
+      }
+      if (!Number.isFinite(values.initialHours) || values.initialHours < 0) {
+        errors.initialHours = "初始课时必须是大于等于 0 的数字。";
+      }
+      if (values.classTimeId && !validClassTimeIds.has(values.classTimeId)) {
+        errors.classTimeId = "选择的上课时间已不存在，请重新选择。";
+      }
+      if (!Object.prototype.hasOwnProperty.call(STUDENT_STATUSES, values.status)) {
+        errors.status = "请选择有效的学生状态。";
+      }
+
+      return errors;
+    }
+
+    function createStudentForm(existingStudent = null) {
+      const data = ClassLedgerStore.getSnapshot();
+      const form = document.createElement("form");
+      form.id = "student-form";
+      form.className = "form-grid";
+      form.noValidate = true;
+      form.innerHTML = `
+        <div class="form-field">
+          <label class="form-label" for="student-name">学生姓名<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="student-name" name="name" class="form-control" type="text" autocomplete="off" required aria-describedby="student-name-error">
+          <p id="student-name-error" class="form-error" data-error-for="name" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="student-initial-hours">初始课时<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="student-initial-hours" name="initialHours" class="form-control" type="number" min="0" step="any" inputmode="decimal" required aria-describedby="student-initial-hours-help student-initial-hours-error">
+          <p id="student-initial-hours-help" class="form-help">开始使用系统时已有的课时，可填写小数。</p>
+          <p id="student-initial-hours-error" class="form-error" data-error-for="initialHours" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="student-class-time">上课时间</label>
+          <select id="student-class-time" name="classTimeId" class="form-control" aria-describedby="student-class-time-error">
+            <option value="">未分配上课时间</option>
+          </select>
+          <p id="student-class-time-error" class="form-error" data-error-for="classTimeId" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="student-status">学生状态<span class="form-required" aria-hidden="true">*</span></label>
+          <select id="student-status" name="status" class="form-control" required aria-describedby="student-status-error">
+            <option value="active">在读</option>
+            <option value="frozen">冻课</option>
+            <option value="lost">流失</option>
+          </select>
+          <p id="student-status-error" class="form-error" data-error-for="status" role="alert" hidden></p>
+        </div>
+        <div class="form-field form-field--full">
+          <label class="form-label" for="student-note">备注</label>
+          <textarea id="student-note" name="note" class="form-control" placeholder="可填写其他说明"></textarea>
+        </div>
+        <p class="form-submit-error" data-submit-error role="alert" hidden></p>
+      `;
+
+      const classTimeSelect = form.elements.namedItem("classTimeId");
+      sortClassTimes(data.classTimes.filter(isDataRecord)).forEach((classTime) => {
+        if (typeof classTime.id !== "string") {
+          return;
+        }
+        const option = document.createElement("option");
+        option.value = classTime.id;
+        option.textContent = formatClassTimeName(classTime);
+        classTimeSelect.appendChild(option);
+      });
+
+      if (existingStudent) {
+        form.elements.namedItem("name").value = String(existingStudent.name || "");
+        form.elements.namedItem("initialHours").value = Number.isFinite(Number(existingStudent.initialHours))
+          ? String(existingStudent.initialHours)
+          : "";
+        classTimeSelect.value = typeof existingStudent.classTimeId === "string" ? existingStudent.classTimeId : "";
+        form.elements.namedItem("status").value = Object.prototype.hasOwnProperty.call(STUDENT_STATUSES, existingStudent.status)
+          ? existingStudent.status
+          : "active";
+        form.elements.namedItem("note").value = String(existingStudent.note || "");
+
+        const dangerZone = document.createElement("div");
+        const copy = document.createElement("div");
+        const dangerTitle = document.createElement("h3");
+        const dangerDescription = document.createElement("p");
+        const deleteButton = document.createElement("button");
+
+        dangerZone.className = "danger-zone";
+        copy.className = "danger-zone__copy";
+        dangerTitle.textContent = "删除学生";
+        dangerDescription.textContent = "该操作会同时删除此学生关联的全部历史记录。";
+        copy.append(dangerTitle, dangerDescription);
+        deleteButton.type = "button";
+        deleteButton.className = "button button--danger";
+        deleteButton.append(createSvgIcon("icon-trash"), "删除学生");
+        deleteButton.addEventListener("click", () => openDeleteStudent(existingStudent.id));
+        dangerZone.append(copy, deleteButton);
+        form.appendChild(dangerZone);
+      }
+
+      bindFieldValidation(form, validateStudentForm);
+      bindFormSubmitToModal(form);
+      return form;
+    }
+
+    function saveStudentForm(form, existingId = "") {
+      const errors = validateStudentForm(form);
+      if (!applyFormErrors(form, errors, true)) {
+        return false;
+      }
+
+      const values = getStudentFormValues(form);
+      const data = ClassLedgerStore.getSnapshot();
+      const fields = {
+        name: values.name,
+        initialHours: values.initialHours,
+        classTimeId: values.classTimeId,
+        status: values.status,
+        note: values.note
+      };
+      let successMessage = "学生已添加。";
+
+      if (existingId) {
+        const index = data.students.findIndex((student) => isDataRecord(student) && student.id === existingId);
+        if (index < 0) {
+          setFormSubmitError(form, "未找到该学生，请关闭弹窗后刷新重试。");
+          return false;
+        }
+        data.students[index] = Object.assign({}, data.students[index], fields);
+        successMessage = "学生信息已更新。";
+      } else {
+        data.students.push(Object.assign({
+          id: createUniqueId("student", data.students),
+          createdAt: new Date().toISOString()
+        }, fields));
+      }
+
+      const result = commitData(data, successMessage);
+      if (!result.ok) {
+        setFormSubmitError(form, result.error && result.error.message ? result.error.message : "保存失败，请重试。");
+        return false;
+      }
+
+      return true;
+    }
+
+    function openStudentForm(studentId = "", returnFocus = null) {
+      const data = ClassLedgerStore.getSnapshot();
+      const existingStudent = studentId
+        ? data.students.find((student) => isDataRecord(student) && student.id === studentId)
+        : null;
+
+      if (studentId && !existingStudent) {
+        showSystemError("未找到该学生，请刷新页面后重试。");
+        return;
+      }
+
+      const form = createStudentForm(existingStudent);
+      ClassLedgerModal.open({
+        title: existingStudent ? "编辑学生" : "添加学生",
+        content: form,
+        confirmText: "保存",
+        initialFocus: "#student-name",
+        returnFocus,
+        fallbackFocus: "#add-student-button",
+        onConfirm: () => saveStudentForm(form, studentId)
+      });
+    }
+
+    function openDeleteStudent(studentId) {
+      const data = ClassLedgerStore.getSnapshot();
+      const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
+      if (!student) {
+        showSystemError("未找到该学生，请刷新页面后重试。");
+        return;
+      }
+
+      const relatedRecordCount = STUDENT_RECORD_KEYS.reduce((total, key) => {
+        return total + data[key].filter((record) => isDataRecord(record) && record.studentId === studentId).length;
+      }, 0);
+      const detail = relatedRecordCount > 0
+        ? `当前将同时删除 ${relatedRecordCount} 条关联历史记录。此操作不可恢复。`
+        : "该学生当前没有关联历史记录。此操作不可恢复。";
+
+      const content = createConfirmationContent(
+        `确定删除学生“${String(student.name || "未命名学生")}”吗？`,
+        `删除学生后，该学生的正常上课、续费、转介绍、比赛和退费记录也会被删除。${detail}`
+      );
+      ClassLedgerModal.open({
+        title: "删除学生",
+        content,
+        confirmText: "删除",
+        variant: "danger",
+        fallbackFocus: "#add-student-button",
+        onConfirm: () => {
+          const latestData = ClassLedgerStore.getSnapshot();
+          latestData.students = latestData.students.filter((item) => !isDataRecord(item) || item.id !== studentId);
+          STUDENT_RECORD_KEYS.forEach((key) => {
+            latestData[key] = latestData[key].filter((record) => !isDataRecord(record) || record.studentId !== studentId);
+          });
+          const result = commitData(latestData, "学生及其关联记录已删除。");
+          if (!result.ok) {
+            setFormSubmitError(content, result.error && result.error.message ? result.error.message : "删除失败，请重试。");
+          }
+          return result.ok;
+        }
+      });
+    }
+
+    /* ================================================================
+       8. 页面初始化与事件绑定
+       ================================================================ */
     function createStorageInfoContent() {
       const wrapper = document.createElement("div");
       const intro = document.createElement("p");
@@ -1839,18 +3091,80 @@
       return wrapper;
     }
 
-    document.getElementById("storage-info-button").addEventListener("click", () => {
-      ClassLedgerModal.open({
-        title: "本地存储说明",
-        content: createStorageInfoContent(),
-        confirmText: "知道了",
-        showCancel: false
+    function setupManagementEvents() {
+      const classTimeSearch = document.getElementById("class-time-search");
+      const studentSearch = document.getElementById("student-search");
+      const classTimesHost = document.getElementById("class-times-list-host");
+      const studentsHost = document.getElementById("students-list-host");
+
+      document.getElementById("add-class-time-button").addEventListener("click", () => openClassTimeForm());
+      document.getElementById("add-student-button").addEventListener("click", () => openStudentForm());
+
+      classTimeSearch.addEventListener("input", () => {
+        UI_STATE.classTimeSearch = classTimeSearch.value;
+        renderClassTimes();
       });
-    });
+      studentSearch.addEventListener("input", () => {
+        UI_STATE.studentSearch = studentSearch.value;
+        renderStudents();
+      });
+
+      classTimesHost.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button || !classTimesHost.contains(button)) {
+          return;
+        }
+
+        const { action, id } = button.dataset;
+        if (action === "add-class-time") {
+          openClassTimeForm();
+        } else if (action === "clear-class-time-search") {
+          UI_STATE.classTimeSearch = "";
+          classTimeSearch.value = "";
+          renderClassTimes();
+          classTimeSearch.focus();
+        } else if (action === "edit-class-time") {
+          openClassTimeForm(id, button);
+        } else if (action === "delete-class-time") {
+          openDeleteClassTime(id, button);
+        }
+      });
+
+      studentsHost.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button || !studentsHost.contains(button)) {
+          return;
+        }
+
+        const { action, id } = button.dataset;
+        if (action === "add-student") {
+          openStudentForm();
+        } else if (action === "clear-student-search") {
+          UI_STATE.studentSearch = "";
+          studentSearch.value = "";
+          renderStudents();
+          studentSearch.focus();
+        } else if (action === "edit-student") {
+          openStudentForm(id, button);
+        }
+      });
+
+      document.getElementById("storage-info-button").addEventListener("click", () => {
+        ClassLedgerModal.open({
+          title: "本地存储说明",
+          content: createStorageInfoContent(),
+          confirmText: "知道了",
+          showCancel: false
+        });
+      });
+    }
 
     function initializeApp() {
       const storageResult = ClassLedgerStore.loadData();
       updateStorageStatus(storageResult);
+      setupManagementEvents();
+      renderClassTimes();
+      renderStudents();
       renderRoute();
     }
 
