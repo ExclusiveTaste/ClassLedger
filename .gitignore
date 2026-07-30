@@ -1,0 +1,14 @@
+# Browser automation and test artifacts
+.playwright-cli/
+playwright-report/
+test-results/
+output/
+
+# Browser-exported local data backups
+学生课时数据备份_*.json
+
+# Temporary and operating-system files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
