@@ -709,29 +709,6 @@
       line-height: 1.6;
     }
 
-    .history-modal-intro {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 16px;
-    }
-
-    .history-modal-intro p {
-      margin: 0;
-    }
-
-    .history-modal-intro strong {
-      color: var(--color-text);
-    }
-
-    .history-modal-table {
-      min-width: 600px;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-control);
-      overflow: hidden;
-    }
-
     .foundation-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1196,6 +1173,31 @@
       font-weight: 620;
     }
 
+    .student-name-button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      margin: -8px -10px;
+      padding: 0 10px;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+      font-weight: 650;
+      text-align: left;
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .student-name-button:hover {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+    }
+
+    .student-name-button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
     .cell-secondary {
       color: var(--color-text-secondary);
     }
@@ -1260,6 +1262,35 @@
       border-bottom: 1px solid var(--color-border);
       background: #FCFDFC;
       scrollbar-width: thin;
+    }
+
+    .records-filter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 14px;
+      align-items: end;
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .records-filter-grid .form-field,
+    .records-filter-grid .search-field {
+      gap: 7px;
+    }
+
+    .records-note-search {
+      width: 100%;
+      grid-column: span 3;
+    }
+
+    .records-filter-reset {
+      width: 100%;
+    }
+
+    .records-filter-error {
+      grid-column: 1 / -1;
+      margin-top: -2px;
     }
 
     .record-tab {
@@ -1550,6 +1581,11 @@
       width: min(960px, 100%);
     }
 
+    .modal-dialog--detail {
+      width: min(1180px, 100%);
+      max-height: min(900px, calc(100dvh - 48px));
+    }
+
     .modal-header {
       display: flex;
       flex: 0 0 auto;
@@ -1558,6 +1594,18 @@
       gap: 20px;
       padding: 20px 22px;
       border-bottom: 1px solid var(--color-border);
+    }
+
+    .modal-header__actions,
+    .modal-header__custom-actions {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-header__custom-actions .button {
+      min-height: 40px;
     }
 
     .modal-title {
@@ -1582,6 +1630,176 @@
 
     .modal-body > :last-child {
       margin-bottom: 0;
+    }
+
+    .modal-body--detail {
+      padding: 0;
+      background: #FBFCFB;
+    }
+
+    .student-detail {
+      color: var(--color-text);
+    }
+
+    .student-detail__profile {
+      padding: 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .student-detail__identity {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .student-detail__name-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .student-detail__name {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 720;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+    }
+
+    .student-detail__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 12px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+    }
+
+    .student-detail__meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .student-detail__meta-item strong {
+      color: var(--color-text);
+      font-weight: 620;
+    }
+
+    .student-detail__note {
+      max-width: 380px;
+      margin: 2px 0 0;
+      overflow-wrap: anywhere;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.65;
+      text-align: right;
+    }
+
+    .student-detail__stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .student-stat {
+      min-width: 0;
+      min-height: 92px;
+      padding: 14px 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: #FCFDFC;
+    }
+
+    .student-stat--remaining {
+      border-color: #CFE2D6;
+      background: var(--color-primary-soft);
+    }
+
+    .student-stat__label {
+      display: block;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-weight: 560;
+    }
+
+    .student-stat__value {
+      display: block;
+      margin-top: 7px;
+      color: var(--color-text);
+      font-size: 20px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 720;
+      line-height: 1.25;
+    }
+
+    .student-stat__value.balance-value--healthy {
+      color: var(--color-primary);
+    }
+
+    .student-stat__value.balance-value--low {
+      color: #B85E0A;
+    }
+
+    .student-stat__value.balance-value--empty,
+    .student-stat__value.balance-value--debt {
+      color: var(--color-danger);
+    }
+
+    .student-stat__note {
+      display: block;
+      margin-top: 4px;
+      color: var(--color-text-tertiary);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .student-detail__records {
+      background: var(--color-surface);
+    }
+
+    .student-detail__tabs {
+      padding-right: 26px;
+      padding-left: 26px;
+    }
+
+    .student-detail__panel-toolbar {
+      display: flex;
+      min-height: 74px;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: #FCFDFC;
+    }
+
+    .student-detail__panel-copy h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .student-detail__panel-copy p {
+      margin: 4px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+    }
+
+    .student-detail__month {
+      width: min(190px, 100%);
+    }
+
+    .student-detail__list .empty-state {
+      min-height: 240px;
+    }
+
+    .student-detail__list .data-table {
+      min-width: 720px;
     }
 
     .modal-footer {
@@ -1616,6 +1834,18 @@
       .overview-filter-grid .search-field {
         width: 100%;
         grid-column: span 2;
+      }
+
+      .records-filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .records-note-search {
+        grid-column: auto;
+      }
+
+      .student-detail__stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .page-heading {
@@ -1665,6 +1895,10 @@
         width: 100%;
       }
 
+      .student-detail__stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .foundation-grid {
         grid-template-columns: 1fr;
       }
@@ -1712,6 +1946,16 @@
         padding-left: 20px;
       }
 
+      .records-filter-grid {
+        grid-template-columns: 1fr;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .records-note-search {
+        grid-column: auto;
+      }
+
       .overview-filter-grid {
         grid-template-columns: 1fr;
         padding-right: 20px;
@@ -1744,12 +1988,6 @@
 
       .quick-record-grid {
         grid-template-columns: 1fr;
-      }
-
-      .history-modal-intro {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
       }
 
       .search-field {
@@ -1798,6 +2036,56 @@
       }
 
       .record-panel-actions .button {
+        width: 100%;
+      }
+
+      .modal-dialog--detail .modal-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .modal-dialog--detail .modal-header__actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .modal-dialog--detail .modal-header__custom-actions {
+        flex: 1 1 auto;
+        flex-wrap: wrap;
+      }
+
+      .student-detail__profile {
+        padding: 22px 20px;
+      }
+
+      .student-detail__identity {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .student-detail__note {
+        max-width: none;
+        text-align: left;
+      }
+
+      .student-detail__stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .student-detail__tabs {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .student-detail__panel-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .student-detail__month {
         width: 100%;
       }
 
@@ -2190,6 +2478,38 @@
           </button>
         </div>
 
+        <div class="records-filter-grid" role="group" aria-label="全部记录筛选">
+          <div class="form-field">
+            <label class="form-label" for="records-student-filter">学生</label>
+            <select id="records-student-filter" class="form-control">
+              <option value="all">全部学生</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="records-class-time-filter">上课时间</label>
+            <select id="records-class-time-filter" class="form-control">
+              <option value="all">全部上课时间</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="records-start-date">开始日期</label>
+            <input id="records-start-date" class="form-control" type="date" aria-describedby="records-date-range-error">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="records-end-date">结束日期</label>
+            <input id="records-end-date" class="form-control" type="date" aria-describedby="records-date-range-error">
+          </div>
+          <div class="search-field records-note-search">
+            <label class="search-label" for="records-note-search">备注搜索</label>
+            <div class="search-control">
+              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              <input id="records-note-search" class="form-control" type="search" placeholder="输入备注关键词" autocomplete="off">
+            </div>
+          </div>
+          <button id="records-reset-filters" class="button button--secondary records-filter-reset" type="button">重置筛选</button>
+          <p id="records-date-range-error" class="form-error records-filter-error" role="alert" hidden></p>
+        </div>
+
         <div class="record-panel-toolbar">
           <div class="record-panel-heading">
             <h3 id="record-panel-title">正常上课记录</h3>
@@ -2266,9 +2586,12 @@
     <section id="modal-dialog" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
       <header class="modal-header">
         <h2 id="modal-title" class="modal-title">提示</h2>
-        <button id="modal-close-button" class="button button--ghost button--icon modal-close" type="button" aria-label="关闭弹窗">
-          <svg aria-hidden="true"><use href="#icon-close"></use></svg>
-        </button>
+        <div class="modal-header__actions">
+          <div id="modal-header-actions" class="modal-header__custom-actions" hidden></div>
+          <button id="modal-close-button" class="button button--ghost button--icon modal-close" type="button" aria-label="关闭弹窗">
+            <svg aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </div>
       </header>
       <div id="modal-body" class="modal-body"></div>
       <footer id="modal-footer" class="modal-footer">
@@ -2407,16 +2730,27 @@
     });
 
     const RECORD_TYPE_KEYS = Object.freeze(Object.keys(RECORD_TYPES));
+    const RECORD_UNKNOWN_STUDENT = "__unknown_student__";
 
     const UI_STATE = {
       classTimeSearch: "",
       studentSearch: "",
       activeRecordType: "lesson",
+      recordStudentFilter: "all",
+      recordClassTimeFilter: "all",
+      recordStartDate: "",
+      recordEndDate: "",
+      recordNoteSearch: "",
       overviewClassTime: "all",
       overviewStatus: "active",
       overviewMonth: "",
       overviewSearch: "",
-      overviewSelectedStudentIds: new Set()
+      overviewSelectedStudentIds: new Set(),
+      studentDetailId: "",
+      studentDetailRecordType: "lesson",
+      studentDetailMonth: "",
+      studentDetailReturnFocus: null,
+      studentDetailFallbackFocus: "#overview-title"
     };
 
     /* ================================================================
@@ -2552,6 +2886,7 @@
       const layer = document.getElementById("app-modal");
       const dialog = document.getElementById("modal-dialog");
       const title = document.getElementById("modal-title");
+      const headerActions = document.getElementById("modal-header-actions");
       const body = document.getElementById("modal-body");
       const footer = document.getElementById("modal-footer");
       const closeButton = document.getElementById("modal-close-button");
@@ -2581,6 +2916,16 @@
         body.appendChild(paragraph);
       }
 
+      function setHeaderActions(content) {
+        headerActions.replaceChildren();
+        if (content instanceof Node) {
+          headerActions.appendChild(content);
+          headerActions.hidden = false;
+        } else {
+          headerActions.hidden = true;
+        }
+      }
+
       function resolveReturnFocus(value) {
         const candidate = typeof value === "function"
           ? value()
@@ -2600,9 +2945,12 @@
         lastFocusedElement = resolveReturnFocus(options.returnFocus)
           || (document.activeElement instanceof HTMLElement ? document.activeElement : null);
         title.textContent = options.title || "提示";
+        setHeaderActions(options.headerActions);
         setContent(options.content || "");
 
         dialog.classList.toggle("modal-dialog--large", options.size === "large");
+        dialog.classList.toggle("modal-dialog--detail", options.size === "detail");
+        body.classList.toggle("modal-body--detail", options.size === "detail");
         footer.hidden = options.showFooter === false;
         cancelButton.hidden = options.showCancel === false;
         confirmButton.hidden = options.showConfirm === false;
@@ -2638,6 +2986,8 @@
 
         const finishClose = () => {
           layer.hidden = true;
+          headerActions.replaceChildren();
+          headerActions.hidden = true;
           body.replaceChildren();
           activeOptions = {};
 
@@ -2879,6 +3229,27 @@
       return cell;
     }
 
+    function createStudentNameCell(student, action) {
+      const cell = document.createElement("td");
+      const studentId = typeof student.id === "string" ? student.id : "";
+      cell.className = "cell-primary";
+
+      if (!studentId) {
+        cell.textContent = String(student.name || "未命名学生");
+        return cell;
+      }
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "student-name-button";
+      button.dataset.action = action;
+      button.dataset.id = studentId;
+      button.textContent = String(student.name || "未命名学生");
+      button.setAttribute("aria-label", `查看学生${String(student.name || "未命名学生")}的详情`);
+      cell.appendChild(button);
+      return cell;
+    }
+
     function createActionButton(label, action, id, isDanger = false) {
       const button = document.createElement("button");
       button.type = "button";
@@ -3010,19 +3381,24 @@
       );
     }
 
+    function getBalanceStateClass(remainingHours) {
+      if (remainingHours < 0) {
+        return "balance-value--debt";
+      }
+      if (remainingHours === 0) {
+        return "balance-value--empty";
+      }
+      if (remainingHours <= 5) {
+        return "balance-value--low";
+      }
+      return "balance-value--healthy";
+    }
+
     function createRemainingHoursCell(student, data) {
       const cell = document.createElement("td");
       const value = document.createElement("strong");
       const remainingHours = calculateRemainingHours(student, data);
-      let stateClass = "balance-value--healthy";
-
-      if (remainingHours < 0) {
-        stateClass = "balance-value--debt";
-      } else if (remainingHours === 0) {
-        stateClass = "balance-value--empty";
-      } else if (remainingHours <= 5) {
-        stateClass = "balance-value--low";
-      }
+      const stateClass = getBalanceStateClass(remainingHours);
 
       cell.className = "number-cell";
       value.className = `balance-value ${stateClass}`;
@@ -3642,7 +4018,8 @@
       filteredStudents.forEach((student) => {
         const row = document.createElement("tr");
         const studentId = typeof student.id === "string" ? student.id : "";
-        const nameCell = createTextCell(String(student.name || "未命名学生"), "cell-primary overview-col-name");
+        const nameCell = createStudentNameCell(student, "overview-student-detail");
+        nameCell.classList.add("overview-col-name");
         const statusCell = document.createElement("td");
         const studentLessonTotals = lessonTotals.get(studentId) || new Map();
 
@@ -3681,6 +4058,7 @@
           actionGroup.append(
             createActionButton("扣课", "overview-lesson", studentId),
             createActionButton("添加记录", "overview-add-record", studentId),
+            createActionButton("详情", "overview-student-detail", studentId),
             createActionButton("编辑", "overview-edit-student", studentId)
           );
         } else {
@@ -3889,7 +4267,7 @@
       });
     }
 
-    function openOverviewRecordPicker(studentId, returnFocus = null) {
+    function openOverviewRecordPicker(studentId, returnFocus = null, options = {}) {
       const data = ClassLedgerStore.getSnapshot();
       const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
       if (!student) {
@@ -3900,25 +4278,35 @@
       const wrapper = document.createElement("div");
       const intro = document.createElement("p");
       const grid = document.createElement("div");
-      const options = [
+      const recordOptions = [
         { type: "renewal", title: "续费", description: "记录购买课时和赠送课时" },
         { type: "referral", title: "转介绍赠课", description: "记录转介绍获得的赠送课时" },
         { type: "competition", title: "比赛扣课", description: "记录参加比赛扣除的课时" },
         { type: "refund", title: "退费", description: "记录退回购买和取消赠送课时" }
       ];
+      if (options.includeLesson === true) {
+        recordOptions.unshift({ type: "lesson", title: "正常上课", description: "记录正常上课扣除的课时" });
+      }
 
       intro.textContent = `为“${String(student.name || "未命名学生")}”选择要添加的记录类型。`;
       grid.className = "quick-record-grid";
-      options.forEach((option) => {
+      recordOptions.forEach((recordOption) => {
         const button = document.createElement("button");
         const title = document.createElement("strong");
         const description = document.createElement("span");
         button.type = "button";
         button.className = "quick-record-option";
-        title.textContent = option.title;
-        description.textContent = option.description;
+        title.textContent = recordOption.title;
+        description.textContent = recordOption.description;
         button.append(title, description);
-        button.addEventListener("click", () => openRecordForm(option.type, "", returnFocus, studentId));
+        button.addEventListener("click", () => {
+          const detailContext = options.detailContext;
+          openRecordForm(recordOption.type, "", returnFocus, studentId, detailContext ? {
+            lockStudent: true,
+            onClose: () => restoreStudentDetail(detailContext),
+            fallbackFocus: detailContext.fallbackFocus
+          } : {});
+        });
         grid.appendChild(button);
       });
       wrapper.append(intro, grid);
@@ -3930,7 +4318,8 @@
         cancelText: "取消",
         initialFocus: ".quick-record-option",
         returnFocus,
-        fallbackFocus: "#overview-title"
+        fallbackFocus: options.detailContext ? options.detailContext.fallbackFocus : "#overview-title",
+        onClose: options.detailContext ? () => restoreStudentDetail(options.detailContext) : undefined
       });
     }
 
@@ -3938,85 +4327,7 @@
       if (!OVERVIEW_HISTORY_TYPES.includes(recordType)) {
         return;
       }
-
-      const data = ClassLedgerStore.getSnapshot();
-      const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
-      const config = getRecordTypeConfig(recordType);
-      if (!student) {
-        showSystemError("未找到该学生，请刷新页面后重试。");
-        return;
-      }
-
-      const records = sortRecordsByDate(data[config.storageKey].filter((record) => (
-        isDataRecord(record) && record.studentId === studentId
-      )));
-      const wrapper = document.createElement("div");
-      const intro = document.createElement("div");
-      const studentName = document.createElement("strong");
-      const count = document.createElement("p");
-      const shell = document.createElement("div");
-      const table = document.createElement("table");
-      const caption = document.createElement("caption");
-      const head = document.createElement("thead");
-      const headRow = document.createElement("tr");
-      const body = document.createElement("tbody");
-      const headings = recordType === "renewal"
-        ? ["日期", "购买课时", "赠送课时", "备注"]
-        : recordType === "referral"
-          ? ["日期", "赠送课时", "备注"]
-          : ["日期", "扣除课时", "备注"];
-
-      intro.className = "history-modal-intro";
-      studentName.textContent = String(student.name || "未命名学生");
-      count.textContent = `全部历史共 ${records.length} 条，不受月份筛选影响`;
-      intro.append(studentName, count);
-      shell.className = "table-shell history-modal-table";
-      table.className = "data-table";
-      caption.className = "sr-only";
-      caption.textContent = `${String(student.name || "未命名学生")}的全部${config.shortLabel}记录`;
-      headings.forEach((heading) => {
-        const cell = document.createElement("th");
-        cell.scope = "col";
-        cell.textContent = heading;
-        headRow.appendChild(cell);
-      });
-      head.appendChild(headRow);
-
-      records.forEach((record) => {
-        const row = document.createElement("tr");
-        row.appendChild(createTextCell(isValidDateValue(record.date) ? record.date : String(record.date || "—"), "number-cell"));
-        if (recordType === "renewal") {
-          row.append(
-            createRecordHoursCell(record.purchasedHours, "positive"),
-            createRecordHoursCell(record.giftHours, "positive")
-          );
-        } else if (recordType === "referral") {
-          row.appendChild(createRecordHoursCell(record.giftHours, "positive"));
-        } else {
-          row.appendChild(createRecordHoursCell(record.hours, "negative"));
-        }
-        const noteCell = document.createElement("td");
-        const note = document.createElement("span");
-        note.className = "cell-note";
-        note.textContent = String(record.note || "—");
-        note.title = String(record.note || "");
-        noteCell.appendChild(note);
-        row.appendChild(noteCell);
-        body.appendChild(row);
-      });
-
-      table.append(caption, head, body);
-      shell.appendChild(table);
-      wrapper.append(intro, shell);
-      ClassLedgerModal.open({
-        title: `全部${config.shortLabel}记录`,
-        content: wrapper,
-        size: "large",
-        confirmText: "关闭",
-        showCancel: false,
-        returnFocus,
-        fallbackFocus: "#overview-title"
-      });
+      openStudentDetail(studentId, recordType, returnFocus, "#overview-title");
     }
 
     /* ================================================================
@@ -4398,7 +4709,7 @@
         const actionGroup = document.createElement("div");
 
         row.append(
-          createTextCell(String(student.name || "未命名学生"), "cell-primary"),
+          createStudentNameCell(student, "student-detail"),
           createTextCell(formatHours(student.initialHours), "number-cell"),
           createRemainingHoursCell(student, data),
           createTextCell(classTimeMap.get(student.classTimeId) || "未分配上课时间", "cell-secondary")
@@ -4414,7 +4725,10 @@
 
         actionGroup.className = "table-action-group";
         if (studentId) {
-          actionGroup.appendChild(createActionButton("编辑", "edit-student", studentId));
+          actionGroup.append(
+            createActionButton("详情", "student-detail", studentId),
+            createActionButton("编辑", "edit-student", studentId)
+          );
         } else {
           const invalid = document.createElement("span");
           invalid.className = "cell-secondary";
@@ -4470,7 +4784,7 @@
       return errors;
     }
 
-    function createStudentForm(existingStudent = null) {
+    function createStudentForm(existingStudent = null, modalOptions = {}) {
       const data = ClassLedgerStore.getSnapshot();
       const form = document.createElement("form");
       form.id = "student-form";
@@ -4547,7 +4861,7 @@
         deleteButton.type = "button";
         deleteButton.className = "button button--danger";
         deleteButton.append(createSvgIcon("icon-trash"), "删除学生");
-        deleteButton.addEventListener("click", () => openDeleteStudent(existingStudent.id));
+        deleteButton.addEventListener("click", () => openDeleteStudent(existingStudent.id, modalOptions));
         dangerZone.append(copy, deleteButton);
         form.appendChild(dangerZone);
       }
@@ -4598,7 +4912,12 @@
       return true;
     }
 
-    function openStudentForm(studentId = "", returnFocus = null, fallbackFocus = "#add-student-button") {
+    function openStudentForm(
+      studentId = "",
+      returnFocus = null,
+      fallbackFocus = "#add-student-button",
+      modalOptions = {}
+    ) {
       const data = ClassLedgerStore.getSnapshot();
       const existingStudent = studentId
         ? data.students.find((student) => isDataRecord(student) && student.id === studentId)
@@ -4609,7 +4928,7 @@
         return;
       }
 
-      const form = createStudentForm(existingStudent);
+      const form = createStudentForm(existingStudent, modalOptions);
       ClassLedgerModal.open({
         title: existingStudent ? "编辑学生" : "添加学生",
         content: form,
@@ -4617,11 +4936,12 @@
         initialFocus: "#student-name",
         returnFocus,
         fallbackFocus,
+        onClose: modalOptions.onClose,
         onConfirm: () => saveStudentForm(form, studentId)
       });
     }
 
-    function openDeleteStudent(studentId) {
+    function openDeleteStudent(studentId, modalOptions = {}) {
       const data = ClassLedgerStore.getSnapshot();
       const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
       if (!student) {
@@ -4645,7 +4965,15 @@
         content,
         confirmText: "删除",
         variant: "danger",
-        fallbackFocus: "#add-student-button",
+        fallbackFocus: modalOptions.fallbackFocus || "#add-student-button",
+        onClose: (reason) => {
+          const studentStillExists = ClassLedgerStore.getSnapshot().students.some((item) => (
+            isDataRecord(item) && item.id === studentId
+          ));
+          if (studentStillExists && typeof modalOptions.onClose === "function") {
+            modalOptions.onClose(reason);
+          }
+        },
         onConfirm: () => {
           const latestData = ClassLedgerStore.getSnapshot();
           latestData.students = latestData.students.filter((item) => !isDataRecord(item) || item.id !== studentId);
@@ -4662,7 +4990,415 @@
     }
 
     /* ================================================================
-       9. 记录管理与剩余课时
+       9. 学生详情
+       ================================================================ */
+    function getStudentHourSummary(student, data) {
+      const studentId = typeof student.id === "string" ? student.id : "";
+      const refundedPurchasedHours = sumStudentRecordField(data.refundRecords, studentId, "refundedPurchasedHours");
+      const cancelledGiftHours = sumStudentRecordField(data.refundRecords, studentId, "cancelledGiftHours");
+      return {
+        initialHours: getNonNegativeHours(student.initialHours) ?? 0,
+        purchasedHours: normalizeHoursPrecision(sumStudentRecordField(data.renewalRecords, studentId, "purchasedHours")),
+        renewalGiftHours: normalizeHoursPrecision(sumStudentRecordField(data.renewalRecords, studentId, "giftHours")),
+        referralGiftHours: normalizeHoursPrecision(sumStudentRecordField(data.referralRecords, studentId, "giftHours")),
+        lessonHours: normalizeHoursPrecision(sumStudentRecordField(data.lessonRecords, studentId, "hours")),
+        competitionHours: normalizeHoursPrecision(sumStudentRecordField(data.competitionRecords, studentId, "hours")),
+        refundedPurchasedHours: normalizeHoursPrecision(refundedPurchasedHours),
+        cancelledGiftHours: normalizeHoursPrecision(cancelledGiftHours),
+        refundHours: normalizeHoursPrecision(refundedPurchasedHours + cancelledGiftHours),
+        remainingHours: calculateRemainingHours(student, data)
+      };
+    }
+
+    function createStudentStatCard(label, rawValue, { note = "", remaining = false } = {}) {
+      const card = document.createElement("div");
+      const labelElement = document.createElement("span");
+      const valueElement = document.createElement("strong");
+
+      card.className = remaining ? "student-stat student-stat--remaining" : "student-stat";
+      labelElement.className = "student-stat__label";
+      labelElement.textContent = label;
+      valueElement.className = remaining
+        ? `student-stat__value balance-value ${getBalanceStateClass(rawValue)}`
+        : "student-stat__value";
+      valueElement.textContent = formatHours(rawValue);
+      card.append(labelElement, valueElement);
+
+      if (note) {
+        const noteElement = document.createElement("span");
+        noteElement.className = "student-stat__note";
+        noteElement.textContent = note;
+        card.appendChild(noteElement);
+      }
+      return card;
+    }
+
+    function getStudentDetailContext() {
+      return {
+        studentId: UI_STATE.studentDetailId,
+        recordType: UI_STATE.studentDetailRecordType,
+        month: UI_STATE.studentDetailMonth,
+        returnFocus: UI_STATE.studentDetailReturnFocus,
+        fallbackFocus: UI_STATE.studentDetailFallbackFocus
+      };
+    }
+
+    function restoreStudentDetail(context) {
+      const data = ClassLedgerStore.getSnapshot();
+      const studentExists = data.students.some((student) => isDataRecord(student) && student.id === context.studentId);
+      if (!studentExists) {
+        UI_STATE.studentDetailId = "";
+        return;
+      }
+
+      openStudentDetail(
+        context.studentId,
+        context.recordType,
+        context.returnFocus,
+        context.fallbackFocus,
+        context.month
+      );
+    }
+
+    function createStudentDetailProfile(student, data) {
+      const classTimeMap = getClassTimeMap(data);
+      const summary = getStudentHourSummary(student, data);
+      const profile = document.createElement("section");
+      const identity = document.createElement("div");
+      const identityCopy = document.createElement("div");
+      const nameRow = document.createElement("div");
+      const name = document.createElement("h3");
+      const meta = document.createElement("div");
+      const classTime = document.createElement("span");
+      const classTimeLabel = document.createElement("strong");
+      const note = document.createElement("p");
+      const stats = document.createElement("div");
+
+      profile.className = "student-detail__profile";
+      identity.className = "student-detail__identity";
+      nameRow.className = "student-detail__name-row";
+      name.className = "student-detail__name";
+      name.textContent = String(student.name || "未命名学生");
+      nameRow.append(name, createStudentStatusTag(student.status));
+
+      meta.className = "student-detail__meta";
+      classTime.className = "student-detail__meta-item";
+      classTimeLabel.textContent = "上课时间";
+      classTime.append(
+        classTimeLabel,
+        classTimeMap.get(student.classTimeId) || "未分配上课时间"
+      );
+      meta.appendChild(classTime);
+      identityCopy.append(nameRow, meta);
+
+      note.className = "student-detail__note";
+      note.textContent = student.note ? `备注：${String(student.note)}` : "暂无学生备注";
+      identity.append(identityCopy, note);
+
+      stats.className = "student-detail__stats";
+      stats.append(
+        createStudentStatCard("初始课时", summary.initialHours),
+        createStudentStatCard("续费购买", summary.purchasedHours),
+        createStudentStatCard("续费赠送", summary.renewalGiftHours),
+        createStudentStatCard("转介绍赠送", summary.referralGiftHours),
+        createStudentStatCard("正常上课扣除", summary.lessonHours),
+        createStudentStatCard("比赛扣除", summary.competitionHours),
+        createStudentStatCard("退费扣除", summary.refundHours, {
+          note: `退回购买 ${formatHours(summary.refundedPurchasedHours)} · 取消赠送 ${formatHours(summary.cancelledGiftHours)}`
+        }),
+        createStudentStatCard("当前剩余课时", summary.remainingHours, {
+          note: "依据全部历史记录实时计算",
+          remaining: true
+        })
+      );
+      profile.append(identity, stats);
+      return profile;
+    }
+
+    function getStudentDetailRecords(data, studentId, recordType) {
+      const config = getRecordTypeConfig(recordType);
+      const records = data[config.storageKey].filter((record) => (
+        isDataRecord(record) && record.studentId === studentId
+      ));
+      const filteredRecords = recordType === "lesson"
+        ? records.filter((record) => isValidDateValue(record.date) && record.date.startsWith(`${UI_STATE.studentDetailMonth}-`))
+        : records;
+      return {
+        allRecords: sortRecordsByDate(records),
+        visibleRecords: sortRecordsByDate(filteredRecords)
+      };
+    }
+
+    function activateStudentDetailRecordType(recordType, { moveFocus = false } = {}) {
+      if (!Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType)) {
+        return;
+      }
+      UI_STATE.studentDetailRecordType = recordType;
+      const content = document.getElementById("student-detail-content");
+      if (content) {
+        renderStudentDetailContent(content, { focusTab: moveFocus });
+      }
+    }
+
+    function renderStudentDetailContent(content, { focusTab = false } = {}) {
+      const data = ClassLedgerStore.getSnapshot();
+      const student = data.students.find((item) => isDataRecord(item) && item.id === UI_STATE.studentDetailId);
+      if (!student) {
+        ClassLedgerModal.close("student-missing");
+        showSystemError("未找到该学生，详情已关闭。");
+        return;
+      }
+
+      const recordType = Object.prototype.hasOwnProperty.call(RECORD_TYPES, UI_STATE.studentDetailRecordType)
+        ? UI_STATE.studentDetailRecordType
+        : "lesson";
+      if (!isValidMonthValue(UI_STATE.studentDetailMonth)) {
+        UI_STATE.studentDetailMonth = getLocalMonthValue();
+      }
+      UI_STATE.studentDetailRecordType = recordType;
+
+      const config = getRecordTypeConfig(recordType);
+      const detailRecords = getStudentDetailRecords(data, student.id, recordType);
+      const recordsSection = document.createElement("section");
+      const tabs = document.createElement("div");
+      const toolbar = document.createElement("div");
+      const toolbarCopy = document.createElement("div");
+      const panelTitle = document.createElement("h3");
+      const panelCount = document.createElement("p");
+      const list = document.createElement("div");
+
+      recordsSection.className = "student-detail__records";
+      tabs.className = "record-tabs student-detail__tabs";
+      tabs.setAttribute("role", "tablist");
+      tabs.setAttribute("aria-label", `${String(student.name || "未命名学生")}的记录类型`);
+      RECORD_TYPE_KEYS.forEach((tabType) => {
+        const tabConfig = getRecordTypeConfig(tabType);
+        const tab = document.createElement("button");
+        const count = document.createElement("span");
+        const isActive = tabType === recordType;
+        const totalCount = data[tabConfig.storageKey].filter((record) => (
+          isDataRecord(record) && record.studentId === student.id
+        )).length;
+        tab.id = `student-detail-tab-${tabType}`;
+        tab.type = "button";
+        tab.className = "record-tab";
+        tab.dataset.detailRecordType = tabType;
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.setAttribute("aria-controls", "student-detail-list");
+        tab.tabIndex = isActive ? 0 : -1;
+        tab.append(tabConfig.label, count);
+        count.className = "record-tab__count";
+        count.textContent = String(totalCount);
+        tabs.appendChild(tab);
+      });
+
+      toolbar.className = "student-detail__panel-toolbar";
+      toolbarCopy.className = "student-detail__panel-copy";
+      panelTitle.textContent = config.label;
+      panelCount.setAttribute("aria-live", "polite");
+      panelCount.textContent = recordType === "lesson"
+        ? `${formatMonthLabel(UI_STATE.studentDetailMonth)}显示 ${detailRecords.visibleRecords.length} / 共 ${detailRecords.allRecords.length} 条`
+        : `全部历史共 ${detailRecords.visibleRecords.length} 条`;
+      toolbarCopy.append(panelTitle, panelCount);
+      toolbar.appendChild(toolbarCopy);
+
+      if (recordType === "lesson") {
+        const monthField = document.createElement("div");
+        const monthLabel = document.createElement("label");
+        const monthInput = document.createElement("input");
+        monthField.className = "form-field student-detail__month";
+        monthLabel.className = "form-label";
+        monthLabel.htmlFor = "student-detail-month";
+        monthLabel.textContent = "正常上课月份";
+        monthInput.id = "student-detail-month";
+        monthInput.type = "month";
+        monthInput.className = "form-control";
+        monthInput.value = UI_STATE.studentDetailMonth;
+        monthInput.dataset.action = "student-detail-month";
+        monthField.append(monthLabel, monthInput);
+        toolbar.appendChild(monthField);
+      }
+
+      list.id = "student-detail-list";
+      list.className = "student-detail__list";
+      list.setAttribute("role", "tabpanel");
+      list.setAttribute("aria-labelledby", `student-detail-tab-${recordType}`);
+      list.tabIndex = 0;
+      if (detailRecords.visibleRecords.length === 0) {
+        list.appendChild(createEmptyState({
+          icon: "icon-receipt",
+          title: recordType === "lesson" ? "该月份暂无正常上课记录" : config.emptyTitle,
+          description: recordType === "lesson"
+            ? `${formatMonthLabel(UI_STATE.studentDetailMonth)}没有正常上课记录，可切换月份或添加记录。`
+            : `该学生还没有${config.shortLabel}记录。`,
+          actionLabel: config.addLabel,
+          action: "detail-add-record"
+        }));
+      } else {
+        list.appendChild(createRecordTable(detailRecords.visibleRecords, recordType, data, {
+          includeStudent: false,
+          actionPrefix: "detail-",
+          captionText: `${String(student.name || "未命名学生")}的${config.label}`
+        }));
+      }
+
+      recordsSection.append(tabs, toolbar, list);
+      content.replaceChildren(createStudentDetailProfile(student, data), recordsSection);
+      if (focusTab) {
+        const activeTab = document.getElementById(`student-detail-tab-${recordType}`);
+        if (activeTab) {
+          activeTab.focus();
+        }
+      }
+    }
+
+    function bindStudentDetailEvents(content) {
+      content.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button || !content.contains(button)) {
+          return;
+        }
+
+        if (button.dataset.detailRecordType) {
+          activateStudentDetailRecordType(button.dataset.detailRecordType);
+          return;
+        }
+
+        const context = getStudentDetailContext();
+        const { action, id, recordType } = button.dataset;
+        if (action === "detail-add-record") {
+          openRecordForm(context.recordType, "", button, context.studentId, {
+            lockStudent: true,
+            onClose: () => restoreStudentDetail(context),
+            fallbackFocus: context.fallbackFocus
+          });
+        } else if (action === "detail-edit-record") {
+          openRecordForm(recordType, id, button, context.studentId, {
+            lockStudent: true,
+            onClose: () => restoreStudentDetail(context),
+            fallbackFocus: context.fallbackFocus
+          });
+        } else if (action === "detail-delete-record") {
+          openDeleteRecord(recordType, id, button, {
+            onClose: () => restoreStudentDetail(context),
+            fallbackFocus: context.fallbackFocus
+          });
+        }
+      });
+
+      content.addEventListener("change", (event) => {
+        const input = event.target;
+        if (!(input instanceof HTMLInputElement) || input.dataset.action !== "student-detail-month") {
+          return;
+        }
+        UI_STATE.studentDetailMonth = isValidMonthValue(input.value) ? input.value : getLocalMonthValue();
+        renderStudentDetailContent(content);
+        const replacement = document.getElementById("student-detail-month");
+        if (replacement) {
+          replacement.focus();
+        }
+      });
+
+      content.addEventListener("keydown", (event) => {
+        const currentTab = event.target.closest("[data-detail-record-type]");
+        if (!currentTab || !content.contains(currentTab)) {
+          return;
+        }
+
+        const currentIndex = RECORD_TYPE_KEYS.indexOf(currentTab.dataset.detailRecordType);
+        let targetIndex = currentIndex;
+        if (event.key === "ArrowRight") {
+          targetIndex = (currentIndex + 1) % RECORD_TYPE_KEYS.length;
+        } else if (event.key === "ArrowLeft") {
+          targetIndex = (currentIndex - 1 + RECORD_TYPE_KEYS.length) % RECORD_TYPE_KEYS.length;
+        } else if (event.key === "Home") {
+          targetIndex = 0;
+        } else if (event.key === "End") {
+          targetIndex = RECORD_TYPE_KEYS.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        activateStudentDetailRecordType(RECORD_TYPE_KEYS[targetIndex], { moveFocus: true });
+      });
+    }
+
+    function createStudentDetailHeaderActions(student) {
+      const fragment = document.createDocumentFragment();
+      const editButton = document.createElement("button");
+      const addButton = document.createElement("button");
+
+      editButton.type = "button";
+      editButton.className = "button button--secondary";
+      editButton.dataset.action = "detail-edit-student";
+      editButton.append(createSvgIcon("icon-edit"), "编辑学生");
+      editButton.addEventListener("click", () => {
+        const context = getStudentDetailContext();
+        openStudentForm(student.id, editButton, context.fallbackFocus, {
+          onClose: () => restoreStudentDetail(context),
+          detailContext: context
+        });
+      });
+
+      addButton.type = "button";
+      addButton.className = "button button--primary";
+      addButton.dataset.action = "detail-add-record-picker";
+      addButton.append(createSvgIcon("icon-plus"), "添加记录");
+      addButton.addEventListener("click", () => {
+        const context = getStudentDetailContext();
+        openOverviewRecordPicker(student.id, addButton, {
+          includeLesson: true,
+          detailContext: context
+        });
+      });
+      fragment.append(editButton, addButton);
+      return fragment;
+    }
+
+    function openStudentDetail(
+      studentId,
+      recordType = "lesson",
+      returnFocus = null,
+      fallbackFocus = "#overview-title",
+      month = ""
+    ) {
+      const data = ClassLedgerStore.getSnapshot();
+      const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
+      if (!student) {
+        showSystemError("未找到该学生，请刷新页面后重试。");
+        return;
+      }
+
+      UI_STATE.studentDetailId = studentId;
+      UI_STATE.studentDetailRecordType = Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType) ? recordType : "lesson";
+      UI_STATE.studentDetailMonth = isValidMonthValue(month) ? month : getLocalMonthValue();
+      UI_STATE.studentDetailReturnFocus = returnFocus;
+      UI_STATE.studentDetailFallbackFocus = fallbackFocus;
+
+      const content = document.createElement("div");
+      content.id = "student-detail-content";
+      content.className = "student-detail";
+      bindStudentDetailEvents(content);
+      renderStudentDetailContent(content);
+
+      ClassLedgerModal.open({
+        title: "学生详情",
+        content,
+        headerActions: createStudentDetailHeaderActions(student),
+        size: "detail",
+        showFooter: false,
+        initialFocus: `#student-detail-tab-${UI_STATE.studentDetailRecordType}`,
+        returnFocus,
+        fallbackFocus,
+        onClose: () => {
+          UI_STATE.studentDetailId = "";
+        }
+      });
+    }
+
+    /* ================================================================
+       10. 记录管理与剩余课时
        ================================================================ */
     function getRecordTypeConfig(recordType) {
       return Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType)
@@ -4722,24 +5458,267 @@
       }
     }
 
+    function createRecordTable(records, recordType, data, {
+      includeStudent = true,
+      actionPrefix = "",
+      captionText = ""
+    } = {}) {
+      const config = getRecordTypeConfig(recordType);
+      const studentMap = new Map(
+        data.students
+          .filter(isDataRecord)
+          .filter((student) => typeof student.id === "string")
+          .map((student) => [student.id, student])
+      );
+      const classTimeMap = getClassTimeMap(data);
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+      const headings = includeStudent
+        ? config.headings
+        : config.headings.filter((heading) => heading !== "学生");
+
+      shell.className = "table-shell";
+      shell.tabIndex = 0;
+      shell.setAttribute("aria-label", `${captionText || config.label}，可横向滚动查看全部列`);
+      table.className = "data-table";
+      caption.className = "sr-only";
+      caption.textContent = captionText || config.label;
+      headings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      records.forEach((record) => {
+        const row = document.createElement("tr");
+        const recordId = typeof record.id === "string" ? record.id : "";
+        const student = studentMap.get(record.studentId);
+        const noteCell = document.createElement("td");
+        const note = document.createElement("span");
+        const actionCell = document.createElement("td");
+        const actionGroup = document.createElement("div");
+
+        row.appendChild(createTextCell(
+          isValidDateValue(record.date) ? record.date : String(record.date || "—"),
+          "number-cell"
+        ));
+        if (includeStudent) {
+          row.appendChild(student
+            ? createStudentNameCell(student, "record-student-detail")
+            : createTextCell("未知学生", "cell-secondary"));
+        }
+        appendRecordValueCells(row, recordType, record, student, classTimeMap);
+
+        note.className = "cell-note";
+        note.textContent = String(record.note || "—");
+        note.title = String(record.note || "");
+        noteCell.appendChild(note);
+        row.appendChild(noteCell);
+
+        actionGroup.className = "table-action-group";
+        if (recordId) {
+          const editButton = createActionButton("编辑", `${actionPrefix}edit-record`, recordId);
+          const deleteButton = createActionButton("删除", `${actionPrefix}delete-record`, recordId, true);
+          editButton.dataset.recordType = recordType;
+          deleteButton.dataset.recordType = recordType;
+          actionGroup.append(editButton, deleteButton);
+        } else {
+          const invalid = document.createElement("span");
+          invalid.className = "cell-secondary";
+          invalid.textContent = "数据缺少编号";
+          actionGroup.appendChild(invalid);
+        }
+        actionCell.appendChild(actionGroup);
+        row.appendChild(actionCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      return shell;
+    }
+
+    function hasUnknownStudentRecords(data) {
+      const studentIds = new Set(
+        data.students
+          .filter(isDataRecord)
+          .map((student) => student.id)
+          .filter((id) => typeof id === "string")
+      );
+      return STUDENT_RECORD_KEYS.some((key) => data[key].some((record) => (
+        isDataRecord(record) && !studentIds.has(record.studentId)
+      )));
+    }
+
+    function updateRecordFilterControls(data) {
+      const studentSelect = document.getElementById("records-student-filter");
+      const classTimeSelect = document.getElementById("records-class-time-filter");
+      const startInput = document.getElementById("records-start-date");
+      const endInput = document.getElementById("records-end-date");
+      const noteInput = document.getElementById("records-note-search");
+      const error = document.getElementById("records-date-range-error");
+      const students = data.students.filter(isDataRecord).filter((student) => typeof student.id === "string");
+      const validStudentIds = new Set(students.map((student) => student.id));
+      const validClassTimeIds = new Set(
+        data.classTimes
+          .filter(isDataRecord)
+          .map((classTime) => classTime.id)
+          .filter((id) => typeof id === "string")
+      );
+      const hasUnknownStudents = hasUnknownStudentRecords(data);
+
+      if (
+        UI_STATE.recordStudentFilter !== "all"
+        && UI_STATE.recordStudentFilter !== RECORD_UNKNOWN_STUDENT
+        && !validStudentIds.has(UI_STATE.recordStudentFilter)
+      ) {
+        UI_STATE.recordStudentFilter = "all";
+      }
+      if (UI_STATE.recordStudentFilter === RECORD_UNKNOWN_STUDENT && !hasUnknownStudents) {
+        UI_STATE.recordStudentFilter = "all";
+      }
+      if (
+        UI_STATE.recordClassTimeFilter !== "all"
+        && UI_STATE.recordClassTimeFilter !== OVERVIEW_UNASSIGNED_CLASS_TIME
+        && !validClassTimeIds.has(UI_STATE.recordClassTimeFilter)
+      ) {
+        UI_STATE.recordClassTimeFilter = "all";
+      }
+
+      studentSelect.replaceChildren();
+      const allStudentsOption = document.createElement("option");
+      allStudentsOption.value = "all";
+      allStudentsOption.textContent = "全部学生";
+      studentSelect.appendChild(allStudentsOption);
+      students
+        .slice()
+        .sort((left, right) => String(left.name || "").localeCompare(String(right.name || ""), "zh-CN"))
+        .forEach((student) => {
+          const option = document.createElement("option");
+          option.value = student.id;
+          option.textContent = String(student.name || "未命名学生");
+          studentSelect.appendChild(option);
+        });
+      if (hasUnknownStudents) {
+        const unknownOption = document.createElement("option");
+        unknownOption.value = RECORD_UNKNOWN_STUDENT;
+        unknownOption.textContent = "未知学生（兼容记录）";
+        studentSelect.appendChild(unknownOption);
+      }
+
+      classTimeSelect.replaceChildren();
+      const allClassTimesOption = document.createElement("option");
+      allClassTimesOption.value = "all";
+      allClassTimesOption.textContent = "全部上课时间";
+      classTimeSelect.appendChild(allClassTimesOption);
+      sortClassTimes(data.classTimes.filter(isDataRecord)).forEach((classTime) => {
+        if (typeof classTime.id !== "string") {
+          return;
+        }
+        const option = document.createElement("option");
+        option.value = classTime.id;
+        option.textContent = formatClassTimeName(classTime);
+        classTimeSelect.appendChild(option);
+      });
+      const unassignedOption = document.createElement("option");
+      unassignedOption.value = OVERVIEW_UNASSIGNED_CLASS_TIME;
+      unassignedOption.textContent = "未分配上课时间";
+      classTimeSelect.appendChild(unassignedOption);
+
+      studentSelect.value = UI_STATE.recordStudentFilter;
+      classTimeSelect.value = UI_STATE.recordClassTimeFilter;
+      startInput.value = UI_STATE.recordStartDate;
+      endInput.value = UI_STATE.recordEndDate;
+      noteInput.value = UI_STATE.recordNoteSearch;
+
+      const hasInvalidRange = Boolean(
+        UI_STATE.recordStartDate
+        && UI_STATE.recordEndDate
+        && UI_STATE.recordStartDate > UI_STATE.recordEndDate
+      );
+      error.textContent = hasInvalidRange ? "开始日期不能晚于结束日期，请调整日期范围。" : "";
+      error.hidden = !hasInvalidRange;
+      [startInput, endInput].forEach((input) => {
+        if (hasInvalidRange) {
+          input.setAttribute("aria-invalid", "true");
+        } else {
+          input.removeAttribute("aria-invalid");
+        }
+      });
+      return !hasInvalidRange;
+    }
+
+    function filterRecords(data, recordType) {
+      const config = getRecordTypeConfig(recordType);
+      const studentMap = new Map(
+        data.students
+          .filter(isDataRecord)
+          .filter((student) => typeof student.id === "string")
+          .map((student) => [student.id, student])
+      );
+      const classTimeMap = getClassTimeMap(data);
+      const noteQuery = normalizeSearchText(UI_STATE.recordNoteSearch);
+
+      return sortRecordsByDate(data[config.storageKey].filter((record) => {
+        if (!isDataRecord(record)) {
+          return false;
+        }
+        const student = studentMap.get(record.studentId);
+        const matchesStudent = UI_STATE.recordStudentFilter === "all"
+          || (UI_STATE.recordStudentFilter === RECORD_UNKNOWN_STUDENT
+            ? !student
+            : record.studentId === UI_STATE.recordStudentFilter);
+        const matchesClassTime = UI_STATE.recordClassTimeFilter === "all"
+          || (UI_STATE.recordClassTimeFilter === OVERVIEW_UNASSIGNED_CLASS_TIME
+            ? !student || !classTimeMap.has(student.classTimeId)
+            : Boolean(student) && student.classTimeId === UI_STATE.recordClassTimeFilter);
+        const hasDateBoundary = Boolean(UI_STATE.recordStartDate || UI_STATE.recordEndDate);
+        const validRecordDate = isValidDateValue(record.date);
+        const matchesStartDate = !UI_STATE.recordStartDate || (validRecordDate && record.date >= UI_STATE.recordStartDate);
+        const matchesEndDate = !UI_STATE.recordEndDate || (validRecordDate && record.date <= UI_STATE.recordEndDate);
+        const matchesNote = !noteQuery || normalizeSearchText(record.note).includes(noteQuery);
+        return matchesStudent
+          && matchesClassTime
+          && (!hasDateBoundary || validRecordDate)
+          && matchesStartDate
+          && matchesEndDate
+          && matchesNote;
+      }));
+    }
+
+    function hasActiveRecordFilters() {
+      return UI_STATE.recordStudentFilter !== "all"
+        || UI_STATE.recordClassTimeFilter !== "all"
+        || Boolean(UI_STATE.recordStartDate)
+        || Boolean(UI_STATE.recordEndDate)
+        || Boolean(normalizeSearchText(UI_STATE.recordNoteSearch));
+    }
+
+    function resetRecordFilters() {
+      UI_STATE.recordStudentFilter = "all";
+      UI_STATE.recordClassTimeFilter = "all";
+      UI_STATE.recordStartDate = "";
+      UI_STATE.recordEndDate = "";
+      UI_STATE.recordNoteSearch = "";
+      renderRecords();
+    }
+
     function renderRecords() {
       const data = ClassLedgerStore.getSnapshot();
       const recordType = Object.prototype.hasOwnProperty.call(RECORD_TYPES, UI_STATE.activeRecordType)
         ? UI_STATE.activeRecordType
         : "lesson";
       const config = getRecordTypeConfig(recordType);
-      const students = data.students.filter(isDataRecord);
-      const selectableStudents = students.filter((student) => typeof student.id === "string");
-      const studentMap = new Map(
-        selectableStudents.map((student) => [student.id, student])
-      );
-      const classTimeMap = new Map(
-        data.classTimes
-          .filter(isDataRecord)
-          .filter((classTime) => typeof classTime.id === "string")
-          .map((classTime) => [classTime.id, formatClassTimeName(classTime)])
-      );
-      const records = sortRecordsByDate(data[config.storageKey].filter(isDataRecord));
+      const selectableStudents = data.students.filter((student) => isDataRecord(student) && typeof student.id === "string");
+      const allRecords = sortRecordsByDate(data[config.storageKey].filter(isDataRecord));
+      const hasValidDateRange = updateRecordFilterControls(data);
+      const records = hasValidDateRange ? filterRecords(data, recordType) : [];
       const tabs = Array.from(document.querySelectorAll("#record-tabs [data-record-type]"));
       const host = document.getElementById("records-list-host");
       const addButton = document.getElementById("add-record-button");
@@ -4760,14 +5739,30 @@
 
       document.getElementById("record-panel-title").textContent = config.label;
       document.getElementById("record-panel-description").textContent = config.description;
-      document.getElementById("records-count").textContent = `共 ${records.length} 条`;
+      document.getElementById("records-count").textContent = !hasValidDateRange
+        ? "日期范围有误"
+        : hasActiveRecordFilters()
+          ? `显示 ${records.length} / 共 ${allRecords.length} 条`
+          : `共 ${allRecords.length} 条`;
       host.setAttribute("aria-labelledby", `record-tab-${recordType}`);
       addButton.replaceChildren(createSvgIcon("icon-plus"), config.addLabel);
       addButton.disabled = selectableStudents.length === 0;
       addButton.title = selectableStudents.length === 0 ? "请先添加学生" : "";
       host.replaceChildren();
 
-      if (records.length === 0) {
+      if (!hasValidDateRange) {
+        host.appendChild(createEmptyState({
+          icon: "icon-warning",
+          title: "日期范围有误",
+          description: "开始日期不能晚于结束日期，请调整后重新筛选。",
+          actionLabel: "清除日期范围",
+          action: "clear-record-dates",
+          actionStyle: "secondary"
+        }));
+        return;
+      }
+
+      if (allRecords.length === 0) {
         const hasStudents = selectableStudents.length > 0;
         host.appendChild(createEmptyState({
           icon: "icon-receipt",
@@ -4782,67 +5777,21 @@
         return;
       }
 
-      const shell = document.createElement("div");
-      const table = document.createElement("table");
-      const caption = document.createElement("caption");
-      const head = document.createElement("thead");
-      const headRow = document.createElement("tr");
-      const body = document.createElement("tbody");
+      if (records.length === 0) {
+        host.appendChild(createEmptyState({
+          icon: "icon-search",
+          title: "没有符合筛选条件的记录",
+          description: "请调整学生、上课时间、日期范围或备注关键词。",
+          actionLabel: "重置筛选",
+          action: "clear-record-filters",
+          actionStyle: "secondary"
+        }));
+        return;
+      }
 
-      shell.className = "table-shell";
-      table.className = "data-table";
-      caption.className = "sr-only";
-      caption.textContent = config.label;
-      config.headings.forEach((heading) => {
-        const cell = document.createElement("th");
-        cell.scope = "col";
-        cell.textContent = heading;
-        headRow.appendChild(cell);
-      });
-      head.appendChild(headRow);
-
-      records.forEach((record) => {
-        const row = document.createElement("tr");
-        const recordId = typeof record.id === "string" ? record.id : "";
-        const student = studentMap.get(record.studentId);
-        const noteCell = document.createElement("td");
-        const note = document.createElement("span");
-        const actionCell = document.createElement("td");
-        const actionGroup = document.createElement("div");
-
-        row.append(
-          createTextCell(isValidDateValue(record.date) ? record.date : String(record.date || "—"), "number-cell"),
-          createTextCell(student ? String(student.name || "未命名学生") : "未知学生", student ? "cell-primary" : "cell-secondary")
-        );
-        appendRecordValueCells(row, recordType, record, student, classTimeMap);
-
-        note.className = "cell-note";
-        note.textContent = String(record.note || "—");
-        note.title = String(record.note || "");
-        noteCell.appendChild(note);
-        row.appendChild(noteCell);
-
-        actionGroup.className = "table-action-group";
-        if (recordId) {
-          const editButton = createActionButton("编辑", "edit-record", recordId);
-          const deleteButton = createActionButton("删除", "delete-record", recordId, true);
-          editButton.dataset.recordType = recordType;
-          deleteButton.dataset.recordType = recordType;
-          actionGroup.append(editButton, deleteButton);
-        } else {
-          const invalid = document.createElement("span");
-          invalid.className = "cell-secondary";
-          invalid.textContent = "数据缺少编号";
-          actionGroup.appendChild(invalid);
-        }
-        actionCell.appendChild(actionGroup);
-        row.appendChild(actionCell);
-        body.appendChild(row);
-      });
-
-      table.append(caption, head, body);
-      shell.appendChild(table);
-      host.appendChild(shell);
+      host.appendChild(createRecordTable(records, recordType, data, {
+        captionText: config.label
+      }));
     }
 
     function getRecordFormValues(form, recordType) {
@@ -4915,7 +5864,7 @@
       document.getElementById("modal-confirm-button").textContent = "保存";
     }
 
-    function createRecordForm(recordType, existingRecord = null, presetStudentId = "") {
+    function createRecordForm(recordType, existingRecord = null, presetStudentId = "", lockStudent = false) {
       const config = getRecordTypeConfig(recordType);
       const data = ClassLedgerStore.getSnapshot();
       const form = document.createElement("form");
@@ -4982,6 +5931,12 @@
         studentSelect.value = existingRecord.studentId;
       } else if (presetStudentId && data.students.some((student) => isDataRecord(student) && student.id === presetStudentId)) {
         studentSelect.value = presetStudentId;
+      }
+
+      if (lockStudent && studentSelect.value) {
+        studentSelect.disabled = true;
+        studentSelect.setAttribute("aria-disabled", "true");
+        studentSelect.title = "学生详情中的记录固定关联当前学生";
       }
 
       form.elements.namedItem("date").value = existingRecord && isValidDateValue(existingRecord.date)
@@ -5066,7 +6021,7 @@
       return true;
     }
 
-    function openRecordForm(recordType, recordId = "", returnFocus = null, presetStudentId = "") {
+    function openRecordForm(recordType, recordId = "", returnFocus = null, presetStudentId = "", modalOptions = {}) {
       const config = getRecordTypeConfig(recordType);
       const data = ClassLedgerStore.getSnapshot();
       const existingRecord = recordId
@@ -5082,19 +6037,20 @@
         return;
       }
 
-      const form = createRecordForm(recordType, existingRecord, presetStudentId);
+      const form = createRecordForm(recordType, existingRecord, presetStudentId, modalOptions.lockStudent === true);
       ClassLedgerModal.open({
         title: existingRecord ? config.editLabel : config.addLabel,
         content: form,
         confirmText: "保存",
-        initialFocus: presetStudentId && !existingRecord ? "#record-date" : "#record-student",
+        initialFocus: modalOptions.lockStudent || (presetStudentId && !existingRecord) ? "#record-date" : "#record-student",
         returnFocus,
-        fallbackFocus: presetStudentId ? "#overview-title" : "#add-record-button",
+        fallbackFocus: modalOptions.fallbackFocus || (presetStudentId ? "#overview-title" : "#add-record-button"),
+        onClose: modalOptions.onClose,
         onConfirm: () => saveRecordForm(form, recordType, recordId)
       });
     }
 
-    function openDeleteRecord(recordType, recordId, returnFocus = null) {
+    function openDeleteRecord(recordType, recordId, returnFocus = null, modalOptions = {}) {
       const config = getRecordTypeConfig(recordType);
       const data = ClassLedgerStore.getSnapshot();
       const record = data[config.storageKey].find((item) => isDataRecord(item) && item.id === recordId);
@@ -5116,7 +6072,8 @@
         confirmText: "删除",
         variant: "danger",
         returnFocus,
-        fallbackFocus: "#add-record-button",
+        fallbackFocus: modalOptions.fallbackFocus || "#add-record-button",
+        onClose: modalOptions.onClose,
         onConfirm: () => {
           const latestData = ClassLedgerStore.getSnapshot();
           latestData[config.storageKey] = latestData[config.storageKey].filter((item) => (
@@ -5147,7 +6104,7 @@
     }
 
     /* ================================================================
-       10. 页面初始化与事件绑定
+       11. 页面初始化与事件绑定
        ================================================================ */
     function createStorageInfoContent() {
       const wrapper = document.createElement("div");
@@ -5179,6 +6136,11 @@
       const recordTabs = document.getElementById("record-tabs");
       const recordsHost = document.getElementById("records-list-host");
       const addRecordButton = document.getElementById("add-record-button");
+      const recordsStudentFilter = document.getElementById("records-student-filter");
+      const recordsClassTimeFilter = document.getElementById("records-class-time-filter");
+      const recordsStartDate = document.getElementById("records-start-date");
+      const recordsEndDate = document.getElementById("records-end-date");
+      const recordsNoteSearch = document.getElementById("records-note-search");
 
       document.getElementById("add-class-time-button").addEventListener("click", () => openClassTimeForm());
       document.getElementById("add-student-button").addEventListener("click", () => openStudentForm());
@@ -5248,6 +6210,8 @@
           openRecordForm("lesson", "", button, id);
         } else if (action === "overview-add-record") {
           openOverviewRecordPicker(id, button);
+        } else if (action === "overview-student-detail") {
+          openStudentDetail(id, "lesson", button, "#overview-title");
         } else if (action === "overview-edit-student") {
           openStudentForm(id, button, "#overview-title");
         } else if (action === "overview-history") {
@@ -5301,8 +6265,32 @@
           studentSearch.focus();
         } else if (action === "edit-student") {
           openStudentForm(id, button);
+        } else if (action === "student-detail") {
+          openStudentDetail(id, "lesson", button, "#students-title");
         }
       });
+
+      recordsStudentFilter.addEventListener("change", () => {
+        UI_STATE.recordStudentFilter = recordsStudentFilter.value;
+        renderRecords();
+      });
+      recordsClassTimeFilter.addEventListener("change", () => {
+        UI_STATE.recordClassTimeFilter = recordsClassTimeFilter.value;
+        renderRecords();
+      });
+      recordsStartDate.addEventListener("change", () => {
+        UI_STATE.recordStartDate = recordsStartDate.value;
+        renderRecords();
+      });
+      recordsEndDate.addEventListener("change", () => {
+        UI_STATE.recordEndDate = recordsEndDate.value;
+        renderRecords();
+      });
+      recordsNoteSearch.addEventListener("input", () => {
+        UI_STATE.recordNoteSearch = recordsNoteSearch.value;
+        renderRecords();
+      });
+      document.getElementById("records-reset-filters").addEventListener("click", resetRecordFilters);
 
       recordTabs.addEventListener("click", (event) => {
         const tab = event.target.closest("[data-record-type]");
@@ -5347,6 +6335,16 @@
           openRecordForm(UI_STATE.activeRecordType, "", button);
         } else if (action === "go-students") {
           window.location.hash = "students";
+        } else if (action === "clear-record-filters") {
+          resetRecordFilters();
+          recordsStudentFilter.focus();
+        } else if (action === "clear-record-dates") {
+          UI_STATE.recordStartDate = "";
+          UI_STATE.recordEndDate = "";
+          renderRecords();
+          recordsStartDate.focus();
+        } else if (action === "record-student-detail") {
+          openStudentDetail(id, UI_STATE.activeRecordType, button, "#records-title");
         } else if (action === "edit-record") {
           openRecordForm(recordType, id, button);
         } else if (action === "delete-record") {
@@ -5368,6 +6366,7 @@
       const storageResult = ClassLedgerStore.loadData();
       updateStorageStatus(storageResult);
       UI_STATE.overviewMonth = getLocalMonthValue();
+      UI_STATE.studentDetailMonth = getLocalMonthValue();
       setupManagementEvents();
       renderOverview();
       renderClassTimes();
