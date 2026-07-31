@@ -295,10 +295,6 @@
       line-height: 1.2;
     }
 
-    .page-title:focus {
-      outline: none;
-    }
-
     .page-description {
       max-width: 660px;
       margin: 14px 0 0;
@@ -764,6 +760,115 @@
 
     .foundation-card .button {
       margin-top: auto;
+    }
+
+    .data-status-card {
+      min-height: 0;
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 24px;
+    }
+
+    .data-status-card .foundation-card__top {
+      width: auto;
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .data-status-card__copy {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .data-status-card__copy h2 {
+      font-size: 16px;
+    }
+
+    .data-status-card__copy p {
+      margin: 5px 0 0;
+    }
+
+    .data-status-card .button {
+      flex: 0 0 auto;
+      margin-top: 0;
+    }
+
+    .data-action-card {
+      min-height: 258px;
+    }
+
+    .data-action-card--danger {
+      border-color: #F0D2D0;
+      background: #FFFCFB;
+    }
+
+    .data-action-card--danger .foundation-card__icon {
+      background: var(--color-danger-soft);
+      color: var(--color-danger);
+    }
+
+    .data-card__summary {
+      width: 100%;
+      margin: -4px 0 22px;
+      padding: 11px 13px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-control);
+      background: var(--color-surface-soft);
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.55;
+    }
+
+    .data-action-card--danger .data-card__summary {
+      border-color: #F0D7D5;
+      background: var(--color-danger-soft);
+      color: #8F4B47;
+    }
+
+    .import-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .import-summary__item {
+      padding: 12px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-control);
+      background: var(--color-surface-soft);
+    }
+
+    .import-summary__item dt {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+    }
+
+    .import-summary__item dd {
+      margin: 4px 0 0;
+      overflow-wrap: anywhere;
+      color: var(--color-text);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 650;
+    }
+
+    .destructive-confirmation {
+      display: grid;
+      gap: 18px;
+    }
+
+    .destructive-confirmation__warning {
+      margin: 0;
+      padding: 13px 14px;
+      border: 1px solid #F1C7C5;
+      border-radius: var(--radius-control);
+      background: var(--color-danger-soft);
+      color: #8F2B27;
+      line-height: 1.65;
     }
 
     /* ================================================================
@@ -1619,6 +1724,7 @@
       min-height: 0;
       padding: 24px;
       overflow-y: auto;
+      overscroll-behavior: contain;
       color: var(--color-text-secondary);
       font-size: 14px;
       line-height: 1.75;
@@ -1906,6 +2012,16 @@
       .foundation-card {
         min-height: 200px;
       }
+
+      .data-status-card {
+        min-height: 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .data-status-card .button {
+        width: 100%;
+      }
     }
 
     @media (max-width: 680px) {
@@ -2011,6 +2127,10 @@
       .danger-zone {
         align-items: stretch;
         flex-direction: column;
+      }
+
+      .import-summary {
+        grid-template-columns: 1fr;
       }
 
       .danger-zone .button {
@@ -2533,46 +2653,75 @@
       <div class="page-header-row">
         <div class="page-heading">
           <h1 id="data-title" class="page-title" tabindex="-1">数据管理</h1>
-          <p class="page-description">查看本地数据基础状态。导入、导出与清空功能将在后续阶段实现。</p>
+          <p class="page-description">备份、恢复或清空当前浏览器中的全部课时数据。</p>
         </div>
       </div>
 
       <div class="foundation-grid">
-        <article class="foundation-card">
+        <article class="foundation-card data-status-card">
           <div class="foundation-card__top">
             <span class="foundation-card__icon" aria-hidden="true">
               <svg><use href="#icon-database"></use></svg>
             </span>
-            <span id="storage-status" class="status-tag status-tag--neutral">正在检查</span>
           </div>
-          <h2>本地存储</h2>
-          <p id="storage-status-detail">系统正在读取浏览器中的本地数据。</p>
+          <div class="data-status-card__copy">
+            <h2>本地数据状态</h2>
+            <p id="storage-status-detail">系统正在读取浏览器中的本地数据。</p>
+          </div>
+          <span id="storage-status" class="status-tag status-tag--neutral">正在检查</span>
           <button id="storage-info-button" class="button button--secondary" type="button">
             <svg aria-hidden="true"><use href="#icon-info"></use></svg>
             查看存储说明
           </button>
         </article>
 
-        <article class="foundation-card">
+        <article class="foundation-card data-action-card">
+          <div class="foundation-card__top">
+            <span class="foundation-card__icon" aria-hidden="true">
+              <svg><use href="#icon-database"></use></svg>
+            </span>
+            <span class="status-tag status-tag--success">完整备份</span>
+          </div>
+          <h2>导出 JSON</h2>
+          <p>将上课时间、学生、五类历史记录及兼容字段保存为一个本地备份文件。</p>
+          <div id="data-export-summary" class="data-card__summary" aria-live="polite">正在统计当前数据。</div>
+          <button id="export-data-button" class="button button--secondary" type="button">
+            <svg aria-hidden="true"><use href="#icon-database"></use></svg>
+            导出完整 JSON
+          </button>
+        </article>
+
+        <article class="foundation-card data-action-card">
           <div class="foundation-card__top">
             <span class="foundation-card__icon" aria-hidden="true">
               <svg><use href="#icon-layers"></use></svg>
             </span>
-            <span class="status-tag status-tag--success">结构已建立</span>
+            <span class="status-tag status-tag--neutral">覆盖恢复</span>
           </div>
-          <h2>数据版本 V4.0</h2>
-          <p>上课时间、学生及五类历史记录均使用独立集合保存，购买课时与赠送课时不会合并。</p>
+          <h2>导入 JSON</h2>
+          <p>选择以前导出的备份文件。系统会先完成格式校验，确认后才覆盖当前全部数据。</p>
+          <div class="data-card__summary">导入失败不会修改当前数据；兼容字段会继续保留。</div>
+          <button id="import-data-button" class="button button--secondary" type="button">
+            <svg aria-hidden="true"><use href="#icon-layers"></use></svg>
+            选择 JSON 文件
+          </button>
+          <input id="import-json-input" type="file" accept=".json,application/json" hidden>
         </article>
 
-        <article class="foundation-card">
+        <article class="foundation-card data-action-card data-action-card--danger">
           <div class="foundation-card__top">
             <span class="foundation-card__icon" aria-hidden="true">
-              <svg><use href="#icon-shield"></use></svg>
+              <svg><use href="#icon-trash"></use></svg>
             </span>
-            <span class="status-tag status-tag--success">安全策略已启用</span>
+            <span class="status-tag status-tag--danger">不可恢复</span>
           </div>
-          <h2>保留已有数据</h2>
-          <p>页面启动时不会清空本地存储。已有结构会被兼容读取，未知字段也会原样保留。</p>
+          <h2>清空全部数据</h2>
+          <p>清除当前浏览器中的上课时间、学生和全部历史记录，不会影响已经下载的备份文件。</p>
+          <div id="data-clear-summary" class="data-card__summary" aria-live="polite">正在统计待清空数据。</div>
+          <button id="clear-data-button" class="button button--danger" type="button">
+            <svg aria-hidden="true"><use href="#icon-trash"></use></svg>
+            清空全部数据
+          </button>
         </article>
       </div>
     </section>
@@ -2809,8 +2958,8 @@
         return normalized;
       }
 
-      function saveData(nextData) {
-        if (writesLocked) {
+      function persistData(nextData, { allowLocked = false, source = "saved" } = {}) {
+        if (writesLocked && !allowLocked) {
           return {
             ok: false,
             error: new Error("检测到无法安全读取的本地数据，本次会话已停止自动写入。")
@@ -2820,14 +2969,24 @@
         try {
           const normalized = normalizeData(nextData);
           normalized.version = APP_CONFIG.schemaVersion;
-          localStorage.setItem(APP_CONFIG.storageKey, JSON.stringify(normalized));
-          currentData = normalized;
-          lastResult = { ok: true, source: "saved", data: getSnapshot() };
+          const serialized = JSON.stringify(normalized);
+          localStorage.setItem(APP_CONFIG.storageKey, serialized);
+          currentData = JSON.parse(serialized);
+          writesLocked = false;
+          lastResult = { ok: true, source, data: getSnapshot() };
           return lastResult;
         } catch (error) {
           lastResult = { ok: false, error };
           return lastResult;
         }
+      }
+
+      function saveData(nextData) {
+        return persistData(nextData);
+      }
+
+      function replaceData(nextData, source = "replaced") {
+        return persistData(nextData, { allowLocked: true, source });
       }
 
       function loadData() {
@@ -2874,6 +3033,7 @@
         normalizeData,
         loadData,
         saveData,
+        replaceData,
         getSnapshot,
         getStatus
       });
@@ -3554,13 +3714,18 @@
       const statusDetail = document.getElementById("storage-status-detail");
 
       if (result.ok) {
-        statusTag.textContent = result.source === "created" ? "已初始化" : "已连接";
+        const successCopy = {
+          created: ["已初始化", "已创建 V4.0 空数据结构，并保存到当前浏览器。"],
+          existing: ["已连接", "已安全读取当前浏览器中的本地数据。"],
+          saved: ["已保存", "最新修改已保存到当前浏览器。"],
+          imported: ["已恢复", "备份数据已通过校验并完整恢复到当前浏览器。"],
+          cleared: ["已清空", "当前浏览器中的课时数据已清空，并保留 V4.0 空结构。"],
+          replaced: ["已更新", "当前浏览器中的完整数据已安全更新。"]
+        };
+        const [statusText, detailText] = successCopy[result.source] || successCopy.existing;
+        statusTag.textContent = statusText;
         statusTag.className = "status-tag status-tag--success";
-        statusDetail.textContent = result.source === "created"
-          ? "已创建 V4.0 空数据结构，并保存到当前浏览器。"
-          : result.source === "saved"
-            ? "最新修改已保存到当前浏览器。"
-            : "已安全读取当前浏览器中的本地数据。";
+        statusDetail.textContent = detailText;
         clearSystemError();
         return;
       }
@@ -3576,6 +3741,14 @@
         : "本地数据操作失败，原有数据未被覆盖。");
     }
 
+    function renderAllDataViews() {
+      renderClassTimes();
+      renderStudents();
+      renderRecords();
+      renderOverview();
+      renderDataManagement();
+    }
+
     function commitData(nextData, successMessage) {
       const result = ClassLedgerStore.saveData(nextData);
       updateStorageStatus(result);
@@ -3584,10 +3757,42 @@
         return result;
       }
 
-      renderClassTimes();
-      renderStudents();
-      renderRecords();
-      renderOverview();
+      renderAllDataViews();
+      showToast(successMessage);
+      return result;
+    }
+
+    function resetTransientUiState() {
+      UI_STATE.classTimeSearch = "";
+      UI_STATE.studentSearch = "";
+      UI_STATE.activeRecordType = "lesson";
+      UI_STATE.recordStudentFilter = "all";
+      UI_STATE.recordClassTimeFilter = "all";
+      UI_STATE.recordStartDate = "";
+      UI_STATE.recordEndDate = "";
+      UI_STATE.recordNoteSearch = "";
+      UI_STATE.overviewClassTime = "all";
+      UI_STATE.overviewStatus = "active";
+      UI_STATE.overviewMonth = getLocalMonthValue();
+      UI_STATE.overviewSearch = "";
+      UI_STATE.overviewSelectedStudentIds.clear();
+      UI_STATE.studentDetailId = "";
+      UI_STATE.studentDetailRecordType = "lesson";
+      UI_STATE.studentDetailMonth = getLocalMonthValue();
+      UI_STATE.studentDetailReturnFocus = null;
+      UI_STATE.studentDetailFallbackFocus = "#overview-title";
+    }
+
+    function replaceAllData(nextData, successMessage, source) {
+      const result = ClassLedgerStore.replaceData(nextData, source);
+      updateStorageStatus(result);
+
+      if (!result.ok) {
+        return result;
+      }
+
+      resetTransientUiState();
+      renderAllDataViews();
       showToast(successMessage);
       return result;
     }
@@ -6104,7 +6309,339 @@
     }
 
     /* ================================================================
-       11. 页面初始化与事件绑定
+       11. 数据管理
+       ================================================================ */
+    function getDataCollectionCounts(data) {
+      const counts = {};
+      DATA_COLLECTION_KEYS.forEach((key) => {
+        counts[key] = Array.isArray(data[key]) ? data[key].length : 0;
+      });
+      counts.totalRecords = STUDENT_RECORD_KEYS.reduce((total, key) => total + counts[key], 0);
+      return counts;
+    }
+
+    function formatDataCollectionSummary(data) {
+      const counts = getDataCollectionCounts(data);
+      return `${counts.classTimes} 个上课时间 · ${counts.students} 名学生 · ${counts.totalRecords} 条历史记录`;
+    }
+
+    function renderDataManagement() {
+      const data = ClassLedgerStore.getSnapshot();
+      const status = ClassLedgerStore.getStatus();
+      const exportSummary = document.getElementById("data-export-summary");
+      const clearSummary = document.getElementById("data-clear-summary");
+      const exportButton = document.getElementById("export-data-button");
+      const summary = formatDataCollectionSummary(data);
+
+      if (status.writesLocked) {
+        exportSummary.textContent = "本地数据读取异常，暂时不能确认备份完整性。请导入有效备份或清空数据后重试。";
+        clearSummary.textContent = "当前原始数据无法安全解析；确认清空后可用 V4.0 空结构恢复正常使用。";
+        exportButton.disabled = true;
+        exportButton.title = "本地数据读取异常，暂时无法导出";
+        return;
+      }
+
+      exportSummary.textContent = `当前包含：${summary}。`;
+      clearSummary.textContent = `确认后将清空：${summary}。`;
+      exportButton.disabled = false;
+      exportButton.title = "";
+    }
+
+    function createImportFormatError(message) {
+      const error = new Error(`数据格式无效：${message}`);
+      error.name = "ImportFormatError";
+      return error;
+    }
+
+    function assertImportFormat(condition, message) {
+      if (!condition) {
+        throw createImportFormatError(message);
+      }
+    }
+
+    function validateImportedNote(value, path) {
+      if (typeof value === "undefined" || value === null) {
+        return;
+      }
+      assertImportFormat(typeof value === "string", `${path} 必须是文本。`);
+    }
+
+    function validateImportedHours(value, field, path) {
+      const isEmpty = value === "" || value === null || typeof value === "undefined";
+      if (isEmpty && !field.required) {
+        return;
+      }
+      assertImportFormat(!isEmpty, `${path} 不能为空。`);
+      const number = Number(value);
+      assertImportFormat(Number.isFinite(number), `${path} 必须是有效数字。`);
+      if (field.rule === "positive") {
+        assertImportFormat(number > 0, `${path} 必须大于 0。`);
+      } else {
+        assertImportFormat(number >= 0, `${path} 必须大于等于 0。`);
+      }
+    }
+
+    function validateImportedCollectionItems(collection, key) {
+      const ids = new Set();
+      collection.forEach((item, index) => {
+        const itemPath = `${key}[${index}]`;
+        assertImportFormat(isDataRecord(item), `${itemPath} 必须是一个对象。`);
+        assertImportFormat(typeof item.id === "string" && item.id.trim() !== "", `${itemPath}.id 必须是非空文本。`);
+        assertImportFormat(!ids.has(item.id), `${itemPath}.id 与同一集合中的其他编号重复。`);
+        ids.add(item.id);
+        validateImportedNote(item.note, `${itemPath}.note`);
+      });
+    }
+
+    function validateImportedData(source) {
+      assertImportFormat(isDataRecord(source), "JSON 根节点必须是一个对象。");
+
+      DATA_COLLECTION_KEYS.forEach((key) => {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          assertImportFormat(Array.isArray(source[key]), `字段“${key}”必须是数组。`);
+        }
+      });
+
+      const normalized = ClassLedgerStore.normalizeData(source);
+      DATA_COLLECTION_KEYS.forEach((key) => validateImportedCollectionItems(normalized[key], key));
+
+      const timePattern = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+      normalized.classTimes.forEach((classTime, index) => {
+        const path = `classTimes[${index}]`;
+        const weekday = Number(classTime.weekday);
+        assertImportFormat(Number.isInteger(weekday) && weekday >= 1 && weekday <= 7, `${path}.weekday 必须是 1 至 7。`);
+        assertImportFormat(timePattern.test(String(classTime.startTime || "")), `${path}.startTime 必须使用 HH:mm 格式。`);
+        assertImportFormat(timePattern.test(String(classTime.endTime || "")), `${path}.endTime 必须使用 HH:mm 格式。`);
+        assertImportFormat(String(classTime.endTime) > String(classTime.startTime), `${path}.endTime 必须晚于开始时间。`);
+      });
+
+      normalized.students.forEach((student, index) => {
+        const path = `students[${index}]`;
+        assertImportFormat(typeof student.name === "string" && student.name.trim() !== "", `${path}.name 必须是非空文本。`);
+        const initialHours = Number(student.initialHours);
+        assertImportFormat(Number.isFinite(initialHours) && initialHours >= 0, `${path}.initialHours 必须是大于等于 0 的数字。`);
+        assertImportFormat(
+          typeof student.classTimeId === "undefined" || student.classTimeId === null || typeof student.classTimeId === "string",
+          `${path}.classTimeId 必须是文本。`
+        );
+        assertImportFormat(Object.prototype.hasOwnProperty.call(STUDENT_STATUSES, student.status), `${path}.status 不是有效的学生状态。`);
+        if (typeof student.createdAt !== "undefined" && student.createdAt !== null) {
+          assertImportFormat(typeof student.createdAt === "string", `${path}.createdAt 必须是文本。`);
+        }
+      });
+
+      RECORD_TYPE_KEYS.forEach((recordType) => {
+        const config = getRecordTypeConfig(recordType);
+        normalized[config.storageKey].forEach((record, index) => {
+          const path = `${config.storageKey}[${index}]`;
+          assertImportFormat(typeof record.studentId === "string" && record.studentId.trim() !== "", `${path}.studentId 必须是非空文本。`);
+          assertImportFormat(isValidDateValue(record.date), `${path}.date 必须是有效的 YYYY-MM-DD 日期。`);
+          config.numericFields.forEach((field) => {
+            validateImportedHours(record[field.name], field, `${path}.${field.name}`);
+          });
+        });
+      });
+
+      return normalized;
+    }
+
+    function createImportSummaryItem(label, value) {
+      const item = document.createElement("div");
+      const term = document.createElement("dt");
+      const description = document.createElement("dd");
+      item.className = "import-summary__item";
+      term.textContent = label;
+      description.textContent = value;
+      item.append(term, description);
+      return item;
+    }
+
+    function createImportConfirmationContent(file, data) {
+      const wrapper = document.createElement("div");
+      const warning = document.createElement("p");
+      const explanation = document.createElement("p");
+      const summary = document.createElement("dl");
+      const submitError = document.createElement("p");
+      const counts = getDataCollectionCounts(data);
+
+      warning.className = "destructive-confirmation__warning";
+      warning.textContent = "导入数据将覆盖当前全部数据。请确认已经完成必要备份，此操作不能撤销。";
+      explanation.textContent = "文件已完成格式校验。确认导入后，页面会立即使用备份中的完整数据重新计算所有余额。";
+      summary.className = "import-summary";
+      summary.append(
+        createImportSummaryItem("文件", file.name || "未命名 JSON 文件"),
+        createImportSummaryItem("数据版本", String(data.version || APP_CONFIG.schemaVersion)),
+        createImportSummaryItem("上课时间", `${counts.classTimes} 条`),
+        createImportSummaryItem("学生", `${counts.students} 名`),
+        createImportSummaryItem("历史记录", `${counts.totalRecords} 条`),
+        createImportSummaryItem("恢复方式", "覆盖当前全部数据")
+      );
+      submitError.className = "form-submit-error";
+      submitError.dataset.submitError = "";
+      submitError.setAttribute("role", "alert");
+      submitError.hidden = true;
+      wrapper.append(warning, explanation, summary, submitError);
+      return wrapper;
+    }
+
+    function showImportError(message) {
+      const content = createConfirmationContent(
+        "无法导入所选文件。",
+        message || "请确认文件是由本系统导出的有效 JSON 备份。"
+      );
+      ClassLedgerModal.open({
+        title: "导入失败",
+        content,
+        confirmText: "知道了",
+        showCancel: false,
+        returnFocus: "#import-data-button",
+        fallbackFocus: "#import-data-button"
+      });
+    }
+
+    function readTextFile(file) {
+      if (typeof file.text === "function") {
+        return file.text();
+      }
+
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => resolve(String(reader.result || "")), { once: true });
+        reader.addEventListener("error", () => reject(reader.error || new Error("文件读取失败。")), { once: true });
+        reader.readAsText(file, "UTF-8");
+      });
+    }
+
+    async function handleImportFile(file) {
+      try {
+        const text = await readTextFile(file);
+        if (!text.trim()) {
+          throw createImportFormatError("文件内容为空。请选择包含备份数据的 JSON 文件。");
+        }
+
+        let parsedData;
+        try {
+          parsedData = JSON.parse(text);
+        } catch (error) {
+          throw createImportFormatError("文件不是有效 JSON，请检查文件是否完整。");
+        }
+
+        const importedData = validateImportedData(parsedData);
+        const content = createImportConfirmationContent(file, importedData);
+        ClassLedgerModal.open({
+          title: "确认覆盖并导入",
+          content,
+          confirmText: "覆盖并导入",
+          variant: "danger",
+          initialFocus: "#modal-cancel-button",
+          returnFocus: "#import-data-button",
+          fallbackFocus: "#import-data-button",
+          onConfirm: () => {
+            const result = replaceAllData(importedData, "备份数据已导入，全部余额已重新计算。", "imported");
+            if (!result.ok) {
+              setFormSubmitError(content, result.error && result.error.message
+                ? `导入写入失败：${result.error.message}`
+                : "导入写入失败，当前数据未被覆盖。请重试。");
+            }
+            return result.ok;
+          }
+        });
+      } catch (error) {
+        showImportError(error && error.message
+          ? error.message
+          : "无法读取所选文件，请重新选择有效的 JSON 备份。");
+      }
+    }
+
+    function exportAllData() {
+      const status = ClassLedgerStore.getStatus();
+      if (status.writesLocked) {
+        showSystemError("本地数据当前无法安全读取，为避免生成不完整备份，导出已停止。请先导入有效备份或清空数据。");
+        return;
+      }
+
+      try {
+        const data = ClassLedgerStore.getSnapshot();
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        const fileName = `学生课时数据备份_${getLocalTodayValue()}.json`;
+
+        link.href = url;
+        link.download = fileName;
+        link.hidden = true;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast(`完整数据已导出为 ${fileName}`);
+      } catch (error) {
+        showSystemError(error && error.message
+          ? `导出失败：${error.message}`
+          : "导出失败，请检查浏览器下载权限后重试。");
+      }
+    }
+
+    function createClearDataForm() {
+      const form = document.createElement("form");
+      form.id = "clear-data-form";
+      form.className = "destructive-confirmation";
+      form.noValidate = true;
+      form.innerHTML = `
+        <p class="destructive-confirmation__warning">这是最终确认。清空后，上课时间、学生和全部历史记录都将从当前浏览器中移除，且无法撤销。</p>
+        <div class="form-field">
+          <label class="form-label" for="clear-data-confirmation">请输入“确认清空”<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="clear-data-confirmation" name="confirmation" class="form-control" type="text" autocomplete="off" placeholder="确认清空" aria-describedby="clear-data-confirmation-help clear-data-confirmation-error">
+          <p id="clear-data-confirmation-help" class="form-help">必须完整输入以上四个字，才能执行清空。</p>
+          <p id="clear-data-confirmation-error" class="form-error" data-error-for="confirmation" role="alert" hidden></p>
+        </div>
+        <p class="form-submit-error" data-submit-error role="alert" hidden></p>
+      `;
+      bindFormSubmitToModal(form);
+      form.elements.namedItem("confirmation").addEventListener("input", () => {
+        setFieldError(form, "confirmation", "");
+        setFormSubmitError(form, "");
+      });
+      return form;
+    }
+
+    function openClearDataConfirmation() {
+      const form = createClearDataForm();
+      ClassLedgerModal.open({
+        title: "确认清空全部数据",
+        content: form,
+        confirmText: "确认清空",
+        variant: "danger",
+        initialFocus: "#clear-data-confirmation",
+        returnFocus: "#clear-data-button",
+        fallbackFocus: "#clear-data-button",
+        onConfirm: () => {
+          const confirmation = form.elements.namedItem("confirmation").value;
+          const errors = confirmation === "确认清空"
+            ? {}
+            : { confirmation: "请输入完全一致的“确认清空”。" };
+          if (!applyFormErrors(form, errors, true)) {
+            return false;
+          }
+
+          const result = replaceAllData(
+            ClassLedgerStore.createDefaultData(),
+            "全部数据已清空，系统已保留 V4.0 空结构。",
+            "cleared"
+          );
+          if (!result.ok) {
+            setFormSubmitError(form, result.error && result.error.message
+              ? `清空写入失败：${result.error.message}`
+              : "清空失败，原数据仍然保留。请重试。");
+          }
+          return result.ok;
+        }
+      });
+    }
+
+    /* ================================================================
+       12. 页面初始化与事件绑定
        ================================================================ */
     function createStorageInfoContent() {
       const wrapper = document.createElement("div");
@@ -6118,7 +6655,7 @@
       keyCode.className = "storage-key";
       keyCode.textContent = APP_CONFIG.storageKey;
       keyParagraph.appendChild(keyCode);
-      policy.textContent = "页面只会在该键不存在时创建空数据结构；如果已有数据无法安全解析，系统会保留原内容并停止自动写入。";
+      policy.textContent = "页面只会在该键不存在时创建空数据结构；如果已有数据无法安全解析，系统会保留原内容并停止普通写入。此时仍可通过明确确认的导入或清空操作恢复。";
       wrapper.append(intro, keyParagraph, policy);
       return wrapper;
     }
@@ -6141,10 +6678,27 @@
       const recordsStartDate = document.getElementById("records-start-date");
       const recordsEndDate = document.getElementById("records-end-date");
       const recordsNoteSearch = document.getElementById("records-note-search");
+      const exportDataButton = document.getElementById("export-data-button");
+      const importDataButton = document.getElementById("import-data-button");
+      const importJsonInput = document.getElementById("import-json-input");
+      const clearDataButton = document.getElementById("clear-data-button");
 
       document.getElementById("add-class-time-button").addEventListener("click", () => openClassTimeForm());
       document.getElementById("add-student-button").addEventListener("click", () => openStudentForm());
       addRecordButton.addEventListener("click", () => openRecordForm(UI_STATE.activeRecordType));
+      exportDataButton.addEventListener("click", exportAllData);
+      importDataButton.addEventListener("click", () => {
+        importJsonInput.value = "";
+        importJsonInput.click();
+      });
+      importJsonInput.addEventListener("change", () => {
+        const file = importJsonInput.files && importJsonInput.files[0];
+        importJsonInput.value = "";
+        if (file) {
+          void handleImportFile(file);
+        }
+      });
+      clearDataButton.addEventListener("click", openClearDataConfirmation);
 
       overviewClassTimeFilter.addEventListener("change", () => {
         UI_STATE.overviewClassTime = overviewClassTimeFilter.value;
@@ -6368,10 +6922,7 @@
       UI_STATE.overviewMonth = getLocalMonthValue();
       UI_STATE.studentDetailMonth = getLocalMonthValue();
       setupManagementEvents();
-      renderOverview();
-      renderClassTimes();
-      renderStudents();
-      renderRecords();
+      renderAllDataViews();
       renderRoute();
     }
 
