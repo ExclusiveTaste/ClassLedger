@@ -430,6 +430,308 @@
       font-size: 12px;
     }
 
+    .overview-card {
+      min-width: 0;
+    }
+
+    .overview-filter-grid {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.8fr) minmax(150px, 0.65fr) minmax(170px, 0.7fr) minmax(240px, 1.2fr) auto;
+      gap: 14px;
+      align-items: end;
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: #FCFDFC;
+    }
+
+    .overview-filter-grid .form-field {
+      gap: 7px;
+    }
+
+    .overview-filter-grid .form-control {
+      min-width: 0;
+    }
+
+    .overview-filter-reset {
+      min-width: 96px;
+    }
+
+    .overview-batch-toolbar {
+      display: flex;
+      min-height: 74px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 26px;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .overview-selection-copy {
+      min-width: 0;
+    }
+
+    .overview-selection-count {
+      margin: 0;
+      color: var(--color-text);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .overview-selection-help {
+      margin: 4px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .overview-batch-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .overview-batch-actions .list-count {
+      margin: 0;
+    }
+
+    .overview-table {
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .overview-table th,
+    .overview-table td {
+      padding-right: 14px;
+      padding-left: 14px;
+    }
+
+    .overview-table .overview-col-select {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      width: 54px;
+      min-width: 54px;
+      padding: 5px;
+      background: inherit;
+      text-align: center;
+    }
+
+    .overview-table .overview-col-name {
+      position: sticky;
+      left: 54px;
+      z-index: 3;
+      min-width: 116px;
+      background: inherit;
+      box-shadow: 1px 0 0 var(--color-border);
+    }
+
+    .overview-table thead .overview-col-select,
+    .overview-table thead .overview-col-name {
+      z-index: 4;
+      background: #FBFCFB;
+    }
+
+    .overview-table tbody .overview-col-select,
+    .overview-table tbody .overview-col-name {
+      background: var(--color-surface);
+    }
+
+    .overview-table tbody tr:hover .overview-col-select,
+    .overview-table tbody tr:hover .overview-col-name {
+      background: #F6FAF7;
+    }
+
+    .overview-table .overview-date-column {
+      min-width: 72px;
+      text-align: center;
+    }
+
+    .overview-table .overview-history-column {
+      min-width: 138px;
+    }
+
+    .overview-table .overview-operation-column {
+      min-width: 218px;
+    }
+
+    .selection-target {
+      display: inline-grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .selection-target:hover {
+      background: var(--color-primary-soft);
+    }
+
+    .selection-target:has(.selection-checkbox:disabled) {
+      cursor: not-allowed;
+      opacity: 0.44;
+    }
+
+    .selection-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--color-primary);
+      cursor: inherit;
+    }
+
+    .lesson-total {
+      color: var(--color-danger);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .history-summary-button {
+      display: grid;
+      width: 100%;
+      min-height: 54px;
+      gap: 2px;
+      align-content: center;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .history-summary-button:hover {
+      background: var(--color-primary-soft);
+      color: var(--color-primary-active);
+    }
+
+    .history-summary-button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .history-summary-button__primary {
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .history-summary-button__secondary {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .history-summary-button--empty {
+      cursor: default;
+      color: var(--color-text-tertiary);
+    }
+
+    .history-summary-button--empty:hover {
+      background: transparent;
+      color: var(--color-text-tertiary);
+    }
+
+    .table-scroll-note {
+      margin: 0;
+      padding: 11px 26px;
+      border-top: 1px solid var(--color-border);
+      background: #FCFDFC;
+      color: var(--color-text-tertiary);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .quick-record-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .quick-record-option {
+      display: flex;
+      min-height: 84px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+      padding: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .quick-record-option:hover {
+      border-color: #BFD5C7;
+      background: var(--color-primary-soft);
+    }
+
+    .quick-record-option:active {
+      transform: scale(0.99);
+    }
+
+    .quick-record-option strong {
+      color: var(--color-primary-active);
+      font-size: 14px;
+    }
+
+    .quick-record-option span {
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .batch-student-summary {
+      grid-column: 1 / -1;
+      padding: 14px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-control);
+      background: var(--color-surface-soft);
+    }
+
+    .batch-student-summary h3 {
+      margin: 0;
+      color: var(--color-text);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .batch-student-summary p {
+      margin: 5px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .history-modal-intro {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .history-modal-intro p {
+      margin: 0;
+    }
+
+    .history-modal-intro strong {
+      color: var(--color-text);
+    }
+
+    .history-modal-table {
+      min-width: 600px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-control);
+      overflow: hidden;
+    }
+
     .foundation-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1307,6 +1609,15 @@
         align-items: start;
       }
 
+      .overview-filter-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .overview-filter-grid .search-field {
+        width: 100%;
+        grid-column: span 2;
+      }
+
       .page-heading {
         max-width: 680px;
       }
@@ -1340,6 +1651,18 @@
 
       .summary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .overview-filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .overview-filter-grid .search-field {
+        grid-column: auto;
+      }
+
+      .overview-filter-reset {
+        width: 100%;
       }
 
       .foundation-grid {
@@ -1387,6 +1710,46 @@
         gap: 10px;
         padding-right: 20px;
         padding-left: 20px;
+      }
+
+      .overview-filter-grid {
+        grid-template-columns: 1fr;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .overview-batch-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 14px;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .overview-batch-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .overview-batch-actions .button {
+        width: 100%;
+      }
+
+      .table-scroll-note {
+        padding-right: 20px;
+        padding-left: 20px;
+        text-align: left;
+      }
+
+      .quick-record-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .history-modal-intro {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
       }
 
       .search-field {
@@ -1600,11 +1963,11 @@
             <div>
               <span class="summary-card__label">在读学生</span>
               <div class="summary-card__value-row">
-                <strong class="summary-card__value">--</strong>
+                <strong id="overview-active-count" class="summary-card__value">0</strong>
                 <span class="summary-card__unit">人</span>
               </div>
             </div>
-            <p class="summary-card__note">待总表统计接入</p>
+            <p class="summary-card__note">当前全部在读学生</p>
           </article>
 
           <article class="summary-card">
@@ -1614,11 +1977,11 @@
             <div>
               <span class="summary-card__label">本月扣课</span>
               <div class="summary-card__value-row">
-                <strong class="summary-card__value">--</strong>
+                <strong id="overview-monthly-lessons" class="summary-card__value">0</strong>
                 <span class="summary-card__unit">课时</span>
               </div>
             </div>
-            <p class="summary-card__note">待扣课功能接入</p>
+            <p id="overview-monthly-lessons-note" class="summary-card__note">按当前自然月统计</p>
           </article>
 
           <article class="summary-card">
@@ -1628,11 +1991,11 @@
             <div>
               <span class="summary-card__label">课时预警</span>
               <div class="summary-card__value-row">
-                <strong class="summary-card__value">--</strong>
+                <strong id="overview-warning-count" class="summary-card__value">0</strong>
                 <span class="summary-card__unit">人</span>
               </div>
             </div>
-            <p class="summary-card__note">待余额计算接入</p>
+            <p class="summary-card__note">剩余课时小于或等于 5</p>
           </article>
 
           <article class="summary-card">
@@ -1642,30 +2005,70 @@
             <div>
               <span class="summary-card__label">本月续费</span>
               <div class="summary-card__value-row">
-                <strong class="summary-card__value">--</strong>
+                <strong id="overview-monthly-renewals" class="summary-card__value">0</strong>
                 <span class="summary-card__unit">笔</span>
               </div>
             </div>
-            <p class="summary-card__note">待续费功能接入</p>
+            <p id="overview-monthly-renewals-note" class="summary-card__note">按当前自然月统计</p>
           </article>
         </div>
       </div>
 
-      <section class="content-card" aria-labelledby="overview-content-title">
+      <section class="content-card overview-card" aria-labelledby="overview-content-title">
         <div class="content-card__header">
           <div>
-            <h2 id="overview-content-title" class="content-card__title">学生课时概览</h2>
-            <p class="content-card__description">后续阶段将在此接入筛选、日期列和学生课时数据。</p>
+            <h2 id="overview-content-title" class="content-card__title">月度课时明细</h2>
+            <p class="content-card__description">月份只切换正常上课日期列，历史摘要和剩余课时始终按全部记录计算。</p>
           </div>
-          <span class="status-tag status-tag--success">阶段三记录功能已就绪</span>
+          <span id="overview-table-count" class="status-tag status-tag--neutral" aria-live="polite">0 名学生</span>
         </div>
-        <div class="empty-state">
-          <span class="empty-state__icon" aria-hidden="true">
-            <svg><use href="#icon-empty"></use></svg>
-          </span>
-          <h2 class="empty-state__title">月度课时总表待后续接入</h2>
-          <p class="empty-state__description">上课时间、学生、记录管理和剩余课时计算已可使用；月度统计表将在后续阶段接入。</p>
+
+        <div class="overview-filter-grid" role="group" aria-label="课时总表筛选">
+          <div class="form-field">
+            <label class="form-label" for="overview-class-time-filter">上课时间</label>
+            <select id="overview-class-time-filter" class="form-control">
+              <option value="all">全部上课时间</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="overview-status-filter">学生状态</label>
+            <select id="overview-status-filter" class="form-control">
+              <option value="active">在读</option>
+              <option value="frozen">冻课</option>
+              <option value="lost">流失</option>
+              <option value="all">全部状态</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="overview-month-filter">月份</label>
+            <input id="overview-month-filter" class="form-control" type="month" aria-describedby="overview-month-help">
+            <span id="overview-month-help" class="sr-only">月份只影响正常上课日期列</span>
+          </div>
+          <div class="search-field">
+            <label class="search-label" for="overview-student-search">搜索学生</label>
+            <div class="search-control">
+              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              <input id="overview-student-search" class="form-control" type="search" placeholder="输入学生姓名" autocomplete="off">
+            </div>
+          </div>
+          <button id="overview-reset-filters" class="button button--secondary overview-filter-reset" type="button">重置筛选</button>
         </div>
+
+        <div class="overview-batch-toolbar">
+          <div class="overview-selection-copy">
+            <p id="overview-selection-count" class="overview-selection-count" aria-live="polite">尚未选择学生</p>
+            <p class="overview-selection-help">先按上课时间筛选，再勾选在读学生；冻课和流失学生不可参与批量扣课。</p>
+          </div>
+          <div class="overview-batch-actions">
+            <p id="overview-visible-count" class="list-count">共 0 名</p>
+            <button id="batch-lesson-button" class="button button--primary" type="button" disabled>
+              <svg aria-hidden="true"><use href="#icon-plus"></use></svg>
+              批量扣课
+            </button>
+          </div>
+        </div>
+
+        <div id="overview-table-host"></div>
       </section>
     </section>
 
@@ -2008,7 +2411,12 @@
     const UI_STATE = {
       classTimeSearch: "",
       studentSearch: "",
-      activeRecordType: "lesson"
+      activeRecordType: "lesson",
+      overviewClassTime: "all",
+      overviewStatus: "active",
+      overviewMonth: "",
+      overviewSearch: "",
+      overviewSelectedStudentIds: new Set()
     };
 
     /* ================================================================
@@ -2633,6 +3041,23 @@
       return `${year}-${month}-${day}`;
     }
 
+    function getLocalMonthValue() {
+      return getLocalTodayValue().slice(0, 7);
+    }
+
+    function isValidMonthValue(value) {
+      return /^\d{4}-(?:0[1-9]|1[0-2])$/.test(String(value || ""));
+    }
+
+    function formatMonthLabel(value) {
+      if (!isValidMonthValue(value)) {
+        return "当前月";
+      }
+
+      const [year, month] = value.split("-");
+      return `${year}年${Number(month)}月`;
+    }
+
     function isValidDateValue(value) {
       const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ""));
       if (!match) {
@@ -2786,6 +3211,7 @@
       renderClassTimes();
       renderStudents();
       renderRecords();
+      renderOverview();
       showToast(successMessage);
       return result;
     }
@@ -2813,7 +3239,788 @@
     }
 
     /* ================================================================
-       6. 上课时间管理
+       6. 课时总表
+       ================================================================ */
+    const OVERVIEW_UNASSIGNED_CLASS_TIME = "__unassigned__";
+    const OVERVIEW_HISTORY_TYPES = Object.freeze(["competition", "referral", "renewal"]);
+
+    function getClassTimeMap(data) {
+      return new Map(
+        data.classTimes
+          .filter(isDataRecord)
+          .filter((classTime) => typeof classTime.id === "string")
+          .map((classTime) => [classTime.id, formatClassTimeName(classTime)])
+      );
+    }
+
+    function getOverviewMonthDates(data, month) {
+      const studentIds = new Set(
+        data.students
+          .filter(isDataRecord)
+          .map((student) => student.id)
+          .filter((id) => typeof id === "string")
+      );
+      const dates = new Set();
+
+      data.lessonRecords.forEach((record) => {
+        if (
+          isDataRecord(record)
+          && studentIds.has(record.studentId)
+          && isValidDateValue(record.date)
+          && record.date.startsWith(`${month}-`)
+        ) {
+          dates.add(record.date);
+        }
+      });
+
+      return Array.from(dates).sort((left, right) => left.localeCompare(right));
+    }
+
+    function getOverviewLessonTotals(data, month) {
+      const totals = new Map();
+
+      data.lessonRecords.forEach((record) => {
+        if (!isDataRecord(record) || !isValidDateValue(record.date) || !record.date.startsWith(`${month}-`)) {
+          return;
+        }
+
+        const studentId = typeof record.studentId === "string" ? record.studentId : "";
+        const hours = getNonNegativeHours(record.hours);
+        if (!studentId || hours === null) {
+          return;
+        }
+
+        if (!totals.has(studentId)) {
+          totals.set(studentId, new Map());
+        }
+        const studentTotals = totals.get(studentId);
+        const currentTotal = studentTotals.get(record.date) || 0;
+        studentTotals.set(record.date, normalizeHoursPrecision(currentTotal + hours));
+      });
+
+      return totals;
+    }
+
+    function getOverviewHistorySummary(data, studentId, recordType) {
+      const config = getRecordTypeConfig(recordType);
+      const records = data[config.storageKey].filter((record) => (
+        isDataRecord(record) && record.studentId === studentId
+      ));
+
+      if (recordType === "competition") {
+        return {
+          records,
+          primary: `共 ${records.length} 次`,
+          secondary: `累计扣 ${formatHours(sumStudentRecordField(records, studentId, "hours"))} 课时`
+        };
+      }
+      if (recordType === "referral") {
+        return {
+          records,
+          primary: `共 ${records.length} 次`,
+          secondary: `累计赠 ${formatHours(sumStudentRecordField(records, studentId, "giftHours"))} 课时`
+        };
+      }
+
+      return {
+        records,
+        primary: `共 ${records.length} 次`,
+        secondary: `购买 ${formatHours(sumStudentRecordField(records, studentId, "purchasedHours"))} · 赠送 ${formatHours(sumStudentRecordField(records, studentId, "giftHours"))}`
+      };
+    }
+
+    function updateOverviewSummaryCards(data) {
+      const currentMonth = getLocalMonthValue();
+      const activeCount = data.students.filter((student) => isDataRecord(student) && student.status === "active").length;
+      const monthlyLessonHours = data.lessonRecords.reduce((total, record) => {
+        if (!isDataRecord(record) || !isValidDateValue(record.date) || !record.date.startsWith(`${currentMonth}-`)) {
+          return total;
+        }
+        return total + (getNonNegativeHours(record.hours) ?? 0);
+      }, 0);
+      const warningCount = data.students.filter((student) => (
+        isDataRecord(student) && calculateRemainingHours(student, data) <= 5
+      )).length;
+      const monthlyRenewalCount = data.renewalRecords.filter((record) => (
+        isDataRecord(record) && isValidDateValue(record.date) && record.date.startsWith(`${currentMonth}-`)
+      )).length;
+      const monthLabel = formatMonthLabel(currentMonth);
+
+      document.getElementById("overview-active-count").textContent = String(activeCount);
+      document.getElementById("overview-monthly-lessons").textContent = formatHours(normalizeHoursPrecision(monthlyLessonHours));
+      document.getElementById("overview-warning-count").textContent = String(warningCount);
+      document.getElementById("overview-monthly-renewals").textContent = String(monthlyRenewalCount);
+      document.getElementById("overview-monthly-lessons-note").textContent = `${monthLabel}正常上课合计`;
+      document.getElementById("overview-monthly-renewals-note").textContent = `${monthLabel}续费记录`;
+    }
+
+    function updateOverviewFilterControls(data) {
+      const classTimeSelect = document.getElementById("overview-class-time-filter");
+      const statusSelect = document.getElementById("overview-status-filter");
+      const monthInput = document.getElementById("overview-month-filter");
+      const searchInput = document.getElementById("overview-student-search");
+      const validClassTimeIds = new Set(
+        data.classTimes
+          .filter(isDataRecord)
+          .map((classTime) => classTime.id)
+          .filter((id) => typeof id === "string")
+      );
+
+      if (
+        UI_STATE.overviewClassTime !== "all"
+        && UI_STATE.overviewClassTime !== OVERVIEW_UNASSIGNED_CLASS_TIME
+        && !validClassTimeIds.has(UI_STATE.overviewClassTime)
+      ) {
+        UI_STATE.overviewClassTime = "all";
+      }
+      if (UI_STATE.overviewStatus !== "all" && !Object.prototype.hasOwnProperty.call(STUDENT_STATUSES, UI_STATE.overviewStatus)) {
+        UI_STATE.overviewStatus = "active";
+      }
+      if (!isValidMonthValue(UI_STATE.overviewMonth)) {
+        UI_STATE.overviewMonth = getLocalMonthValue();
+      }
+
+      classTimeSelect.replaceChildren();
+      const allOption = document.createElement("option");
+      allOption.value = "all";
+      allOption.textContent = "全部上课时间";
+      classTimeSelect.appendChild(allOption);
+      sortClassTimes(data.classTimes.filter(isDataRecord)).forEach((classTime) => {
+        if (typeof classTime.id !== "string") {
+          return;
+        }
+        const option = document.createElement("option");
+        option.value = classTime.id;
+        option.textContent = formatClassTimeName(classTime);
+        classTimeSelect.appendChild(option);
+      });
+      const unassignedOption = document.createElement("option");
+      unassignedOption.value = OVERVIEW_UNASSIGNED_CLASS_TIME;
+      unassignedOption.textContent = "未分配上课时间";
+      classTimeSelect.appendChild(unassignedOption);
+
+      classTimeSelect.value = UI_STATE.overviewClassTime;
+      statusSelect.value = UI_STATE.overviewStatus;
+      monthInput.value = UI_STATE.overviewMonth;
+      searchInput.value = UI_STATE.overviewSearch;
+    }
+
+    function getFilteredOverviewStudents(data, classTimeMap) {
+      const query = normalizeSearchText(UI_STATE.overviewSearch);
+      return data.students.filter((student) => {
+        if (!isDataRecord(student)) {
+          return false;
+        }
+
+        const matchesStatus = UI_STATE.overviewStatus === "all" || student.status === UI_STATE.overviewStatus;
+        const matchesClassTime = UI_STATE.overviewClassTime === "all"
+          || (UI_STATE.overviewClassTime === OVERVIEW_UNASSIGNED_CLASS_TIME
+            ? !classTimeMap.has(student.classTimeId)
+            : student.classTimeId === UI_STATE.overviewClassTime);
+        const matchesSearch = !query || normalizeSearchText(student.name).includes(query);
+        return matchesStatus && matchesClassTime && matchesSearch;
+      });
+    }
+
+    function createOverviewSelectionCell(student) {
+      const cell = document.createElement("td");
+      const label = document.createElement("label");
+      const labelText = document.createElement("span");
+      const checkbox = document.createElement("input");
+      const studentId = typeof student.id === "string" ? student.id : "";
+      const canSelect = student.status === "active" && Boolean(studentId);
+
+      cell.className = "overview-col-select";
+      label.className = "selection-target";
+      labelText.className = "sr-only";
+      labelText.textContent = canSelect
+        ? `选择学生${String(student.name || "未命名学生")}`
+        : `${String(student.name || "未命名学生")}当前不可参与批量扣课`;
+      checkbox.type = "checkbox";
+      checkbox.className = "selection-checkbox";
+      checkbox.dataset.action = "overview-select-student";
+      checkbox.dataset.id = studentId;
+      checkbox.disabled = !canSelect;
+      checkbox.checked = canSelect && UI_STATE.overviewSelectedStudentIds.has(studentId);
+      label.append(labelText, checkbox);
+      cell.appendChild(label);
+      return cell;
+    }
+
+    function createOverviewHistoryCell(data, student, recordType) {
+      const cell = document.createElement("td");
+      const summary = getOverviewHistorySummary(data, student.id, recordType);
+      const content = summary.records.length > 0 ? document.createElement("button") : document.createElement("div");
+      const primary = document.createElement("span");
+      const secondary = document.createElement("span");
+
+      cell.className = "overview-history-column";
+      if (content instanceof HTMLButtonElement) {
+        content.type = "button";
+        content.dataset.action = "overview-history";
+        content.dataset.id = student.id;
+        content.dataset.recordType = recordType;
+        content.setAttribute("aria-label", `${String(student.name || "未命名学生")}：${summary.primary}，${summary.secondary}，查看全部记录`);
+      } else {
+        content.classList.add("history-summary-button--empty");
+      }
+      content.classList.add("history-summary-button");
+      primary.className = "history-summary-button__primary";
+      primary.textContent = summary.primary;
+      secondary.className = "history-summary-button__secondary";
+      secondary.textContent = summary.secondary;
+      content.append(primary, secondary);
+      cell.appendChild(content);
+      return cell;
+    }
+
+    function createOverviewLessonCell(rawHours) {
+      const cell = document.createElement("td");
+      cell.className = "overview-date-column number-cell";
+      if (typeof rawHours === "number") {
+        const value = document.createElement("strong");
+        value.className = "lesson-total";
+        value.textContent = rawHours === 0 ? "0" : `-${formatHours(rawHours)}`;
+        value.setAttribute("aria-label", `扣除 ${formatHours(rawHours)} 课时`);
+        cell.appendChild(value);
+      } else {
+        cell.textContent = "—";
+        cell.classList.add("cell-secondary");
+      }
+      return cell;
+    }
+
+    function updateOverviewSelectionControls() {
+      const host = document.getElementById("overview-table-host");
+      const rowCheckboxes = Array.from(host.querySelectorAll('input[data-action="overview-select-student"]'));
+      const selectableCheckboxes = rowCheckboxes.filter((checkbox) => !checkbox.disabled);
+      const selectAll = document.getElementById("overview-select-all");
+
+      rowCheckboxes.forEach((checkbox) => {
+        checkbox.checked = UI_STATE.overviewSelectedStudentIds.has(checkbox.dataset.id);
+      });
+
+      if (selectAll) {
+        const selectedVisibleCount = selectableCheckboxes.filter((checkbox) => checkbox.checked).length;
+        selectAll.disabled = selectableCheckboxes.length === 0;
+        selectAll.checked = selectableCheckboxes.length > 0 && selectedVisibleCount === selectableCheckboxes.length;
+        selectAll.indeterminate = selectedVisibleCount > 0 && selectedVisibleCount < selectableCheckboxes.length;
+      }
+
+      const selectedCount = UI_STATE.overviewSelectedStudentIds.size;
+      document.getElementById("overview-selection-count").textContent = selectedCount > 0
+        ? `已选择 ${selectedCount} 名在读学生`
+        : "尚未选择学生";
+      document.getElementById("batch-lesson-button").disabled = selectedCount === 0;
+    }
+
+    function renderOverview() {
+      const data = ClassLedgerStore.getSnapshot();
+      const allStudents = data.students.filter(isDataRecord);
+      const classTimeMap = getClassTimeMap(data);
+
+      updateOverviewSummaryCards(data);
+      updateOverviewFilterControls(data);
+
+      const filteredStudents = getFilteredOverviewStudents(data, classTimeMap);
+      const selectableVisibleIds = new Set(
+        filteredStudents
+          .filter((student) => student.status === "active" && typeof student.id === "string")
+          .map((student) => student.id)
+      );
+      Array.from(UI_STATE.overviewSelectedStudentIds).forEach((studentId) => {
+        if (!selectableVisibleIds.has(studentId)) {
+          UI_STATE.overviewSelectedStudentIds.delete(studentId);
+        }
+      });
+
+      const host = document.getElementById("overview-table-host");
+      const visibleCount = document.getElementById("overview-visible-count");
+      const tableCount = document.getElementById("overview-table-count");
+      visibleCount.textContent = `显示 ${filteredStudents.length} / 共 ${allStudents.length} 名`;
+      tableCount.textContent = `${filteredStudents.length} 名学生`;
+      host.replaceChildren();
+
+      if (allStudents.length === 0) {
+        UI_STATE.overviewSelectedStudentIds.clear();
+        host.appendChild(createEmptyState({
+          icon: "icon-students",
+          title: "暂无学生数据",
+          description: "请先添加学生和上课时间，再使用月度课时总表。",
+          actionLabel: "前往学生管理",
+          action: "overview-go-students",
+          actionStyle: "secondary"
+        }));
+        updateOverviewSelectionControls();
+        return;
+      }
+
+      if (filteredStudents.length === 0) {
+        UI_STATE.overviewSelectedStudentIds.clear();
+        host.appendChild(createEmptyState({
+          icon: "icon-search",
+          title: "没有符合条件的学生",
+          description: "请调整上课时间、学生状态或姓名搜索条件。月份不会影响学生筛选结果。",
+          actionLabel: "重置筛选",
+          action: "overview-clear-filters",
+          actionStyle: "secondary"
+        }));
+        updateOverviewSelectionControls();
+        return;
+      }
+
+      const monthDates = getOverviewMonthDates(data, UI_STATE.overviewMonth);
+      const lessonTotals = getOverviewLessonTotals(data, UI_STATE.overviewMonth);
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+      const selectHeading = document.createElement("th");
+      const selectLabel = document.createElement("label");
+      const selectLabelText = document.createElement("span");
+      const selectAll = document.createElement("input");
+
+      shell.className = "table-shell";
+      shell.tabIndex = 0;
+      shell.setAttribute("aria-label", "月度课时总表，可横向滚动查看全部列");
+      table.className = "data-table overview-table";
+      caption.className = "sr-only";
+      caption.textContent = `${formatMonthLabel(UI_STATE.overviewMonth)}学生课时总表`;
+
+      selectHeading.scope = "col";
+      selectHeading.className = "overview-col-select";
+      selectLabel.className = "selection-target";
+      selectLabelText.className = "sr-only";
+      selectLabelText.textContent = "选择当前列表中的全部在读学生";
+      selectAll.id = "overview-select-all";
+      selectAll.type = "checkbox";
+      selectAll.className = "selection-checkbox";
+      selectAll.dataset.action = "overview-select-all";
+      selectLabel.append(selectLabelText, selectAll);
+      selectHeading.appendChild(selectLabel);
+      headRow.appendChild(selectHeading);
+
+      const staticHeadings = [
+        { label: "姓名", className: "overview-col-name" },
+        { label: "状态" },
+        { label: "上课时间" },
+        { label: "初始课时" }
+      ];
+      staticHeadings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading.label;
+        if (heading.className) {
+          cell.className = heading.className;
+        }
+        headRow.appendChild(cell);
+      });
+      monthDates.forEach((date) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.className = "overview-date-column";
+        cell.textContent = date.slice(5);
+        cell.title = date;
+        cell.setAttribute("aria-label", `${date}正常上课扣除课时`);
+        headRow.appendChild(cell);
+      });
+      ["比赛（全部）", "转介绍（全部）", "续费（全部）", "剩余课时", "操作"].forEach((heading, index) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        if (index < 3) {
+          cell.className = "overview-history-column";
+        } else if (index === 4) {
+          cell.className = "overview-operation-column";
+        }
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      filteredStudents.forEach((student) => {
+        const row = document.createElement("tr");
+        const studentId = typeof student.id === "string" ? student.id : "";
+        const nameCell = createTextCell(String(student.name || "未命名学生"), "cell-primary overview-col-name");
+        const statusCell = document.createElement("td");
+        const studentLessonTotals = lessonTotals.get(studentId) || new Map();
+
+        row.appendChild(createOverviewSelectionCell(student));
+        row.appendChild(nameCell);
+        statusCell.appendChild(createStudentStatusTag(student.status));
+        row.append(
+          statusCell,
+          createTextCell(classTimeMap.get(student.classTimeId) || "未分配上课时间", "cell-secondary"),
+          createTextCell(formatHours(student.initialHours), "number-cell")
+        );
+        monthDates.forEach((date) => {
+          row.appendChild(createOverviewLessonCell(studentLessonTotals.has(date) ? studentLessonTotals.get(date) : null));
+        });
+
+        if (studentId) {
+          row.append(
+            createOverviewHistoryCell(data, student, "competition"),
+            createOverviewHistoryCell(data, student, "referral"),
+            createOverviewHistoryCell(data, student, "renewal")
+          );
+        } else {
+          row.append(
+            createTextCell("数据缺少编号", "cell-secondary overview-history-column"),
+            createTextCell("数据缺少编号", "cell-secondary overview-history-column"),
+            createTextCell("数据缺少编号", "cell-secondary overview-history-column")
+          );
+        }
+        row.appendChild(createRemainingHoursCell(student, data));
+
+        const actionCell = document.createElement("td");
+        const actionGroup = document.createElement("div");
+        actionCell.className = "overview-operation-column";
+        actionGroup.className = "table-action-group";
+        if (studentId) {
+          actionGroup.append(
+            createActionButton("扣课", "overview-lesson", studentId),
+            createActionButton("添加记录", "overview-add-record", studentId),
+            createActionButton("编辑", "overview-edit-student", studentId)
+          );
+        } else {
+          const invalid = document.createElement("span");
+          invalid.className = "cell-secondary";
+          invalid.textContent = "数据缺少编号";
+          actionGroup.appendChild(invalid);
+        }
+        actionCell.appendChild(actionGroup);
+        row.appendChild(actionCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      host.appendChild(shell);
+      const scrollNote = document.createElement("p");
+      scrollNote.className = "table-scroll-note";
+      scrollNote.textContent = monthDates.length > 0
+        ? `${formatMonthLabel(UI_STATE.overviewMonth)}共生成 ${monthDates.length} 个正常上课日期列，可横向滚动查看。`
+        : `${formatMonthLabel(UI_STATE.overviewMonth)}暂无正常上课记录，历史摘要与剩余课时仍显示全部数据。`;
+      host.appendChild(scrollNote);
+      updateOverviewSelectionControls();
+    }
+
+    function resetOverviewFilters() {
+      UI_STATE.overviewClassTime = "all";
+      UI_STATE.overviewStatus = "active";
+      UI_STATE.overviewMonth = getLocalMonthValue();
+      UI_STATE.overviewSearch = "";
+      UI_STATE.overviewSelectedStudentIds.clear();
+      renderOverview();
+    }
+
+    function getBatchLessonFormValues(form) {
+      const hoursText = form.elements.namedItem("hours").value.trim();
+      return {
+        date: form.elements.namedItem("date").value.trim(),
+        hoursText,
+        hours: hoursText === "" ? NaN : Number(hoursText),
+        note: form.elements.namedItem("note").value.trim()
+      };
+    }
+
+    function validateBatchLessonForm(form) {
+      const values = getBatchLessonFormValues(form);
+      const hoursInput = form.elements.namedItem("hours");
+      const errors = {};
+
+      if (!isValidDateValue(values.date)) {
+        errors.date = "请选择有效的扣课日期。";
+      }
+      if (hoursInput instanceof HTMLInputElement && hoursInput.validity.badInput) {
+        errors.hours = "每人扣除课时必须是有效数字。";
+      } else if (values.hoursText === "") {
+        errors.hours = "请输入每人扣除课时。";
+      } else if (!Number.isFinite(values.hours) || values.hours <= 0) {
+        errors.hours = "每人扣除课时必须大于 0。";
+      }
+      return errors;
+    }
+
+    function resetBatchLessonDuplicateConfirmation(form) {
+      if (!form.dataset.duplicateSignature) {
+        return;
+      }
+
+      form.dataset.duplicateSignature = "";
+      const warning = form.querySelector("[data-duplicate-warning]");
+      warning.hidden = true;
+      warning.textContent = "";
+      document.getElementById("modal-confirm-button").textContent = "确认扣课";
+    }
+
+    function createBatchLessonForm(students) {
+      const form = document.createElement("form");
+      const studentNames = students.map((student) => String(student.name || "未命名学生"));
+      const visibleNames = studentNames.slice(0, 8).join("、");
+      const remainingCount = Math.max(0, studentNames.length - 8);
+
+      form.id = "batch-lesson-form";
+      form.className = "form-grid";
+      form.noValidate = true;
+      form.dataset.duplicateSignature = "";
+      form.innerHTML = `
+        <div class="batch-student-summary">
+          <h3 data-batch-student-title></h3>
+          <p data-batch-student-names></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="batch-lesson-date">日期<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="batch-lesson-date" name="date" class="form-control" type="date" required aria-describedby="batch-lesson-date-error">
+          <p id="batch-lesson-date-error" class="form-error" data-error-for="date" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="batch-lesson-hours">每人扣除课时<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="batch-lesson-hours" name="hours" class="form-control" type="number" min="0" step="any" inputmode="decimal" required aria-describedby="batch-lesson-hours-help batch-lesson-hours-error">
+          <p id="batch-lesson-hours-help" class="form-help">必须大于 0，可填写小数。</p>
+          <p id="batch-lesson-hours-error" class="form-error" data-error-for="hours" role="alert" hidden></p>
+        </div>
+        <div class="form-field form-field--full">
+          <label class="form-label" for="batch-lesson-note">备注</label>
+          <textarea id="batch-lesson-note" name="note" class="form-control" placeholder="可填写本次批量上课说明"></textarea>
+        </div>
+        <p class="duplicate-warning" data-duplicate-warning role="alert" hidden></p>
+        <p class="form-submit-error" data-submit-error role="alert" hidden></p>
+      `;
+
+      form.querySelector("[data-batch-student-title]").textContent = `将为 ${students.length} 名在读学生分别生成正常上课记录`;
+      form.querySelector("[data-batch-student-names]").textContent = remainingCount > 0
+        ? `${visibleNames}，另有 ${remainingCount} 名学生`
+        : visibleNames;
+      form.elements.namedItem("date").value = getLocalTodayValue();
+      form.elements.namedItem("hours").value = "1";
+
+      bindFieldValidation(form, validateBatchLessonForm);
+      bindFormSubmitToModal(form);
+      form.addEventListener("input", () => resetBatchLessonDuplicateConfirmation(form));
+      form.addEventListener("change", () => resetBatchLessonDuplicateConfirmation(form));
+      return form;
+    }
+
+    function saveBatchLessonForm(form, selectedStudentIds) {
+      const errors = validateBatchLessonForm(form);
+      if (!applyFormErrors(form, errors, true)) {
+        return false;
+      }
+
+      const values = getBatchLessonFormValues(form);
+      const data = ClassLedgerStore.getSnapshot();
+      const selectedSet = new Set(selectedStudentIds);
+      const students = data.students.filter((student) => (
+        isDataRecord(student)
+        && typeof student.id === "string"
+        && selectedSet.has(student.id)
+        && student.status === "active"
+      ));
+
+      if (students.length !== selectedSet.size || students.length === 0) {
+        setFormSubmitError(form, "选中的学生信息或状态已发生变化，请关闭弹窗后重新选择。冻课和流失学生不能批量扣课。");
+        return false;
+      }
+
+      const duplicateStudents = students.filter((student) => (
+        getLessonDuplicateCount(data, student.id, values.date) > 0
+      ));
+      const duplicateSignature = `${values.date}|${duplicateStudents.map((student) => student.id).sort().join("|")}`;
+      if (duplicateStudents.length > 0 && form.dataset.duplicateSignature !== duplicateSignature) {
+        const warning = form.querySelector("[data-duplicate-warning]");
+        const names = duplicateStudents.map((student) => String(student.name || "未命名学生")).join("、");
+        form.dataset.duplicateSignature = duplicateSignature;
+        warning.textContent = `${duplicateStudents.length} 名学生在 ${values.date} 已有正常上课记录：${names}。再次点击“仍然批量扣课”可继续添加。`;
+        warning.hidden = false;
+        document.getElementById("modal-confirm-button").textContent = "仍然批量扣课";
+        warning.scrollIntoView({ block: "nearest" });
+        return false;
+      }
+
+      students.forEach((student) => {
+        data.lessonRecords.push({
+          id: createUniqueId("lesson", data.lessonRecords),
+          studentId: student.id,
+          date: values.date,
+          hours: values.hours,
+          note: values.note
+        });
+      });
+
+      const previousSelection = new Set(UI_STATE.overviewSelectedStudentIds);
+      UI_STATE.overviewSelectedStudentIds.clear();
+      const result = commitData(data, `已为 ${students.length} 名学生批量扣除 ${formatHours(values.hours)} 课时。`);
+      if (!result.ok) {
+        previousSelection.forEach((studentId) => UI_STATE.overviewSelectedStudentIds.add(studentId));
+        setFormSubmitError(form, result.error && result.error.message ? result.error.message : "批量扣课保存失败，请重试。");
+        return false;
+      }
+      return true;
+    }
+
+    function openBatchLessonForm() {
+      const data = ClassLedgerStore.getSnapshot();
+      const students = data.students.filter((student) => (
+        isDataRecord(student)
+        && typeof student.id === "string"
+        && UI_STATE.overviewSelectedStudentIds.has(student.id)
+        && student.status === "active"
+      ));
+
+      if (students.length === 0) {
+        UI_STATE.overviewSelectedStudentIds.clear();
+        updateOverviewSelectionControls();
+        showSystemError("请先选择至少一名在读学生，再进行批量扣课。");
+        return;
+      }
+
+      const selectedStudentIds = students.map((student) => student.id);
+      const form = createBatchLessonForm(students);
+      ClassLedgerModal.open({
+        title: `批量扣课 · ${students.length} 名学生`,
+        content: form,
+        confirmText: "确认扣课",
+        initialFocus: "#batch-lesson-date",
+        returnFocus: "#batch-lesson-button",
+        fallbackFocus: "#batch-lesson-button",
+        onConfirm: () => saveBatchLessonForm(form, selectedStudentIds)
+      });
+    }
+
+    function openOverviewRecordPicker(studentId, returnFocus = null) {
+      const data = ClassLedgerStore.getSnapshot();
+      const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
+      if (!student) {
+        showSystemError("未找到该学生，请刷新页面后重试。");
+        return;
+      }
+
+      const wrapper = document.createElement("div");
+      const intro = document.createElement("p");
+      const grid = document.createElement("div");
+      const options = [
+        { type: "renewal", title: "续费", description: "记录购买课时和赠送课时" },
+        { type: "referral", title: "转介绍赠课", description: "记录转介绍获得的赠送课时" },
+        { type: "competition", title: "比赛扣课", description: "记录参加比赛扣除的课时" },
+        { type: "refund", title: "退费", description: "记录退回购买和取消赠送课时" }
+      ];
+
+      intro.textContent = `为“${String(student.name || "未命名学生")}”选择要添加的记录类型。`;
+      grid.className = "quick-record-grid";
+      options.forEach((option) => {
+        const button = document.createElement("button");
+        const title = document.createElement("strong");
+        const description = document.createElement("span");
+        button.type = "button";
+        button.className = "quick-record-option";
+        title.textContent = option.title;
+        description.textContent = option.description;
+        button.append(title, description);
+        button.addEventListener("click", () => openRecordForm(option.type, "", returnFocus, studentId));
+        grid.appendChild(button);
+      });
+      wrapper.append(intro, grid);
+
+      ClassLedgerModal.open({
+        title: "添加记录",
+        content: wrapper,
+        showConfirm: false,
+        cancelText: "取消",
+        initialFocus: ".quick-record-option",
+        returnFocus,
+        fallbackFocus: "#overview-title"
+      });
+    }
+
+    function openOverviewHistory(recordType, studentId, returnFocus = null) {
+      if (!OVERVIEW_HISTORY_TYPES.includes(recordType)) {
+        return;
+      }
+
+      const data = ClassLedgerStore.getSnapshot();
+      const student = data.students.find((item) => isDataRecord(item) && item.id === studentId);
+      const config = getRecordTypeConfig(recordType);
+      if (!student) {
+        showSystemError("未找到该学生，请刷新页面后重试。");
+        return;
+      }
+
+      const records = sortRecordsByDate(data[config.storageKey].filter((record) => (
+        isDataRecord(record) && record.studentId === studentId
+      )));
+      const wrapper = document.createElement("div");
+      const intro = document.createElement("div");
+      const studentName = document.createElement("strong");
+      const count = document.createElement("p");
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+      const headings = recordType === "renewal"
+        ? ["日期", "购买课时", "赠送课时", "备注"]
+        : recordType === "referral"
+          ? ["日期", "赠送课时", "备注"]
+          : ["日期", "扣除课时", "备注"];
+
+      intro.className = "history-modal-intro";
+      studentName.textContent = String(student.name || "未命名学生");
+      count.textContent = `全部历史共 ${records.length} 条，不受月份筛选影响`;
+      intro.append(studentName, count);
+      shell.className = "table-shell history-modal-table";
+      table.className = "data-table";
+      caption.className = "sr-only";
+      caption.textContent = `${String(student.name || "未命名学生")}的全部${config.shortLabel}记录`;
+      headings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      records.forEach((record) => {
+        const row = document.createElement("tr");
+        row.appendChild(createTextCell(isValidDateValue(record.date) ? record.date : String(record.date || "—"), "number-cell"));
+        if (recordType === "renewal") {
+          row.append(
+            createRecordHoursCell(record.purchasedHours, "positive"),
+            createRecordHoursCell(record.giftHours, "positive")
+          );
+        } else if (recordType === "referral") {
+          row.appendChild(createRecordHoursCell(record.giftHours, "positive"));
+        } else {
+          row.appendChild(createRecordHoursCell(record.hours, "negative"));
+        }
+        const noteCell = document.createElement("td");
+        const note = document.createElement("span");
+        note.className = "cell-note";
+        note.textContent = String(record.note || "—");
+        note.title = String(record.note || "");
+        noteCell.appendChild(note);
+        row.appendChild(noteCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      wrapper.append(intro, shell);
+      ClassLedgerModal.open({
+        title: `全部${config.shortLabel}记录`,
+        content: wrapper,
+        size: "large",
+        confirmText: "关闭",
+        showCancel: false,
+        returnFocus,
+        fallbackFocus: "#overview-title"
+      });
+    }
+
+    /* ================================================================
+       7. 上课时间管理
        ================================================================ */
     function renderClassTimes() {
       const data = ClassLedgerStore.getSnapshot();
@@ -3107,7 +4314,7 @@
     }
 
     /* ================================================================
-       7. 学生管理
+       8. 学生管理
        ================================================================ */
     function createStudentStatusTag(status) {
       const meta = STUDENT_STATUSES[status] || { label: "未知状态", className: "status-tag--neutral" };
@@ -3391,7 +4598,7 @@
       return true;
     }
 
-    function openStudentForm(studentId = "", returnFocus = null) {
+    function openStudentForm(studentId = "", returnFocus = null, fallbackFocus = "#add-student-button") {
       const data = ClassLedgerStore.getSnapshot();
       const existingStudent = studentId
         ? data.students.find((student) => isDataRecord(student) && student.id === studentId)
@@ -3409,7 +4616,7 @@
         confirmText: "保存",
         initialFocus: "#student-name",
         returnFocus,
-        fallbackFocus: "#add-student-button",
+        fallbackFocus,
         onConfirm: () => saveStudentForm(form, studentId)
       });
     }
@@ -3455,7 +4662,7 @@
     }
 
     /* ================================================================
-       8. 记录管理与剩余课时
+       9. 记录管理与剩余课时
        ================================================================ */
     function getRecordTypeConfig(recordType) {
       return Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType)
@@ -3708,7 +4915,7 @@
       document.getElementById("modal-confirm-button").textContent = "保存";
     }
 
-    function createRecordForm(recordType, existingRecord = null) {
+    function createRecordForm(recordType, existingRecord = null, presetStudentId = "") {
       const config = getRecordTypeConfig(recordType);
       const data = ClassLedgerStore.getSnapshot();
       const form = document.createElement("form");
@@ -3773,6 +4980,8 @@
           studentSelect.appendChild(orphanOption);
         }
         studentSelect.value = existingRecord.studentId;
+      } else if (presetStudentId && data.students.some((student) => isDataRecord(student) && student.id === presetStudentId)) {
+        studentSelect.value = presetStudentId;
       }
 
       form.elements.namedItem("date").value = existingRecord && isValidDateValue(existingRecord.date)
@@ -3857,7 +5066,7 @@
       return true;
     }
 
-    function openRecordForm(recordType, recordId = "", returnFocus = null) {
+    function openRecordForm(recordType, recordId = "", returnFocus = null, presetStudentId = "") {
       const config = getRecordTypeConfig(recordType);
       const data = ClassLedgerStore.getSnapshot();
       const existingRecord = recordId
@@ -3873,14 +5082,14 @@
         return;
       }
 
-      const form = createRecordForm(recordType, existingRecord);
+      const form = createRecordForm(recordType, existingRecord, presetStudentId);
       ClassLedgerModal.open({
         title: existingRecord ? config.editLabel : config.addLabel,
         content: form,
         confirmText: "保存",
-        initialFocus: "#record-student",
+        initialFocus: presetStudentId && !existingRecord ? "#record-date" : "#record-student",
         returnFocus,
-        fallbackFocus: "#add-record-button",
+        fallbackFocus: presetStudentId ? "#overview-title" : "#add-record-button",
         onConfirm: () => saveRecordForm(form, recordType, recordId)
       });
     }
@@ -3938,7 +5147,7 @@
     }
 
     /* ================================================================
-       9. 页面初始化与事件绑定
+       10. 页面初始化与事件绑定
        ================================================================ */
     function createStorageInfoContent() {
       const wrapper = document.createElement("div");
@@ -3958,6 +5167,11 @@
     }
 
     function setupManagementEvents() {
+      const overviewClassTimeFilter = document.getElementById("overview-class-time-filter");
+      const overviewStatusFilter = document.getElementById("overview-status-filter");
+      const overviewMonthFilter = document.getElementById("overview-month-filter");
+      const overviewStudentSearch = document.getElementById("overview-student-search");
+      const overviewHost = document.getElementById("overview-table-host");
       const classTimeSearch = document.getElementById("class-time-search");
       const studentSearch = document.getElementById("student-search");
       const classTimesHost = document.getElementById("class-times-list-host");
@@ -3969,6 +5183,77 @@
       document.getElementById("add-class-time-button").addEventListener("click", () => openClassTimeForm());
       document.getElementById("add-student-button").addEventListener("click", () => openStudentForm());
       addRecordButton.addEventListener("click", () => openRecordForm(UI_STATE.activeRecordType));
+
+      overviewClassTimeFilter.addEventListener("change", () => {
+        UI_STATE.overviewClassTime = overviewClassTimeFilter.value;
+        renderOverview();
+      });
+      overviewStatusFilter.addEventListener("change", () => {
+        UI_STATE.overviewStatus = overviewStatusFilter.value;
+        renderOverview();
+      });
+      overviewMonthFilter.addEventListener("change", () => {
+        UI_STATE.overviewMonth = isValidMonthValue(overviewMonthFilter.value)
+          ? overviewMonthFilter.value
+          : getLocalMonthValue();
+        renderOverview();
+      });
+      overviewStudentSearch.addEventListener("input", () => {
+        UI_STATE.overviewSearch = overviewStudentSearch.value;
+        renderOverview();
+      });
+      document.getElementById("overview-reset-filters").addEventListener("click", resetOverviewFilters);
+      document.getElementById("batch-lesson-button").addEventListener("click", openBatchLessonForm);
+
+      overviewHost.addEventListener("change", (event) => {
+        const checkbox = event.target;
+        if (!(checkbox instanceof HTMLInputElement)) {
+          return;
+        }
+
+        if (checkbox.dataset.action === "overview-select-student") {
+          if (checkbox.checked) {
+            UI_STATE.overviewSelectedStudentIds.add(checkbox.dataset.id);
+          } else {
+            UI_STATE.overviewSelectedStudentIds.delete(checkbox.dataset.id);
+          }
+          updateOverviewSelectionControls();
+        } else if (checkbox.dataset.action === "overview-select-all") {
+          const rowCheckboxes = Array.from(overviewHost.querySelectorAll('input[data-action="overview-select-student"]'))
+            .filter((item) => !item.disabled);
+          rowCheckboxes.forEach((item) => {
+            if (checkbox.checked) {
+              UI_STATE.overviewSelectedStudentIds.add(item.dataset.id);
+            } else {
+              UI_STATE.overviewSelectedStudentIds.delete(item.dataset.id);
+            }
+          });
+          updateOverviewSelectionControls();
+        }
+      });
+
+      overviewHost.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button || !overviewHost.contains(button)) {
+          return;
+        }
+
+        const { action, id, recordType } = button.dataset;
+        if (action === "overview-go-students") {
+          window.location.hash = "students";
+        } else if (action === "overview-clear-filters") {
+          resetOverviewFilters();
+          document.getElementById("overview-class-time-filter").focus();
+        } else if (action === "overview-lesson") {
+          openRecordForm("lesson", "", button, id);
+        } else if (action === "overview-add-record") {
+          openOverviewRecordPicker(id, button);
+        } else if (action === "overview-edit-student") {
+          openStudentForm(id, button, "#overview-title");
+        } else if (action === "overview-history") {
+          openOverviewHistory(recordType, id, button);
+        }
+      });
 
       classTimeSearch.addEventListener("input", () => {
         UI_STATE.classTimeSearch = classTimeSearch.value;
@@ -4082,7 +5367,9 @@
     function initializeApp() {
       const storageResult = ClassLedgerStore.loadData();
       updateStorageStatus(storageResult);
+      UI_STATE.overviewMonth = getLocalMonthValue();
       setupManagementEvents();
+      renderOverview();
       renderClassTimes();
       renderStudents();
       renderRecords();
