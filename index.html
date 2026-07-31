@@ -950,6 +950,148 @@
       line-height: 1.55;
     }
 
+    .record-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 16px 26px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--color-border);
+      background: #FCFDFC;
+      scrollbar-width: thin;
+    }
+
+    .record-tab {
+      display: inline-flex;
+      min-height: 44px;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+      padding: 0 15px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-control);
+      background: transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .record-tab:hover {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+    }
+
+    .record-tab[aria-selected="true"] {
+      border-color: #CFE1D5;
+      background: var(--color-primary-soft);
+      color: var(--color-primary-active);
+    }
+
+    .record-tab:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .record-tab__count {
+      display: inline-grid;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 7px;
+      place-items: center;
+      border-radius: var(--radius-pill);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .record-tab[aria-selected="true"] .record-tab__count {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    .record-panel-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .record-panel-heading h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .record-panel-heading p {
+      margin: 6px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .record-panel-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .record-panel-actions .list-count {
+      margin: 0;
+    }
+
+    .record-hours {
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .record-hours--positive {
+      color: var(--color-primary);
+    }
+
+    .record-hours--negative {
+      color: var(--color-danger);
+    }
+
+    .balance-value {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .balance-value--healthy {
+      color: var(--color-primary);
+    }
+
+    .balance-value--low {
+      color: #B85E0A;
+    }
+
+    .balance-value--empty,
+    .balance-value--debt {
+      color: var(--color-danger);
+    }
+
+    .balance-value--debt {
+      font-weight: 800;
+    }
+
+    .duplicate-warning {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 12px 14px;
+      border: 1px solid #F3D2A8;
+      border-radius: var(--radius-control);
+      background: #FFF8EF;
+      color: #8B4B0F;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
     /* ================================================================
        9. 空数据与系统提示
        ================================================================ */
@@ -1274,6 +1416,28 @@
         width: 100%;
       }
 
+      .record-tabs {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .record-panel-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .record-panel-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .record-panel-actions .button {
+        width: 100%;
+      }
+
       .empty-state {
         min-height: 270px;
         padding: 44px 20px;
@@ -1493,14 +1657,14 @@
             <h2 id="overview-content-title" class="content-card__title">学生课时概览</h2>
             <p class="content-card__description">后续阶段将在此接入筛选、日期列和学生课时数据。</p>
           </div>
-          <span class="status-tag status-tag--success">阶段二管理功能已就绪</span>
+          <span class="status-tag status-tag--success">阶段三记录功能已就绪</span>
         </div>
         <div class="empty-state">
           <span class="empty-state__icon" aria-hidden="true">
             <svg><use href="#icon-empty"></use></svg>
           </span>
-          <h2 class="empty-state__title">课时总表待后续接入</h2>
-          <p class="empty-state__description">上课时间与学生管理已可使用；课时统计、扣课和记录汇总将在后续阶段接入。</p>
+          <h2 class="empty-state__title">月度课时总表待后续接入</h2>
+          <p class="empty-state__description">上课时间、学生、记录管理和剩余课时计算已可使用；月度统计表将在后续阶段接入。</p>
         </div>
       </section>
     </section>
@@ -1588,24 +1752,56 @@
       <div class="page-header-row">
         <div class="page-heading">
           <h1 id="records-title" class="page-title" tabindex="-1">全部记录</h1>
-          <p class="page-description">集中查看正常上课、续费、转介绍、比赛与退费记录。</p>
+          <p class="page-description">集中管理正常上课、续费、转介绍、比赛与退费记录。</p>
         </div>
       </div>
 
       <section class="content-card" aria-labelledby="records-content-title">
         <div class="content-card__header">
           <div>
-            <h2 id="records-content-title" class="content-card__title">历史记录</h2>
-            <p class="content-card__description">记录分类、筛选与明细列表将在后续阶段接入。</p>
+            <h2 id="records-content-title" class="content-card__title">记录管理</h2>
+            <p class="content-card__description">五类记录独立保存，所有课时变化都会参与剩余课时计算。</p>
           </div>
         </div>
-        <div class="empty-state">
-          <span class="empty-state__icon" aria-hidden="true">
-            <svg><use href="#icon-receipt"></use></svg>
-          </span>
-          <h2 class="empty-state__title">暂无历史记录</h2>
-          <p class="empty-state__description">五类记录集合已经分别建立，当前页面暂不提供新增、编辑或删除功能。</p>
+
+        <div id="record-tabs" class="record-tabs" role="tablist" aria-label="记录类型">
+          <button id="record-tab-lesson" class="record-tab" type="button" role="tab" aria-selected="true" aria-controls="records-list-host" data-record-type="lesson">
+            正常上课
+            <span class="record-tab__count" data-record-count="lesson">0</span>
+          </button>
+          <button id="record-tab-renewal" class="record-tab" type="button" role="tab" aria-selected="false" aria-controls="records-list-host" tabindex="-1" data-record-type="renewal">
+            续费
+            <span class="record-tab__count" data-record-count="renewal">0</span>
+          </button>
+          <button id="record-tab-referral" class="record-tab" type="button" role="tab" aria-selected="false" aria-controls="records-list-host" tabindex="-1" data-record-type="referral">
+            转介绍
+            <span class="record-tab__count" data-record-count="referral">0</span>
+          </button>
+          <button id="record-tab-competition" class="record-tab" type="button" role="tab" aria-selected="false" aria-controls="records-list-host" tabindex="-1" data-record-type="competition">
+            比赛
+            <span class="record-tab__count" data-record-count="competition">0</span>
+          </button>
+          <button id="record-tab-refund" class="record-tab" type="button" role="tab" aria-selected="false" aria-controls="records-list-host" tabindex="-1" data-record-type="refund">
+            退费
+            <span class="record-tab__count" data-record-count="refund">0</span>
+          </button>
         </div>
+
+        <div class="record-panel-toolbar">
+          <div class="record-panel-heading">
+            <h3 id="record-panel-title">正常上课记录</h3>
+            <p id="record-panel-description">记录单个学生每次正常上课扣除的课时。</p>
+          </div>
+          <div class="record-panel-actions">
+            <p id="records-count" class="list-count" aria-live="polite">共 0 条</p>
+            <button id="add-record-button" class="button button--primary" type="button">
+              <svg aria-hidden="true"><use href="#icon-plus"></use></svg>
+              新增上课记录
+            </button>
+          </div>
+        </div>
+
+        <div id="records-list-host" role="tabpanel" aria-labelledby="record-tab-lesson" tabindex="0"></div>
       </section>
     </section>
 
@@ -1727,9 +1923,92 @@
       lost: { label: "流失", className: "status-tag--lost" }
     });
 
+    const RECORD_TYPES = Object.freeze({
+      lesson: Object.freeze({
+        storageKey: "lessonRecords",
+        idPrefix: "lesson",
+        label: "正常上课记录",
+        shortLabel: "正常上课",
+        addLabel: "新增上课记录",
+        editLabel: "编辑上课记录",
+        description: "记录单个学生每次正常上课扣除的课时。",
+        emptyTitle: "暂无正常上课记录",
+        emptyDescription: "点击“新增上课记录”记录学生的第一次正常上课。",
+        headings: Object.freeze(["日期", "学生", "上课时间", "扣除课时", "备注", "操作"]),
+        numericFields: Object.freeze([
+          Object.freeze({ name: "hours", label: "扣除课时", required: true, defaultValue: "1", rule: "positive", help: "必须大于 0，可填写小数。" })
+        ])
+      }),
+      renewal: Object.freeze({
+        storageKey: "renewalRecords",
+        idPrefix: "renewal",
+        label: "续费记录",
+        shortLabel: "续费",
+        addLabel: "新增续费记录",
+        editLabel: "编辑续费记录",
+        description: "购买课时与赠送课时分别保存，并共同增加剩余课时。",
+        emptyTitle: "暂无续费记录",
+        emptyDescription: "点击“新增续费记录”记录购买课时和赠送课时。",
+        headings: Object.freeze(["日期", "学生", "购买课时", "赠送课时", "备注", "操作"]),
+        numericFields: Object.freeze([
+          Object.freeze({ name: "purchasedHours", label: "购买课时", required: true, defaultValue: "", rule: "positive", help: "实际付费购买的课时，必须大于 0。" }),
+          Object.freeze({ name: "giftHours", label: "赠送课时", required: false, defaultValue: "0", rule: "nonNegative", help: "活动赠送课时，可填写 0。" })
+        ])
+      }),
+      referral: Object.freeze({
+        storageKey: "referralRecords",
+        idPrefix: "referral",
+        label: "转介绍记录",
+        shortLabel: "转介绍",
+        addLabel: "新增转介绍记录",
+        editLabel: "编辑转介绍记录",
+        description: "记录学生通过转介绍获得的赠送课时。",
+        emptyTitle: "暂无转介绍记录",
+        emptyDescription: "点击“新增转介绍记录”记录转介绍赠送课时。",
+        headings: Object.freeze(["日期", "学生", "赠送课时", "备注", "操作"]),
+        numericFields: Object.freeze([
+          Object.freeze({ name: "giftHours", label: "赠送课时", required: true, defaultValue: "", rule: "positive", help: "赠送课时必须大于 0。" })
+        ])
+      }),
+      competition: Object.freeze({
+        storageKey: "competitionRecords",
+        idPrefix: "competition",
+        label: "比赛记录",
+        shortLabel: "比赛",
+        addLabel: "新增比赛记录",
+        editLabel: "编辑比赛记录",
+        description: "记录学生参加比赛时扣除的课时。",
+        emptyTitle: "暂无比赛记录",
+        emptyDescription: "点击“新增比赛记录”记录比赛扣除课时。",
+        headings: Object.freeze(["日期", "学生", "扣除课时", "备注", "操作"]),
+        numericFields: Object.freeze([
+          Object.freeze({ name: "hours", label: "扣除课时", required: true, defaultValue: "", rule: "positive", help: "扣除课时必须大于 0。" })
+        ])
+      }),
+      refund: Object.freeze({
+        storageKey: "refundRecords",
+        idPrefix: "refund",
+        label: "退费记录",
+        shortLabel: "退费",
+        addLabel: "新增退费记录",
+        editLabel: "编辑退费记录",
+        description: "退回购买课时与取消赠送课时分别保存，并从剩余课时中扣除。",
+        emptyTitle: "暂无退费记录",
+        emptyDescription: "点击“新增退费记录”记录退回和取消的课时。",
+        headings: Object.freeze(["日期", "学生", "退回购买课时", "取消赠送课时", "备注", "操作"]),
+        numericFields: Object.freeze([
+          Object.freeze({ name: "refundedPurchasedHours", label: "退回购买课时", required: true, defaultValue: "", rule: "positive", help: "退回购买课时必须大于 0。" }),
+          Object.freeze({ name: "cancelledGiftHours", label: "取消赠送课时", required: false, defaultValue: "0", rule: "nonNegative", help: "取消的赠送课时，可填写 0。" })
+        ])
+      })
+    });
+
+    const RECORD_TYPE_KEYS = Object.freeze(Object.keys(RECORD_TYPES));
+
     const UI_STATE = {
       classTimeSearch: "",
-      studentSearch: ""
+      studentSearch: "",
+      activeRecordType: "lesson"
     };
 
     /* ================================================================
@@ -2265,6 +2544,108 @@
       return Number.isFinite(number) ? number.toLocaleString("zh-CN", { maximumFractionDigits: 6 }) : "—";
     }
 
+    function getNonNegativeHours(value) {
+      if (value === "" || value === null || typeof value === "undefined") {
+        return null;
+      }
+
+      const number = Number(value);
+      return Number.isFinite(number) && number >= 0 ? number : null;
+    }
+
+    function normalizeHoursPrecision(value) {
+      const normalized = Math.round((Number(value) + Number.EPSILON) * 1000000) / 1000000;
+      return Object.is(normalized, -0) ? 0 : normalized;
+    }
+
+    function sumStudentRecordField(records, studentId, fieldName) {
+      if (!studentId || !Array.isArray(records)) {
+        return 0;
+      }
+
+      return records.reduce((total, record) => {
+        if (!isDataRecord(record) || record.studentId !== studentId) {
+          return total;
+        }
+        return total + (getNonNegativeHours(record[fieldName]) ?? 0);
+      }, 0);
+    }
+
+    function calculateRemainingHours(studentOrId, sourceData = ClassLedgerStore.getSnapshot()) {
+      const student = isDataRecord(studentOrId)
+        ? studentOrId
+        : sourceData.students.find((item) => isDataRecord(item) && item.id === studentOrId);
+
+      if (!student) {
+        return 0;
+      }
+
+      const studentId = typeof student.id === "string" ? student.id : "";
+      const initialHours = getNonNegativeHours(student.initialHours) ?? 0;
+      const totalPurchasedHours = sumStudentRecordField(sourceData.renewalRecords, studentId, "purchasedHours");
+      const totalRenewalGiftHours = sumStudentRecordField(sourceData.renewalRecords, studentId, "giftHours");
+      const totalReferralGiftHours = sumStudentRecordField(sourceData.referralRecords, studentId, "giftHours");
+      const totalLessonHours = sumStudentRecordField(sourceData.lessonRecords, studentId, "hours");
+      const totalCompetitionHours = sumStudentRecordField(sourceData.competitionRecords, studentId, "hours");
+      const totalRefundedPurchasedHours = sumStudentRecordField(sourceData.refundRecords, studentId, "refundedPurchasedHours");
+      const totalCancelledGiftHours = sumStudentRecordField(sourceData.refundRecords, studentId, "cancelledGiftHours");
+
+      return normalizeHoursPrecision(
+        initialHours
+        + totalPurchasedHours
+        + totalRenewalGiftHours
+        + totalReferralGiftHours
+        - totalLessonHours
+        - totalCompetitionHours
+        - totalRefundedPurchasedHours
+        - totalCancelledGiftHours
+      );
+    }
+
+    function createRemainingHoursCell(student, data) {
+      const cell = document.createElement("td");
+      const value = document.createElement("strong");
+      const remainingHours = calculateRemainingHours(student, data);
+      let stateClass = "balance-value--healthy";
+
+      if (remainingHours < 0) {
+        stateClass = "balance-value--debt";
+      } else if (remainingHours === 0) {
+        stateClass = "balance-value--empty";
+      } else if (remainingHours <= 5) {
+        stateClass = "balance-value--low";
+      }
+
+      cell.className = "number-cell";
+      value.className = `balance-value ${stateClass}`;
+      value.textContent = formatHours(remainingHours);
+      value.title = "根据初始课时和全部历史记录自动计算，不可直接修改";
+      value.setAttribute("aria-label", `剩余课时 ${formatHours(remainingHours)}`);
+      cell.appendChild(value);
+      return cell;
+    }
+
+    function getLocalTodayValue() {
+      const today = new Date();
+      const year = String(today.getFullYear());
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function isValidDateValue(value) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ""));
+      if (!match) {
+        return false;
+      }
+
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const date = new Date(year, month - 1, day);
+      return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    }
+
     function setFieldError(form, fieldName, message) {
       const field = form.elements.namedItem(fieldName);
       const error = form.querySelector(`[data-error-for="${fieldName}"]`);
@@ -2404,6 +2785,7 @@
 
       renderClassTimes();
       renderStudents();
+      renderRecords();
       showToast(successMessage);
       return result;
     }
@@ -2785,7 +3167,7 @@
       const head = document.createElement("thead");
       const headRow = document.createElement("tr");
       const body = document.createElement("tbody");
-      const headings = ["姓名", "初始课时", "上课时间", "状态", "备注", "操作"];
+      const headings = ["姓名", "初始课时", "剩余课时", "上课时间", "状态", "备注", "操作"];
 
       shell.className = "table-shell";
       table.className = "data-table";
@@ -2811,6 +3193,7 @@
         row.append(
           createTextCell(String(student.name || "未命名学生"), "cell-primary"),
           createTextCell(formatHours(student.initialHours), "number-cell"),
+          createRemainingHoursCell(student, data),
           createTextCell(classTimeMap.get(student.classTimeId) || "未分配上课时间", "cell-secondary")
         );
         statusCell.appendChild(createStudentStatusTag(student.status));
@@ -3072,7 +3455,490 @@
     }
 
     /* ================================================================
-       8. 页面初始化与事件绑定
+       8. 记录管理与剩余课时
+       ================================================================ */
+    function getRecordTypeConfig(recordType) {
+      return Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType)
+        ? RECORD_TYPES[recordType]
+        : RECORD_TYPES.lesson;
+    }
+
+    function sortRecordsByDate(records) {
+      return records
+        .map((record, index) => ({ record, index }))
+        .sort((left, right) => {
+          const leftDate = isValidDateValue(left.record.date) ? left.record.date : "";
+          const rightDate = isValidDateValue(right.record.date) ? right.record.date : "";
+          const dateDifference = rightDate.localeCompare(leftDate);
+          return dateDifference !== 0 ? dateDifference : right.index - left.index;
+        })
+        .map((item) => item.record);
+    }
+
+    function createRecordHoursCell(rawValue, direction) {
+      const cell = document.createElement("td");
+      const value = document.createElement("span");
+      const hours = getNonNegativeHours(rawValue);
+
+      cell.className = "number-cell";
+      value.className = `record-hours record-hours--${direction}`;
+      value.textContent = hours === null
+        ? "—"
+        : `${direction === "positive" ? "+" : "-"}${formatHours(hours)}`;
+      cell.appendChild(value);
+      return cell;
+    }
+
+    function appendRecordValueCells(row, recordType, record, student, classTimeMap) {
+      if (recordType === "lesson") {
+        const classTimeName = student
+          ? classTimeMap.get(student.classTimeId) || "未分配上课时间"
+          : "—";
+        row.append(
+          createTextCell(classTimeName, "cell-secondary"),
+          createRecordHoursCell(record.hours, "negative")
+        );
+      } else if (recordType === "renewal") {
+        row.append(
+          createRecordHoursCell(record.purchasedHours, "positive"),
+          createRecordHoursCell(record.giftHours, "positive")
+        );
+      } else if (recordType === "referral") {
+        row.appendChild(createRecordHoursCell(record.giftHours, "positive"));
+      } else if (recordType === "competition") {
+        row.appendChild(createRecordHoursCell(record.hours, "negative"));
+      } else if (recordType === "refund") {
+        row.append(
+          createRecordHoursCell(record.refundedPurchasedHours, "negative"),
+          createRecordHoursCell(record.cancelledGiftHours, "negative")
+        );
+      }
+    }
+
+    function renderRecords() {
+      const data = ClassLedgerStore.getSnapshot();
+      const recordType = Object.prototype.hasOwnProperty.call(RECORD_TYPES, UI_STATE.activeRecordType)
+        ? UI_STATE.activeRecordType
+        : "lesson";
+      const config = getRecordTypeConfig(recordType);
+      const students = data.students.filter(isDataRecord);
+      const selectableStudents = students.filter((student) => typeof student.id === "string");
+      const studentMap = new Map(
+        selectableStudents.map((student) => [student.id, student])
+      );
+      const classTimeMap = new Map(
+        data.classTimes
+          .filter(isDataRecord)
+          .filter((classTime) => typeof classTime.id === "string")
+          .map((classTime) => [classTime.id, formatClassTimeName(classTime)])
+      );
+      const records = sortRecordsByDate(data[config.storageKey].filter(isDataRecord));
+      const tabs = Array.from(document.querySelectorAll("#record-tabs [data-record-type]"));
+      const host = document.getElementById("records-list-host");
+      const addButton = document.getElementById("add-record-button");
+
+      UI_STATE.activeRecordType = recordType;
+      tabs.forEach((tab) => {
+        const tabType = tab.dataset.recordType;
+        const isActive = tabType === recordType;
+        const tabConfig = getRecordTypeConfig(tabType);
+        const count = data[tabConfig.storageKey].filter(isDataRecord).length;
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+        const countBadge = tab.querySelector("[data-record-count]");
+        if (countBadge) {
+          countBadge.textContent = String(count);
+        }
+      });
+
+      document.getElementById("record-panel-title").textContent = config.label;
+      document.getElementById("record-panel-description").textContent = config.description;
+      document.getElementById("records-count").textContent = `共 ${records.length} 条`;
+      host.setAttribute("aria-labelledby", `record-tab-${recordType}`);
+      addButton.replaceChildren(createSvgIcon("icon-plus"), config.addLabel);
+      addButton.disabled = selectableStudents.length === 0;
+      addButton.title = selectableStudents.length === 0 ? "请先添加学生" : "";
+      host.replaceChildren();
+
+      if (records.length === 0) {
+        const hasStudents = selectableStudents.length > 0;
+        host.appendChild(createEmptyState({
+          icon: "icon-receipt",
+          title: hasStudents ? config.emptyTitle : "请先添加学生",
+          description: hasStudents
+            ? config.emptyDescription
+            : "记录必须关联学生，请先在学生管理中添加至少一名学生。",
+          actionLabel: hasStudents ? config.addLabel : "前往学生管理",
+          action: hasStudents ? "add-record" : "go-students",
+          actionStyle: hasStudents ? "primary" : "secondary"
+        }));
+        return;
+      }
+
+      const shell = document.createElement("div");
+      const table = document.createElement("table");
+      const caption = document.createElement("caption");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const body = document.createElement("tbody");
+
+      shell.className = "table-shell";
+      table.className = "data-table";
+      caption.className = "sr-only";
+      caption.textContent = config.label;
+      config.headings.forEach((heading) => {
+        const cell = document.createElement("th");
+        cell.scope = "col";
+        cell.textContent = heading;
+        headRow.appendChild(cell);
+      });
+      head.appendChild(headRow);
+
+      records.forEach((record) => {
+        const row = document.createElement("tr");
+        const recordId = typeof record.id === "string" ? record.id : "";
+        const student = studentMap.get(record.studentId);
+        const noteCell = document.createElement("td");
+        const note = document.createElement("span");
+        const actionCell = document.createElement("td");
+        const actionGroup = document.createElement("div");
+
+        row.append(
+          createTextCell(isValidDateValue(record.date) ? record.date : String(record.date || "—"), "number-cell"),
+          createTextCell(student ? String(student.name || "未命名学生") : "未知学生", student ? "cell-primary" : "cell-secondary")
+        );
+        appendRecordValueCells(row, recordType, record, student, classTimeMap);
+
+        note.className = "cell-note";
+        note.textContent = String(record.note || "—");
+        note.title = String(record.note || "");
+        noteCell.appendChild(note);
+        row.appendChild(noteCell);
+
+        actionGroup.className = "table-action-group";
+        if (recordId) {
+          const editButton = createActionButton("编辑", "edit-record", recordId);
+          const deleteButton = createActionButton("删除", "delete-record", recordId, true);
+          editButton.dataset.recordType = recordType;
+          deleteButton.dataset.recordType = recordType;
+          actionGroup.append(editButton, deleteButton);
+        } else {
+          const invalid = document.createElement("span");
+          invalid.className = "cell-secondary";
+          invalid.textContent = "数据缺少编号";
+          actionGroup.appendChild(invalid);
+        }
+        actionCell.appendChild(actionGroup);
+        row.appendChild(actionCell);
+        body.appendChild(row);
+      });
+
+      table.append(caption, head, body);
+      shell.appendChild(table);
+      host.appendChild(shell);
+    }
+
+    function getRecordFormValues(form, recordType) {
+      const config = getRecordTypeConfig(recordType);
+      const values = {
+        studentId: form.elements.namedItem("studentId").value,
+        date: form.elements.namedItem("date").value.trim(),
+        note: form.elements.namedItem("note").value.trim(),
+        numericText: {}
+      };
+
+      config.numericFields.forEach((field) => {
+        const text = form.elements.namedItem(field.name).value.trim();
+        values.numericText[field.name] = text;
+        values[field.name] = text === "" && !field.required ? 0 : Number(text);
+      });
+      return values;
+    }
+
+    function validateRecordForm(form, recordType) {
+      const config = getRecordTypeConfig(recordType);
+      const values = getRecordFormValues(form, recordType);
+      const data = ClassLedgerStore.getSnapshot();
+      const validStudentIds = new Set(
+        data.students
+          .filter(isDataRecord)
+          .map((student) => student.id)
+          .filter((id) => typeof id === "string")
+      );
+      const errors = {};
+
+      if (!values.studentId || !validStudentIds.has(values.studentId)) {
+        errors.studentId = "请选择有效的学生。";
+      }
+      if (!isValidDateValue(values.date)) {
+        errors.date = "请选择有效的日期。";
+      }
+
+      config.numericFields.forEach((field) => {
+        const text = values.numericText[field.name];
+        const number = values[field.name];
+        const input = form.elements.namedItem(field.name);
+        if (input instanceof HTMLInputElement && input.validity.badInput) {
+          errors[field.name] = `${field.label}必须是有效数字。`;
+        } else if (field.required && text === "") {
+          errors[field.name] = `请输入${field.label}。`;
+        } else if (text !== "" && !Number.isFinite(number)) {
+          errors[field.name] = `${field.label}必须是有效数字。`;
+        } else if (text !== "" && field.rule === "positive" && number <= 0) {
+          errors[field.name] = `${field.label}必须大于 0。`;
+        } else if (text !== "" && field.rule === "nonNegative" && number < 0) {
+          errors[field.name] = `${field.label}必须大于等于 0。`;
+        }
+      });
+
+      return errors;
+    }
+
+    function resetDuplicateRecordConfirmation(form) {
+      if (!form.dataset.duplicateSignature) {
+        return;
+      }
+
+      form.dataset.duplicateSignature = "";
+      const warning = form.querySelector("[data-duplicate-warning]");
+      if (warning) {
+        warning.hidden = true;
+        warning.textContent = "";
+      }
+      document.getElementById("modal-confirm-button").textContent = "保存";
+    }
+
+    function createRecordForm(recordType, existingRecord = null) {
+      const config = getRecordTypeConfig(recordType);
+      const data = ClassLedgerStore.getSnapshot();
+      const form = document.createElement("form");
+      const numericFieldsMarkup = config.numericFields.map((field) => {
+        const requiredMark = field.required
+          ? '<span class="form-required" aria-hidden="true">*</span>'
+          : "";
+        const requiredAttribute = field.required ? "required" : "";
+        return `
+          <div class="form-field">
+            <label class="form-label" for="record-${field.name}">${field.label}${requiredMark}</label>
+            <input id="record-${field.name}" name="${field.name}" class="form-control" type="number" min="0" step="any" inputmode="decimal" ${requiredAttribute} aria-describedby="record-${field.name}-help record-${field.name}-error">
+            <p id="record-${field.name}-help" class="form-help">${field.help}</p>
+            <p id="record-${field.name}-error" class="form-error" data-error-for="${field.name}" role="alert" hidden></p>
+          </div>
+        `;
+      }).join("");
+
+      form.id = "record-form";
+      form.className = "form-grid";
+      form.noValidate = true;
+      form.dataset.duplicateSignature = "";
+      form.innerHTML = `
+        <div class="form-field">
+          <label class="form-label" for="record-student">学生<span class="form-required" aria-hidden="true">*</span></label>
+          <select id="record-student" name="studentId" class="form-control" required aria-describedby="record-student-error">
+            <option value="">请选择学生</option>
+          </select>
+          <p id="record-student-error" class="form-error" data-error-for="studentId" role="alert" hidden></p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="record-date">日期<span class="form-required" aria-hidden="true">*</span></label>
+          <input id="record-date" name="date" class="form-control" type="date" required aria-describedby="record-date-error">
+          <p id="record-date-error" class="form-error" data-error-for="date" role="alert" hidden></p>
+        </div>
+        ${numericFieldsMarkup}
+        <div class="form-field form-field--full">
+          <label class="form-label" for="record-note">备注</label>
+          <textarea id="record-note" name="note" class="form-control" placeholder="可填写本次记录的说明"></textarea>
+        </div>
+        <p class="duplicate-warning" data-duplicate-warning role="alert" hidden></p>
+        <p class="form-submit-error" data-submit-error role="alert" hidden></p>
+      `;
+
+      const studentSelect = form.elements.namedItem("studentId");
+      data.students.filter(isDataRecord).forEach((student) => {
+        if (typeof student.id !== "string") {
+          return;
+        }
+        const option = document.createElement("option");
+        option.value = student.id;
+        option.textContent = String(student.name || "未命名学生");
+        studentSelect.appendChild(option);
+      });
+
+      if (existingRecord && typeof existingRecord.studentId === "string") {
+        const hasStudent = data.students.some((student) => isDataRecord(student) && student.id === existingRecord.studentId);
+        if (!hasStudent) {
+          const orphanOption = document.createElement("option");
+          orphanOption.value = existingRecord.studentId;
+          orphanOption.textContent = `未知学生（原关联：${existingRecord.studentId}）`;
+          studentSelect.appendChild(orphanOption);
+        }
+        studentSelect.value = existingRecord.studentId;
+      }
+
+      form.elements.namedItem("date").value = existingRecord && isValidDateValue(existingRecord.date)
+        ? existingRecord.date
+        : getLocalTodayValue();
+      config.numericFields.forEach((field) => {
+        const input = form.elements.namedItem(field.name);
+        const existingValue = existingRecord ? getNonNegativeHours(existingRecord[field.name]) : null;
+        input.value = existingRecord
+          ? existingValue === null ? "" : String(existingValue)
+          : field.defaultValue;
+      });
+      form.elements.namedItem("note").value = existingRecord ? String(existingRecord.note || "") : "";
+
+      bindFieldValidation(form, (targetForm) => validateRecordForm(targetForm, recordType));
+      bindFormSubmitToModal(form);
+      form.addEventListener("input", () => resetDuplicateRecordConfirmation(form));
+      form.addEventListener("change", () => resetDuplicateRecordConfirmation(form));
+      return form;
+    }
+
+    function getLessonDuplicateCount(data, studentId, date, existingId = "") {
+      return data.lessonRecords.filter((record) => (
+        isDataRecord(record)
+        && record.id !== existingId
+        && record.studentId === studentId
+        && record.date === date
+      )).length;
+    }
+
+    function saveRecordForm(form, recordType, existingId = "") {
+      const config = getRecordTypeConfig(recordType);
+      const errors = validateRecordForm(form, recordType);
+      if (!applyFormErrors(form, errors, true)) {
+        return false;
+      }
+
+      const values = getRecordFormValues(form, recordType);
+      const data = ClassLedgerStore.getSnapshot();
+      if (recordType === "lesson") {
+        const duplicateCount = getLessonDuplicateCount(data, values.studentId, values.date, existingId);
+        const duplicateSignature = `${values.studentId}|${values.date}|${duplicateCount}`;
+        if (duplicateCount > 0 && form.dataset.duplicateSignature !== duplicateSignature) {
+          const warning = form.querySelector("[data-duplicate-warning]");
+          form.dataset.duplicateSignature = duplicateSignature;
+          warning.textContent = `该学生在 ${values.date} 已有 ${duplicateCount} 条正常上课记录。再次点击“仍然保存”可继续，系统不会自动合并记录。`;
+          warning.hidden = false;
+          document.getElementById("modal-confirm-button").textContent = "仍然保存";
+          warning.scrollIntoView({ block: "nearest" });
+          return false;
+        }
+      }
+
+      const fields = {
+        studentId: values.studentId,
+        date: values.date,
+        note: values.note
+      };
+      config.numericFields.forEach((field) => {
+        fields[field.name] = values[field.name];
+      });
+
+      const collection = data[config.storageKey];
+      let successMessage = `${config.shortLabel}记录已添加，剩余课时已重新计算。`;
+      if (existingId) {
+        const index = collection.findIndex((record) => isDataRecord(record) && record.id === existingId);
+        if (index < 0) {
+          setFormSubmitError(form, "未找到该记录，请关闭弹窗后刷新重试。");
+          return false;
+        }
+        collection[index] = Object.assign({}, collection[index], fields);
+        successMessage = `${config.shortLabel}记录已更新，剩余课时已重新计算。`;
+      } else {
+        collection.push(Object.assign({ id: createUniqueId(config.idPrefix, collection) }, fields));
+      }
+
+      const result = commitData(data, successMessage);
+      if (!result.ok) {
+        setFormSubmitError(form, result.error && result.error.message ? result.error.message : "保存失败，请重试。");
+        return false;
+      }
+      return true;
+    }
+
+    function openRecordForm(recordType, recordId = "", returnFocus = null) {
+      const config = getRecordTypeConfig(recordType);
+      const data = ClassLedgerStore.getSnapshot();
+      const existingRecord = recordId
+        ? data[config.storageKey].find((record) => isDataRecord(record) && record.id === recordId)
+        : null;
+
+      if (recordId && !existingRecord) {
+        showSystemError("未找到该记录，请刷新页面后重试。");
+        return;
+      }
+      if (!recordId && !data.students.some((student) => isDataRecord(student) && typeof student.id === "string")) {
+        showSystemError("请先在学生管理中添加学生，再创建记录。");
+        return;
+      }
+
+      const form = createRecordForm(recordType, existingRecord);
+      ClassLedgerModal.open({
+        title: existingRecord ? config.editLabel : config.addLabel,
+        content: form,
+        confirmText: "保存",
+        initialFocus: "#record-student",
+        returnFocus,
+        fallbackFocus: "#add-record-button",
+        onConfirm: () => saveRecordForm(form, recordType, recordId)
+      });
+    }
+
+    function openDeleteRecord(recordType, recordId, returnFocus = null) {
+      const config = getRecordTypeConfig(recordType);
+      const data = ClassLedgerStore.getSnapshot();
+      const record = data[config.storageKey].find((item) => isDataRecord(item) && item.id === recordId);
+      if (!record) {
+        showSystemError("未找到该记录，请刷新页面后重试。");
+        return;
+      }
+
+      const student = data.students.find((item) => isDataRecord(item) && item.id === record.studentId);
+      const studentName = student ? String(student.name || "未命名学生") : "未知学生";
+      const content = createConfirmationContent(
+        `确定删除${studentName}在 ${String(record.date || "未知日期")} 的${config.shortLabel}记录吗？`,
+        "删除后将立即重新计算该学生的剩余课时。此操作不可恢复。"
+      );
+
+      ClassLedgerModal.open({
+        title: `删除${config.shortLabel}记录`,
+        content,
+        confirmText: "删除",
+        variant: "danger",
+        returnFocus,
+        fallbackFocus: "#add-record-button",
+        onConfirm: () => {
+          const latestData = ClassLedgerStore.getSnapshot();
+          latestData[config.storageKey] = latestData[config.storageKey].filter((item) => (
+            !isDataRecord(item) || item.id !== recordId
+          ));
+          const result = commitData(latestData, `${config.shortLabel}记录已删除，剩余课时已重新计算。`);
+          if (!result.ok) {
+            setFormSubmitError(content, result.error && result.error.message ? result.error.message : "删除失败，请重试。");
+          }
+          return result.ok;
+        }
+      });
+    }
+
+    function activateRecordType(recordType, { moveFocus = false } = {}) {
+      if (!Object.prototype.hasOwnProperty.call(RECORD_TYPES, recordType)) {
+        return;
+      }
+
+      UI_STATE.activeRecordType = recordType;
+      renderRecords();
+      if (moveFocus) {
+        const tab = document.getElementById(`record-tab-${recordType}`);
+        if (tab) {
+          tab.focus();
+        }
+      }
+    }
+
+    /* ================================================================
+       9. 页面初始化与事件绑定
        ================================================================ */
     function createStorageInfoContent() {
       const wrapper = document.createElement("div");
@@ -3096,9 +3962,13 @@
       const studentSearch = document.getElementById("student-search");
       const classTimesHost = document.getElementById("class-times-list-host");
       const studentsHost = document.getElementById("students-list-host");
+      const recordTabs = document.getElementById("record-tabs");
+      const recordsHost = document.getElementById("records-list-host");
+      const addRecordButton = document.getElementById("add-record-button");
 
       document.getElementById("add-class-time-button").addEventListener("click", () => openClassTimeForm());
       document.getElementById("add-student-button").addEventListener("click", () => openStudentForm());
+      addRecordButton.addEventListener("click", () => openRecordForm(UI_STATE.activeRecordType));
 
       classTimeSearch.addEventListener("input", () => {
         UI_STATE.classTimeSearch = classTimeSearch.value;
@@ -3149,6 +4019,56 @@
         }
       });
 
+      recordTabs.addEventListener("click", (event) => {
+        const tab = event.target.closest("[data-record-type]");
+        if (!tab || !recordTabs.contains(tab)) {
+          return;
+        }
+        activateRecordType(tab.dataset.recordType);
+      });
+
+      recordTabs.addEventListener("keydown", (event) => {
+        const currentTab = event.target.closest("[data-record-type]");
+        if (!currentTab || !recordTabs.contains(currentTab)) {
+          return;
+        }
+
+        const currentIndex = RECORD_TYPE_KEYS.indexOf(currentTab.dataset.recordType);
+        let targetIndex = currentIndex;
+        if (event.key === "ArrowRight") {
+          targetIndex = (currentIndex + 1) % RECORD_TYPE_KEYS.length;
+        } else if (event.key === "ArrowLeft") {
+          targetIndex = (currentIndex - 1 + RECORD_TYPE_KEYS.length) % RECORD_TYPE_KEYS.length;
+        } else if (event.key === "Home") {
+          targetIndex = 0;
+        } else if (event.key === "End") {
+          targetIndex = RECORD_TYPE_KEYS.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        activateRecordType(RECORD_TYPE_KEYS[targetIndex], { moveFocus: true });
+      });
+
+      recordsHost.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button || !recordsHost.contains(button)) {
+          return;
+        }
+
+        const { action, id, recordType } = button.dataset;
+        if (action === "add-record") {
+          openRecordForm(UI_STATE.activeRecordType, "", button);
+        } else if (action === "go-students") {
+          window.location.hash = "students";
+        } else if (action === "edit-record") {
+          openRecordForm(recordType, id, button);
+        } else if (action === "delete-record") {
+          openDeleteRecord(recordType, id, button);
+        }
+      });
+
       document.getElementById("storage-info-button").addEventListener("click", () => {
         ClassLedgerModal.open({
           title: "本地存储说明",
@@ -3165,13 +4085,15 @@
       setupManagementEvents();
       renderClassTimes();
       renderStudents();
+      renderRecords();
       renderRoute();
     }
 
     window.ClassLedger = Object.freeze({
       config: APP_CONFIG,
       store: ClassLedgerStore,
-      modal: ClassLedgerModal
+      modal: ClassLedgerModal,
+      calculateRemainingHours
     });
 
     initializeApp();
